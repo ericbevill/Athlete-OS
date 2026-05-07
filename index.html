@@ -148,49 +148,82 @@ function renderTournaments(){document.getElementById('tournaments').innerHTML=he
 function renderRankings(){document.getElementById('rankings').innerHTML=header('Rankings','Track each ranking system separately. Junior tennis can involve ITF Junior, Tennis Europe age groups, FRT domestic ranking, WTA, UTR, and WTN.',`<button class="btn primary" id="addRanking">Add ranking</button>`)+`<div class="table-wrap"><table><thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Goal</th><th></th></tr></thead><tbody>${state.rankings.map((r,i)=>`<tr><td>${selectCell('rankings',i,'system',r.system,RANKING_SYSTEMS)}</td><td>${selectCell('rankings',i,'category',r.category,CATEGORIES)}</td><td>${cell('rankings',i,'value',r.value)}</td><td>${cell('rankings',i,'date',r.date,'date')}</td><td>${cell('rankings',i,'goal',r.goal)}</td><td><button class="btn danger" data-delete="rankings:${i}">Delete</button></td></tr>`).join('')}</tbody></table></div>`}
 function renderBudget(){let byEvent=state.tournaments.map(t=>`<div class="card"><div class="label">${esc(t.level)}</div><h3>${esc(t.name)}</h3><p>${date(t.start)} · base ${money(t.budget)} · linked budget items ${money(state.budget.filter(b=>b.eventId===t.id).reduce((a,b)=>a+Number(b.amount||0),0))} · total ${money(eventBudget(t.id))}</p></div>`).join('');document.getElementById('budget').innerHTML=header('Budget','Budget items can be linked to a tournament or left as general season costs. Tournament totals update from linked budget rows.',`<button class="btn primary" id="addBudget">Add budget item</button>`)+`<div class="cards">${byEvent}</div><div class="table-wrap"><table><thead><tr><th>Event</th><th>Category</th><th>Description</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${state.budget.map((b,i)=>`<tr><td><select data-scope="budget" data-idx="${i}" data-key="eventId">${tournamentOptions(b.eventId)}</select></td><td>${cell('budget',i,'category',b.category)}</td><td>${cell('budget',i,'description',b.description)}</td><td>${cell('budget',i,'amount',b.amount,'number')}</td><td><select data-scope="budget" data-idx="${i}" data-key="status">${opt(BUDGET_STATUS,b.status)}</select></td><td><button class="btn danger" data-delete="budget:${i}">Delete</button></td></tr>`).join('')}</tbody></table></div>`}
 function renderSponsors(){let sponsorCards=state.sponsors.map((s,i)=>`<div class="sponsor-card"><div class="badge ${s.paymentStatus==='Paid'?'green':s.stage==='Active'?'gold':''}">${esc(s.stage)}</div><h3>${esc(s.company)}</h3><div class="status-line"><span>${money(s.ask)} committed ask</span><span>${money(s.paidAmount)} paid</span><span>${esc(s.paymentStatus)}</span><span>${esc(s.contract)}</span></div><p class="muted">${esc(s.sponsoredItem||'No sponsored item set')} · ${esc(s.nextAction||'No next action')}</p><div class="actions"><button class="btn" data-email-sponsor="${i}">Generate email</button><button class="btn danger" data-delete="sponsors:${i}">Delete</button></div></div>`).join('');document.getElementById('sponsors').innerHTML=header('Sponsors','Business tool for prospecting, agreements, sponsor obligations, payments, renewal dates, deliverables, and follow-up emails.',`<button class="btn primary" id="addSponsor">Add sponsor</button>`)+`<div class="sponsor-grid"><div>${sponsorCards}</div><div><div class="email-box" id="emailBox">Choose a sponsor and click Generate email.</div><br><button class="btn primary" id="copyEmail">Copy email</button></div></div><div class="section-head"><div><h2>Sponsor database</h2><p>Every sponsor is editable. Use this as the record of who sponsored what, payment status, contract status, deliverables, and renewal timing.</p></div></div><div class="table-wrap"><table><thead><tr><th>Company</th><th>Contact</th><th>Email</th><th>Package</th><th>Ask</th><th>Paid</th><th>Stage</th><th>Contract</th><th>Payment</th><th>Scheduled pay</th><th>Sponsored item</th><th>Deliverables</th><th>Agreement start</th><th>Agreement end</th><th>Next action</th></tr></thead><tbody>${state.sponsors.map((s,i)=>`<tr><td>${cell('sponsors',i,'company',s.company)}</td><td>${cell('sponsors',i,'contact',s.contact)}</td><td>${cell('sponsors',i,'email',s.email)}</td><td>${cell('sponsors',i,'package',s.package)}</td><td>${cell('sponsors',i,'ask',s.ask,'number')}</td><td>${cell('sponsors',i,'paidAmount',s.paidAmount,'number')}</td><td><select data-scope="sponsors" data-idx="${i}" data-key="stage">${opt(SPONSOR_STAGE,s.stage)}</select></td><td><select data-scope="sponsors" data-idx="${i}" data-key="contract">${opt(CONTRACT_STATUS,s.contract)}</select></td><td><select data-scope="sponsors" data-idx="${i}" data-key="paymentStatus">${opt(PAYMENT_STATUS,s.paymentStatus)}</select></td><td>${cell('sponsors',i,'scheduledPayment',s.scheduledPayment,'date')}</td><td>${cell('sponsors',i,'sponsoredItem',s.sponsoredItem)}</td><td>${cell('sponsors',i,'deliverables',s.deliverables)}</td><td>${cell('sponsors',i,'agreementStart',s.agreementStart,'date')}</td><td>${cell('sponsors',i,'agreementEnd',s.agreementEnd,'date')}</td><td>${cell('sponsors',i,'nextAction',s.nextAction)}</td></tr>`).join('')}</tbody></table></div>`}
-function docs(){let a=state.athlete,full=`${a.firstName} ${a.lastName}`.trim(),next=currentTournament(),s=currentSponsor();return {
-  dev:['Development Plan',`${full} · ${a.sport} · ${a.city}`,[['Athlete profile',a.summary],['Ranking path',`${a.rankingSystem}: ${a.ranking}. Career high: ${a.careerHigh}. Goal: ${a.rankingGoal}.`],['Strengths',a.strengths],['Development priorities',a.needs],['Tournament roadmap',state.tournaments.map(t=>`${date(t.start)}: ${t.name} · ${t.level} · ${t.surface} · ${money(eventBudget(t.id))}`).join('
-')],['Budget summary',`Current planned need: ${money(totalBudget())}.`]]],
-  mediaKit:['Athlete Profile / Media Kit',full,[['Short bio',a.summary],['Career highlights',state.career.map(c=>`${c.date}: ${c.title}`).join('
-')],['Current ranking',`${a.rankingSystem}: ${a.ranking}`],['Sponsor fit','Support can be tied to tournament travel, training, equipment, and recovery with clear updates and agreed deliverables.']]],
-  localEmail:['Local Sponsor Email',`For ${s.company||'Sponsor'}`,[['Subject',`Sponsorship opportunity: ${full}`],['Email body',sponsorEmail(s)]]],
-  proposal:['Sponsor Proposal One-Pager',s.company||'Sponsor',[['Opportunity',`Support ${full}, a Romanian junior tennis player building an international tournament pathway.`],['Ask',`${money(s.ask||state.settings.defaultAsk)} for ${s.package||'sponsor support'}.`],['Use of funds',s.sponsoredItem||'Tournament travel, training blocks, equipment, and recovery support.'],['Deliverables',s.deliverables||'Sponsor updates and recognition where appropriate.'],['Agreement status',`${s.contract||'Not started'} · Payment: ${s.paymentStatus||'Not invoiced'}`]]],
-  corporate:['Corporate Sponsor Proposal',s.company||'Corporate prospect',[['Why this matters',`${full} is building a structured international junior tennis pathway from Romania. The sponsor can support a clear, specific development plan rather than a vague request.`],['Sponsor package',`${s.package||'Partner'} · Suggested ask: ${money(s.ask||state.settings.defaultAsk)}`],['Business value','Community association, youth sport support, clear reporting, athlete story, and local visibility where appropriate.'],['Next step',s.nextAction||'Schedule a 15 minute conversation.']]],
-  trip:['Tournament Travel Brief',next.name||'Tournament',[['Event',`${next.name||'TBD'}
-${date(next.start)} to ${date(next.end)}
-${next.city||'TBD'}, ${next.country||''}
-${next.level||''} · ${next.surface||''}`],['Budget',money(eventBudget(next.id))],['Purpose',`Competition reps aligned to ranking goal: ${a.rankingGoal}.`],['Sponsor tie-in',`This event can be attached to: ${s.company||'sponsor prospect'} · ${s.sponsoredItem||'sponsored item not set'}.`]]],
-  calendar:['Tournament Calendar One-Pager','Season schedule',[['Schedule',state.tournaments.map(t=>`${date(t.start)} to ${date(t.end)} · ${t.name} · ${t.city}, ${t.country} · ${t.level} · ${money(eventBudget(t.id))}`).join('
-')]]],
-  budget:['Budget Request',money(totalBudget()),[['Funding need',state.budget.map(b=>`${eventName(b.eventId)} · ${b.category}: ${b.description} · ${money(b.amount)} · ${b.status}`).join('
-')],['Tournament base budgets',state.tournaments.map(t=>`${t.name}: ${money(t.budget)} base · ${money(eventBudget(t.id))} total`).join('
-')]]],
-  update:['Sponsor Update',full,[['Overview',`${full} continues toward ${a.rankingGoal}.`],['Recent activity',state.tournaments.map(t=>`${t.name}: ${t.result||'pending / research'}`).join('
-')],['Current focus',a.needs],['Sponsor deliverables',s.deliverables||'No deliverables entered yet.']]],
-  thanks:['Sponsor Thank You Email',s.company||'Sponsor',[['Email body',`Hi ${s.contact||'[Name]'},
-
-Thank you for supporting ${full}. Your contribution helps with real tennis development costs: training, travel, competition, equipment, and recovery. We will keep you updated with clear progress notes and event summaries.
-
-Best,
-${state.settings.senderName}`]]],
-  agreement:['Sponsor Agreement Summary',s.company||'Sponsor',[['Sponsor',s.company||''],['Support amount',money(s.ask||0)],['Paid amount',money(s.paidAmount||0)],['Sponsored item',s.sponsoredItem||''],['Deliverables',s.deliverables||''],['Agreement window',`${s.agreementStart||'TBD'} to ${s.agreementEnd||'TBD'}`],['Contract status',s.contract||'Not started'],['Payment status',s.paymentStatus||'Not invoiced'],['Renewal date',s.renewal||'TBD']]],
-  followup:['Sponsor Follow-Up Email',s.company||'Sponsor',[['Email body',`Hi ${s.contact||'[Name]'},
-
-I wanted to follow up on the sponsorship opportunity for ${full}. The current ask is ${money(s.ask||state.settings.defaultAsk)} and can be tied directly to ${s.sponsoredItem||'a specific development cost'}.
-
-Would it be useful if I sent a one-page summary with the budget, tournament schedule, and sponsor deliverables?
-
-Best,
-${state.settings.senderName}`]]],
-  paymentReminder:['Sponsor Payment Reminder',s.company||'Sponsor',[['Email body',`Hi ${s.contact||'[Name]'},
-
-A quick note on the sponsorship payment for ${full}. The current scheduled payment date is ${s.scheduledPayment||'[scheduled date]'}, with payment status marked as ${s.paymentStatus||'Not invoiced'}.
-
-Please let me know if you need an updated summary, agreement details, or payment information.
-
-Best,
-${state.settings.senderName}`]]]
-}}
+function docs(){
+  const NL = String.fromCharCode(10);
+  let a=state.athlete, full=`${a.firstName} ${a.lastName}`.trim(), next=currentTournament(), s=currentSponsor();
+  return {
+    dev:['Development Plan',`${full} · ${a.sport} · ${a.city}`,[
+      ['Athlete profile',a.summary],
+      ['Ranking path',`${a.rankingSystem}: ${a.ranking}. Career high: ${a.careerHigh}. Goal: ${a.rankingGoal}.`],
+      ['Strengths',a.strengths],
+      ['Development priorities',a.needs],
+      ['Tournament roadmap',state.tournaments.map(t=>`${date(t.start)}: ${t.name} · ${t.level} · ${t.surface} · ${money(eventBudget(t.id))}`).join(NL)],
+      ['Budget summary',`Current planned need: ${money(totalBudget())}.`]
+    ]],
+    mediaKit:['Athlete Profile / Media Kit',full,[
+      ['Short bio',a.summary],
+      ['Career highlights',state.career.map(c=>`${c.date}: ${c.title}`).join(NL)],
+      ['Current ranking',`${a.rankingSystem}: ${a.ranking}`],
+      ['Sponsor fit','Support can be tied to tournament travel, training, equipment, and recovery with clear updates and agreed deliverables.']
+    ]],
+    localEmail:['Local Sponsor Email',`For ${s.company||'Sponsor'}`,[
+      ['Subject',`Sponsorship opportunity: ${full}`],
+      ['Email body',sponsorEmail(s)]
+    ]],
+    proposal:['Sponsor Proposal One-Pager',s.company||'Sponsor',[
+      ['Opportunity',`Support ${full}, a Romanian junior tennis player building an international tournament pathway.`],
+      ['Ask',`${money(s.ask||state.settings.defaultAsk)} for ${s.package||'sponsor support'}.`],
+      ['Use of funds',s.sponsoredItem||'Tournament travel, training blocks, equipment, and recovery support.'],
+      ['Deliverables',s.deliverables||'Sponsor updates and recognition where appropriate.'],
+      ['Agreement status',`${s.contract||'Not started'} · Payment: ${s.paymentStatus||'Not invoiced'}`]
+    ]],
+    corporate:['Corporate Sponsor Proposal',s.company||'Corporate prospect',[
+      ['Why this matters',`${full} is building a structured international junior tennis pathway from Romania. The sponsor can support a clear, specific development plan rather than a vague request.`],
+      ['Sponsor package',`${s.package||'Partner'} · Suggested ask: ${money(s.ask||state.settings.defaultAsk)}`],
+      ['Business value','Community association, youth sport support, clear reporting, athlete story, and local visibility where appropriate.'],
+      ['Next step',s.nextAction||'Schedule a 15 minute conversation.']
+    ]],
+    trip:['Tournament Travel Brief',next.name||'Tournament',[
+      ['Event',[next.name||'TBD',`${date(next.start)} to ${date(next.end)}`,`${next.city||'TBD'}, ${next.country||''}`,`${next.level||''} · ${next.surface||''}`].join(NL)],
+      ['Budget',money(eventBudget(next.id))],
+      ['Purpose',`Competition reps aligned to ranking goal: ${a.rankingGoal}.`],
+      ['Sponsor tie-in',`This event can be attached to: ${s.company||'sponsor prospect'} · ${s.sponsoredItem||'sponsored item not set'}.`]
+    ]],
+    calendar:['Tournament Calendar One-Pager','Season schedule',[
+      ['Schedule',state.tournaments.map(t=>`${date(t.start)} to ${date(t.end)} · ${t.name} · ${t.city}, ${t.country} · ${t.level} · ${money(eventBudget(t.id))}`).join(NL)]
+    ]],
+    budget:['Budget Request',money(totalBudget()),[
+      ['Funding need',state.budget.map(b=>`${eventName(b.eventId)} · ${b.category}: ${b.description} · ${money(b.amount)} · ${b.status}`).join(NL)],
+      ['Tournament base budgets',state.tournaments.map(t=>`${t.name}: ${money(t.budget)} base · ${money(eventBudget(t.id))} total`).join(NL)]
+    ]],
+    update:['Sponsor Update',full,[
+      ['Overview',`${full} continues toward ${a.rankingGoal}.`],
+      ['Recent activity',state.tournaments.map(t=>`${t.name}: ${t.result||'pending / research'}`).join(NL)],
+      ['Current focus',a.needs],
+      ['Sponsor deliverables',s.deliverables||'No deliverables entered yet.']
+    ]],
+    thanks:['Sponsor Thank You Email',s.company||'Sponsor',[
+      ['Email body',`Hi ${s.contact||'[Name]'},${NL}${NL}Thank you for supporting ${full}. Your contribution helps with real tennis development costs: training, travel, competition, equipment, and recovery. We will keep you updated with clear progress notes and event summaries.${NL}${NL}Best,${NL}${state.settings.senderName}`]
+    ]],
+    agreement:['Sponsor Agreement Summary',s.company||'Sponsor',[
+      ['Sponsor',s.company||''],
+      ['Support amount',money(s.ask||0)],
+      ['Paid amount',money(s.paidAmount||0)],
+      ['Sponsored item',s.sponsoredItem||''],
+      ['Deliverables',s.deliverables||''],
+      ['Agreement window',`${s.agreementStart||'TBD'} to ${s.agreementEnd||'TBD'}`],
+      ['Contract status',s.contract||'Not started'],
+      ['Payment status',s.paymentStatus||'Not invoiced'],
+      ['Renewal date',s.renewal||'TBD']
+    ]],
+    followup:['Sponsor Follow-Up Email',s.company||'Sponsor',[
+      ['Email body',`Hi ${s.contact||'[Name]'},${NL}${NL}I wanted to follow up on the sponsorship opportunity for ${full}. The current ask is ${money(s.ask||state.settings.defaultAsk)} and can be tied directly to ${s.sponsoredItem||'a specific development cost'}.${NL}${NL}Would it be useful if I sent a one-page summary with the budget, tournament schedule, and sponsor deliverables?${NL}${NL}Best,${NL}${state.settings.senderName}`]
+    ]],
+    paymentReminder:['Sponsor Payment Reminder',s.company||'Sponsor',[
+      ['Email body',`Hi ${s.contact||'[Name]'},${NL}${NL}A quick note on the sponsorship payment for ${full}. The current scheduled payment date is ${s.scheduledPayment||'[scheduled date]'}, with payment status marked as ${s.paymentStatus||'Not invoiced'}.${NL}${NL}Please let me know if you need an updated summary, agreement details, or payment information.${NL}${NL}Best,${NL}${state.settings.senderName}`]
+    ]]
+  }
+}
 function eventName(id){return state.tournaments.find(t=>t.id===id)?.name||'General'}
 function renderDocuments(){let D=docs(),keys=Object.keys(D);if(!keys.includes(state.selected.doc))state.selected.doc='dev';let d=D[state.selected.doc];document.getElementById('documents').innerHTML=header('Documents','Generate, copy, export, and print working documents from dashboard inputs. Choose sponsor and event, then generate the document.',`<button class="btn primary" onclick="window.print()">Print / PDF</button>`)+`<div class="doc-options"><div class="field w12"><label>Sponsor</label><select data-selected="sponsorId">${state.sponsors.map(s=>`<option value="${s.id}" ${s.id===state.selected.sponsorId?'selected':''}>${esc(s.company)}</option>`).join('')}</select></div><div class="field w12"><label>Event</label><select data-selected="tournamentId">${state.tournaments.map(t=>`<option value="${t.id}" ${t.id===state.selected.tournamentId?'selected':''}>${esc(t.name)}</option>`).join('')}</select></div><div class="field w12"><label>Document</label><select data-selected="doc">${Object.entries(D).map(([k,v])=>`<option value="${k}" ${k===state.selected.doc?'selected':''}>${esc(v[0])}</option>`).join('')}</select></div></div><div class="doc-layout"><div class="doc-list">${Object.entries(D).map(([k,v])=>`<button class="${k===state.selected.doc?'active':''}" data-doc="${k}">${v[0]}</button>`).join('')}</div><div><div class="doc-paper" id="docPaper">${docHtml(d)}</div><button class="btn primary" id="copyDoc">Copy document text</button><button class="btn" id="downloadDoc">Download .txt</button></div></div>`}
 function docHtml(d){return `<h1>${esc(d[0])}</h1><div style="color:#60748d;margin-bottom:24px">${esc(d[1])}</div>${d[2].map(([h,b])=>`<section class="doc-sec"><h4>${esc(h)}</h4><p>${esc(b)}</p></section>`).join('')}`}
