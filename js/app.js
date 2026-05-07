@@ -48,6 +48,7 @@
 
   function renderNav(){
     const desktop = $('#desktopNav'); desktop.innerHTML = pages.map(([id,label])=>`<button data-page="${id}" class="${activePage===id?'active':''}">${label}</button>`).join('');
+    const top = $('#topNav'); if(top) top.innerHTML = pages.map(([id,label])=>`<button data-page="${id}" class="${activePage===id?'active':''}">${label}</button>`).join('');
     const mobile = $('#mobileNav'); mobile.innerHTML = pages.map(([id,label])=>`<option value="${id}" ${activePage===id?'selected':''}>${label}</option>`).join('');
     $('#mobileName').textContent = athleteName();
     $$('.page').forEach(p => p.classList.toggle('active', p.dataset.page === activePage));
@@ -254,8 +255,8 @@
   function currentDocText(){ const doc=buildDocument(selectedDoc); if(doc.body) return `${doc.title}\n${doc.subtitle || ''}\n\n${doc.body}`; return `${doc.title}\n${doc.subtitle || ''}\n\n${doc.sections.map(([h,b])=>`${h}\n${b}`).join('\n\n')}`; }
 
   document.addEventListener('click', e=>{
-    const pageBtn = e.target.closest('[data-page]');
-    if(pageBtn && pageBtn.closest('#desktopNav')) { activePage = pageBtn.dataset.page; render(); window.scrollTo(0,0); }
+    const pageBtn = e.target.closest('button[data-page]');
+    if(pageBtn && (pageBtn.closest('#desktopNav') || pageBtn.closest('#topNav'))) { activePage = pageBtn.dataset.page; render(); window.scrollTo(0,0); }
     const jump = e.target.closest('[data-jump]'); if(jump){ activePage = jump.dataset.jump; render(); window.scrollTo(0,0); }
     const docTile = e.target.closest('[data-doc]'); if(docTile){ selectedDoc = docTile.dataset.doc; state.documents.selected = selectedDoc; render(); }
     const remove = e.target.closest('[data-remove]'); if(remove){ const col=collection(remove.dataset.remove); if(col.length>1 || confirm('Remove this only item?')){ col.splice(Number(remove.dataset.index),1); render(); } }
