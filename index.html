@@ -4,220 +4,58 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Andreea Athlete OS</title>
-  <meta name="description" content="Andreea athlete operating dashboard" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    :root{
+      --bg:#07111d;--panel:#0d1a2a;--panel2:#101f33;--ink:#eef5ff;--muted:#9fb2c8;--line:rgba(255,255,255,.14);--aqua:#8cf7df;--gold:#ffd18a;--danger:#ff9a9a;--paper:#f9fbff;--paperInk:#0d1726;
+    }
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(1000px 600px at 80% -10%,rgba(140,247,223,.13),transparent 50%),linear-gradient(180deg,#07111d,#040a12);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{min-height:100vh}.topbar{position:sticky;top:0;z-index:50;background:rgba(7,17,29,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1500px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:18px}.brand{font-weight:900;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--aqua);white-space:nowrap}.nav{display:flex;gap:6px;overflow:auto;scrollbar-width:none}.nav button{border:1px solid transparent;background:transparent;color:#c9d6e7;border-radius:999px;padding:9px 13px;font-weight:800;cursor:pointer;white-space:nowrap}.nav button.active{border-color:rgba(140,247,223,.45);background:rgba(140,247,223,.12);color:#fff}.wrap{max-width:1500px;margin:0 auto;padding:22px 18px 70px}.hero{position:relative;min-height:430px;border:1px solid var(--line);overflow:hidden;background:linear-gradient(90deg,rgba(7,17,29,.95) 0%,rgba(7,17,29,.88) 46%,rgba(7,17,29,.38) 70%,rgba(7,17,29,.78) 100%)}.court{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 63%,rgba(255,255,255,.16) 63.1%,transparent 63.3%),linear-gradient(180deg,transparent 0 52%,rgba(255,255,255,.11) 52.1%,transparent 52.3%),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 140px)}.hero-bg{position:absolute;inset:0;background:url('assets/andreea-bg.jpg') center right/cover no-repeat;opacity:.22}.hero-cutout{position:absolute;right:18%;bottom:-4px;max-height:96%;max-width:42%;object-fit:contain;filter:drop-shadow(0 30px 55px rgba(0,0,0,.55));z-index:3}.hero-text{position:relative;z-index:4;padding:52px 38px;max-width:720px}.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--aqua);font-weight:900}.hero h1{font-size:clamp(54px,8vw,118px);line-height:.85;letter-spacing:-.07em;margin:18px 0 22px}.hero p{max-width:660px;color:#c6d4e5;font-size:18px;line-height:1.65;margin:0 0 28px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:transparent;color:var(--ink);font-weight:900;padding:12px 16px;cursor:pointer}.btn.primary{background:var(--aqua);color:#06231e;border-color:transparent}.hero-stats{position:absolute;right:36px;bottom:32px;z-index:4;display:flex;gap:18px;border-top:1px solid var(--line);padding-top:16px}.hero-stat span{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:900}.hero-stat strong{font-size:34px;letter-spacing:-.06em}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}.metric{border-top:1px solid var(--line);padding-top:16px}.metric span{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:900}.metric strong{display:block;font-size:46px;letter-spacing:-.07em;margin-top:7px}.metric p{color:#b9c8d9;line-height:1.55;margin:4px 0 0}.page{display:none;margin-top:34px}.page.active{display:block}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;border-top:1px solid var(--line);padding-top:18px;margin-bottom:20px}.section-head h2{font-size:48px;line-height:.9;letter-spacing:-.06em;margin:0}.section-head p{color:var(--muted);line-height:1.6;margin:8px 0 0;max-width:780px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{border-top:1px solid var(--line);padding-top:16px;background:linear-gradient(180deg,rgba(255,255,255,.035),transparent);min-height:130px}.card .label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--aqua);font-weight:900}.card h3{font-size:28px;line-height:1;margin:10px 0 8px;letter-spacing:-.04em}.card p{color:#bccadd;line-height:1.6;margin:0}.table-wrap{overflow:auto;border-top:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:850px}th{padding:14px 12px;text-align:left;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}td{padding:14px 12px;border-top:1px solid rgba(255,255,255,.08);vertical-align:top}input,textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--ink);padding:10px;border-radius:0;font:inherit}textarea{min-height:90px}.form-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.field{grid-column:span 4}.field.w6{grid-column:span 6}.field.w12{grid-column:span 12}.field label{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:900;margin-bottom:8px}.timeline{display:grid;gap:18px}.event{display:grid;grid-template-columns:140px 1fr;gap:18px;border-top:1px solid var(--line);padding-top:18px}.event .date{color:var(--aqua);font-weight:900}.calendar{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.day{min-height:116px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px}.day strong{font-size:12px;color:var(--muted)}.pill{display:block;margin-top:8px;padding:7px;background:rgba(140,247,223,.12);font-size:12px;color:#dffef6}.doc-layout{display:grid;grid-template-columns:280px 1fr;gap:22px}.doc-list{display:grid;gap:10px}.doc-list button{text-align:left;border:1px solid var(--line);background:rgba(255,255,255,.035);color:var(--ink);padding:12px;font-weight:900;cursor:pointer}.doc-list button.active{background:rgba(140,247,223,.14);border-color:rgba(140,247,223,.45)}.doc-paper{background:var(--paper);color:var(--paperInk);padding:42px;min-height:560px}.doc-paper h1{font-size:46px;line-height:.95;letter-spacing:-.06em;margin:0 0 10px}.doc-sec{border-top:1px solid #dbe5f2;padding:18px 0}.doc-sec h4{margin:0 0 10px;color:#667b96;letter-spacing:.16em;text-transform:uppercase;font-size:12px}.doc-sec p{white-space:pre-line;line-height:1.8;margin:0}.sponsor-tools{display:grid;grid-template-columns:1fr 1fr;gap:18px}.email-box{background:#091523;border:1px solid var(--line);padding:18px;white-space:pre-line;line-height:1.65}.mobile-note{display:none;color:var(--muted)}@media(max-width:900px){.topbar-inner{align-items:flex-start;flex-direction:column}.nav{width:100%;padding-bottom:4px}.wrap{padding:14px 12px 50px}.hero{min-height:660px}.hero-text{padding:28px 18px}.hero h1{font-size:60px}.hero-cutout{right:-6%;bottom:72px;max-width:72%;max-height:55%;opacity:.95}.hero-stats{left:18px;right:18px;bottom:18px}.grid,.cards,.sponsor-tools{grid-template-columns:1fr}.doc-layout{grid-template-columns:1fr}.field,.field.w6{grid-column:span 12}.section-head{display:block}.section-head h2{font-size:38px}.event{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(2,1fr)}.mobile-note{display:block}}@media print{.topbar,.hero,.grid,.section-head,.doc-list,.btn{display:none!important}.wrap{max-width:none;padding:0}.page{display:none!important}.page.active{display:block!important}.doc-layout{display:block}.doc-paper{padding:0;background:#fff;color:#111}}
+  </style>
 </head>
 <body>
-  <div class="mobileTop">
-    <div>
-      <span class="overline"><i></i> Andreea Athlete OS</span>
-      <strong id="mobileName">Andreea Olariu</strong>
-    </div>
-    <select id="mobileNav" aria-label="Navigation"></select>
-  </div>
-
-  <header class="topBar">
-    <div class="topBrand"><span class="overline"><i></i> Andreea Athlete OS</span></div>
-    <nav id="topNav" class="topNav" aria-label="Primary navigation"></nav>
-  </header>
-
-  <main class="siteShell">
-    <section class="hero" id="hero">
-      <div class="heroCourt"></div>
-      <div class="heroCopy">
-        <span class="overline"><i></i> Andreea Athlete OS</span>
-        <h1 id="heroName">Andreea Olariu</h1>
-        <p id="heroStory" class="heroStory"></p>
-        <div class="heroMeta" id="heroMeta"></div>
-        <div class="heroActions">
-          <button class="button primary" data-jump="documents">Documents</button>
-          <button class="button ghost" data-jump="career">Career timeline</button>
-        </div>
-      </div>
-      <div class="heroImageZone">
-        <div class="figureGlow"></div>
-        <img id="heroFigure" class="heroFigure" src="assets/andreea-cutout.png" alt="Andreea tennis action cutout" />
-      </div>
+<div class="app">
+  <header class="topbar"><div class="topbar-inner"><div class="brand">Andreea Athlete OS</div><nav class="nav" id="nav"></nav></div></header>
+  <main class="wrap">
+    <section class="hero">
+      <div class="court"></div><div class="hero-bg"></div><img class="hero-cutout" id="heroCutout" src="assets/andreea-cutout.png" alt="Andreea" onerror="this.style.display='none'" />
+      <div class="hero-text"><div class="eyebrow">Romania · Junior Tennis</div><h1 id="heroName">Andreea Olariu</h1><p id="heroSummary"></p><div class="hero-actions"><button class="btn primary" data-go="documents">Generate documents</button><button class="btn" data-go="career">View career timeline</button></div></div>
+      <div class="hero-stats"><div class="hero-stat"><span>ITF Junior</span><strong id="heroItf">503</strong></div><div class="hero-stat"><span>Annual budget</span><strong id="heroBudget">€0</strong></div><div class="hero-stat"><span>Pipeline</span><strong id="heroPipeline">€0</strong></div></div>
     </section>
-
-    <div class="appGrid">
-      <aside class="sideNav">
-        <div class="sideIdentity">
-          <span class="overline"><i></i> Athlete</span>
-          <h2 id="sideName">Andreea</h2>
-          <p id="sideSub">Romania · Junior tennis</p>
-        </div>
-        <nav id="desktopNav"></nav>
-        <div class="storageNote">
-          <strong>Storage</strong>
-          <p>Browser localStorage only. Export JSON backups from Settings. Do not commit private backups to GitHub.</p>
-        </div>
-      </aside>
-
-      <section class="workspace">
-        <section class="page active" data-page="dashboard">
-          <div class="statGrid" id="dashboardStats"></div>
-          <section class="module featureModule">
-            <div class="moduleHead">
-              <div>
-                <span class="overline"><i></i> Season control</span>
-                <h3>Tour board</h3>
-                <p>Track the calendar, ranking path, budget pressure, sponsors, and upcoming decisions from one clean view.</p>
-              </div>
-              <div class="surfaceLegend"><span>Clay</span><span>Hard</span><span>Indoor</span><span>Grass</span></div>
-            </div>
-            <div class="split2">
-              <div class="scoreboard" id="nextTournamentCard"></div>
-              <div class="rankingLadder" id="rankingLadder"></div>
-            </div>
-          </section>
-          <section class="module">
-            <div class="moduleHead">
-              <div><h3>Upcoming schedule</h3><p>Next tournaments and commitments.</p></div>
-            </div>
-            <div class="tableWrap"><table><thead><tr><th>Event</th><th>Dates</th><th>Track</th><th>Level</th><th>Status</th><th>Budget</th></tr></thead><tbody id="upcomingRows"></tbody></table></div>
-          </section>
-        </section>
-
-        <section class="page" data-page="profile">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Profile</span>
-            <h2>Athlete profile</h2>
-            <p>Enter the source data once. The hero, documents, sponsor emails, and plans all pull from this information.</p>
-          </div>
-          <section class="module"><div class="formGrid" id="profileForm"></div></section>
-        </section>
-
-        <section class="page" data-page="career">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Career</span>
-            <h2>Career timeline</h2>
-            <p>Track accomplishments, team selections, titles, finals, ranking highs, and sponsor-worthy story points.</p>
-          </div>
-          <section class="module">
-            <div class="moduleHead"><div><h3>Timeline</h3><p>Preloaded with public résumé items and editable milestones.</p></div><button class="button primary small" id="addMilestone">Add milestone</button></div>
-            <div class="timeline" id="careerTimeline"></div>
-          </section>
-          <section class="module"><div class="moduleHead"><div><h3>Milestone editor</h3><p>Edit source-backed career items here.</p></div></div><div id="milestoneEditor" class="cardStack"></div></section>
-        </section>
-
-        <section class="page" data-page="calendar">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Calendar</span>
-            <h2>Calendar view</h2>
-            <p>Visual monthly schedule for tournaments, training blocks, travel, sponsor actions, and admin deadlines.</p>
-          </div>
-          <section class="module">
-            <div class="calendarToolbar">
-              <button class="button ghost small" id="prevMonth">Previous</button>
-              <h3 id="calendarTitle">Month</h3>
-              <button class="button ghost small" id="nextMonth">Next</button>
-            </div>
-            <div class="calendarGrid" id="calendarGrid"></div>
-          </section>
-        </section>
-
-        <section class="page" data-page="tournaments">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Tournament operations</span>
-            <h2>Tournament planner</h2>
-            <p>Smart fields for ITF, Tennis Europe, Romanian domestic, and entry-level pro exposure events.</p>
-          </div>
-          <section class="module tennisLinks">
-            <a href="https://www.itftennis.com/en/tournament-calendar/world-tennis-tour-juniors-calendar/" target="_blank" rel="noreferrer"><span>ITF</span><strong>Junior Calendar</strong><p>J30 to J500 and Junior Grand Slam pathway.</p></a>
-            <a href="https://www.tenniseurope.org/" target="_blank" rel="noreferrer"><span>Tennis Europe</span><strong>U12 / U14 / U16</strong><p>European junior categories and events.</p></a>
-            <a href="https://www.frt.ro/" target="_blank" rel="noreferrer"><span>Romania</span><strong>FRT Calendar</strong><p>Domestic events and federation context.</p></a>
-          </section>
-          <section class="module">
-            <div class="moduleHead"><div><h3>Events</h3><p>Add, prioritize, budget, and record results.</p></div><button class="button primary small" id="addTournament">Add tournament</button></div>
-            <div id="tournamentEditor" class="cardStack"></div>
-          </section>
-        </section>
-
-        <section class="page" data-page="rankings">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Rankings</span>
-            <h2>Ranking tracker</h2>
-            <p>Track ranking systems separately: ITF Junior, Tennis Europe categories, FRT, WTA, UTR, and WTN.</p>
-          </div>
-          <section class="module">
-            <div class="moduleHead"><div><h3>Ranking entries</h3><p>Dropdowns include the main junior tennis pathways and ranking contexts.</p></div><button class="button primary small" id="addRanking">Add ranking</button></div>
-            <div id="rankingEditor" class="cardStack"></div>
-          </section>
-        </section>
-
-        <section class="page" data-page="budget">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Budget</span>
-            <h2>Season budget</h2>
-            <p>Turn training, travel, equipment, recovery, and tournament costs into sponsor-ready funding asks.</p>
-          </div>
-          <section class="module">
-            <div class="moduleHead"><div><h3>Budget items</h3><p>Each line can be attached to a sponsor ask later.</p></div><button class="button primary small" id="addBudget">Add item</button></div>
-            <div class="tableWrap"><table><thead><tr><th>Category</th><th>Description</th><th>Amount</th><th>Status</th><th>Funding target</th></tr></thead><tbody id="budgetRows"></tbody></table></div>
-          </section>
-        </section>
-
-        <section class="page" data-page="sponsors">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Sponsors</span>
-            <h2>Sponsor center</h2>
-            <p>Manage prospects, people, asks, deliverables, agreements, and one-click document generation.</p>
-          </div>
-          <section class="module">
-            <div class="moduleHead"><div><h3>Pipeline</h3><p>Track outreach, contract status, renewal dates, promised deliverables, and next actions.</p></div><button class="button primary small" id="addSponsor">Add sponsor</button></div>
-            <div id="sponsorEditor" class="cardStack"></div>
-          </section>
-          <section class="module">
-            <div class="moduleHead"><div><h3>Generate sponsor email</h3><p>Select a sponsor, choose the template, and the dashboard fills the email with their name and Andreea's current data.</p></div></div>
-            <div class="generatorBar">
-              <label>Sponsor<select id="sponsorSelect"></select></label>
-              <label>Template<select id="sponsorTemplateSelect"><option value="intro">Intro sponsor email</option><option value="followup">Follow-up email</option><option value="update">Sponsor update email</option><option value="thankyou">Thank you email</option></select></label>
-              <button class="button primary small" id="generateSponsorEmail">Generate</button>
-              <button class="button ghost small" id="copySponsorEmail">Copy</button>
-              <button class="button ghost small" id="printSponsorEmail">Print</button>
-            </div>
-            <div class="docPaper miniDoc" id="sponsorEmailOutput"></div>
-          </section>
-        </section>
-
-        <section class="page" data-page="documents">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Documents</span>
-            <h2>Document generator</h2>
-            <p>Every document uses dashboard fields. No bracket placeholders stay unresolved once the profile, sponsors, tournaments, and budget are filled in.</p>
-          </div>
-          <section class="module">
-            <div class="documentGrid" id="documentGrid"></div>
-          </section>
-          <section class="module">
-            <div class="moduleHead"><div><h3 id="docTitle">Document preview</h3><p id="docSubtitle">Select a document above.</p></div><div class="tools"><button class="button primary small" id="printDocument">Print / Save PDF</button><button class="button ghost small" id="copyDocument">Copy text</button><button class="button ghost small" id="downloadDocument">Download HTML</button></div></div>
-            <div class="docPaper" id="documentPreview"></div>
-          </section>
-        </section>
-
-        <section class="page" data-page="settings">
-          <div class="pageHeader">
-            <span class="overline"><i></i> Settings</span>
-            <h2>Settings and backups</h2>
-            <p>Static GitHub Pages app. Browser storage only. Backup regularly.</p>
-          </div>
-          <section class="module">
-            <div class="tools wrap">
-              <button class="button primary" id="exportJson">Export JSON backup</button>
-              <label class="button ghost" for="importJson">Import JSON backup</label>
-              <input id="importJson" type="file" accept="application/json" hidden>
-              <button class="button danger" id="resetData">Reset to preloaded Andreea data</button>
-            </div>
-            <p class="settingsNote"><strong>Storage used:</strong> localStorage in the current browser. There is no server, no user login, no database, and no cloud sync in this free GitHub Pages build.</p>
-          </section>
-        </section>
-      </section>
-    </div>
+    <section class="grid" id="metrics"></section>
+    <section class="page active" id="dashboard"></section><section class="page" id="profile"></section><section class="page" id="career"></section><section class="page" id="calendar"></section><section class="page" id="tournaments"></section><section class="page" id="rankings"></section><section class="page" id="budget"></section><section class="page" id="sponsors"></section><section class="page" id="documents"></section><section class="page" id="settings"></section>
   </main>
-
-  <template id="fieldTemplate"></template>
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+</div>
+<script>
+const DATA={athlete:{firstName:'Andreea',lastName:'Olariu',sport:'Tennis',city:'Timișoara, Romania',country:'Romania',age:'16',club:'TBD',coach:'TBD',school:'TBD',rankingSystem:'ITF Junior',ranking:'503',careerHigh:'464',seasonHigh:'491',rankingGoal:'Top 300 ITF Junior',summary:'Editorial athlete command center for tournament planning, development tracking, sponsor management, and the business side of a rising Romanian junior tennis career.',strengths:'Competitive, disciplined, coachable, aggressive mover, strong international upside.',needs:'Tournament scheduling, travel budgeting, consistent sponsor reporting, physical preparation, and recovery planning.',cutout:'assets/andreea-cutout.png',background:'assets/andreea-bg.jpg'},career:[{date:'2025',title:'J60 Podgorica doubles champion',body:'Won doubles title with Yelena Lebeau. Verify final public details before external publication.'},{date:'2025',title:'J60 Podgorica singles finalist',body:'Reached singles final in Montenegro according to public local reporting.'},{date:'2025',title:'Ulcinj semifinal',body:'Reached semifinal stage during Montenegro competition block.'},{date:'2026',title:'International junior schedule building',body:'Tracking J60 Larnaca, J60 Frederiksberg, and other ITF/Tennis Europe opportunities.'}],tournaments:[{name:'J60 Larnaca',start:'2026-03-02',end:'2026-03-08',track:'ITF Junior',level:'J60',surface:'Hard',city:'Larnaca',country:'Cyprus',status:'Research',priority:'A',budget:1200,result:''},{name:'J60 Frederiksberg',start:'2026-04-06',end:'2026-04-12',track:'ITF Junior',level:'J60',surface:'Indoor',city:'Frederiksberg',country:'Denmark',status:'Research',priority:'A',budget:1600,result:''},{name:'Romania prep block',start:'2026-06-10',end:'2026-06-16',track:'Training',level:'Prep',surface:'Clay',city:'Timișoara',country:'Romania',status:'Planned',priority:'B',budget:400,result:''}],rankings:[{system:'ITF Junior',category:'Girls 18U',value:'503',date:'2026-05-07',goal:'Top 300'},{system:'Tennis Europe',category:'U16',value:'TBD',date:'2026-05-07',goal:'Establish ranking'},{system:'FRT Romania',category:'U18',value:'TBD',date:'2026-05-07',goal:'Track domestic position'}],budget:[{category:'Travel',description:'International tournament travel and lodging',amount:3200,status:'Needed'},{category:'Coaching',description:'Training block and match preparation',amount:1800,status:'Planned'},{category:'Equipment',description:'Strings, shoes, grips, racquets maintenance',amount:850,status:'Needed'},{category:'Recovery',description:'Fitness, physio, nutrition, recovery support',amount:900,status:'Planned'}],sponsors:[{company:'Local Business Prospect',contact:'Owner or Marketing Manager',email:'',package:'Local Partner',ask:1500,stage:'Prospect',contract:'Not started',deliverables:'Logo mention, quarterly update, tournament brief, thank you post if appropriate',nextAction:'Send intro email',renewal:'',notes:'Good fit for community support angle.'},{company:'Regional Brand Opportunity',contact:'Marketing Lead',email:'',package:'Travel Partner',ask:3000,stage:'Research',contract:'Not started',deliverables:'Travel support story, sponsor update, season report',nextAction:'Find decision maker',renewal:'',notes:'Tie ask to specific international tournament block.'}],settings:{senderName:'Eric',senderEmail:'',phone:'',defaultAsk:1500}};
+const RANKING_SYSTEMS=['ITF Junior','Tennis Europe','FRT Romania','WTA','UTR','WTN'];
+const CATEGORIES=['Girls 18U','U16','U14','U12','Open','Professional'];
+const LEVELS=['ITF Junior J30','ITF Junior J60','ITF Junior J100','ITF Junior J200','ITF Junior J300','ITF Junior J500','Junior Grand Slam','Tennis Europe U12','Tennis Europe U14','Tennis Europe U16','FRT U12','FRT U14','FRT U16','FRT U18','W15','W35','Training','Sponsor/Admin'];
+const SURFACES=['Clay','Hard','Indoor','Grass','Carpet'];
+const STATUS=['Research','Shortlist','Planned','Confirmed','Completed','Skipped'];
+const KEY='andreea-os-fixed-v1';let state=load();let active='dashboard';let activeDoc='dev';
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||DATA}catch{return structuredClone(DATA)}}function save(){localStorage.setItem(KEY,JSON.stringify(state))}function money(v){return new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0))}function date(d){return d?new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'TBD'}function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function opt(list,val){return list.map(x=>`<option ${x==val?'selected':''}>${esc(x)}</option>`).join('')}function totalBudget(){return state.budget.reduce((a,b)=>a+Number(b.amount||0),0)}function totalSponsors(){return state.sponsors.reduce((a,b)=>a+Number(b.ask||0),0)}
+function nav(){const tabs=['dashboard','profile','career','calendar','tournaments','rankings','budget','sponsors','documents','settings'];document.getElementById('nav').innerHTML=tabs.map(t=>`<button class="${t==active?'active':''}" data-tab="${t}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}
+function chrome(){let a=state.athlete;document.getElementById('heroName').textContent=`${a.firstName} ${a.lastName}`.trim();document.getElementById('heroSummary').textContent=a.summary;document.getElementById('heroCutout').src=a.cutout;document.querySelector('.hero-bg').style.backgroundImage=`url('${a.background}')`;document.getElementById('heroItf').textContent=a.ranking||'TBD';document.getElementById('heroBudget').textContent=money(totalBudget());document.getElementById('heroPipeline').textContent=money(totalSponsors());document.getElementById('metrics').innerHTML=`<div class="metric"><span>Tournaments</span><strong>${state.tournaments.length}</strong><p>Schedule items tracked.</p></div><div class="metric"><span>Ranking path</span><strong>${esc(a.ranking)}</strong><p>${esc(a.rankingSystem)} · Career high ${esc(a.careerHigh)}</p></div><div class="metric"><span>Budget</span><strong>${money(totalBudget())}</strong><p>Current annual funding model.</p></div><div class="metric"><span>Sponsors</span><strong>${money(totalSponsors())}</strong><p>Open sponsor pipeline.</p></div>`}
+function header(title,desc,action=''){return `<div class="section-head"><div><h2>${title}</h2><p>${desc}</p></div><div>${action}</div></div>`}
+function renderDashboard(){document.getElementById('dashboard').innerHTML=header('Tour board','Calendar, ranking path, budget pressure, sponsors, and upcoming decisions from one clean view.')+`<div class="cards"><div class="card"><div class="label">Next event</div><h3>${esc(state.tournaments[0]?.name||'Add event')}</h3><p>${date(state.tournaments[0]?.start)} · ${esc(state.tournaments[0]?.city||'TBD')}</p></div><div class="card"><div class="label">Ranking goal</div><h3>${esc(state.athlete.rankingGoal)}</h3><p>${esc(state.athlete.rankingSystem)} current: ${esc(state.athlete.ranking)}</p></div><div class="card"><div class="label">Next sponsor action</div><h3>${esc(state.sponsors[0]?.nextAction||'Add sponsor')}</h3><p>${esc(state.sponsors[0]?.company||'No sponsor yet')}</p></div></div>`+tableSchedule('Upcoming schedule',state.tournaments)}
+function tableSchedule(title,items){return `<div class="section-head"><div><h2>${title}</h2><p>Next tournaments and commitments.</p></div></div><div class="table-wrap"><table><thead><tr><th>Event</th><th>Dates</th><th>Track</th><th>Level</th><th>Status</th><th>Budget</th></tr></thead><tbody>${items.map(t=>`<tr><td>${esc(t.name)}</td><td>${date(t.start)} - ${date(t.end)}</td><td>${esc(t.track)}</td><td>${esc(t.level)}</td><td>${esc(t.status)}</td><td>${money(t.budget)}</td></tr>`).join('')}</tbody></table></div>`}
+function renderProfile(){let a=state.athlete;document.getElementById('profile').innerHTML=header('Profile','Core athlete information used across documents, sponsor emails, and public-facing material.')+`<div class="form-grid">${field('First name','athlete','firstName',a.firstName)}${field('Last name','athlete','lastName',a.lastName)}${field('Sport','athlete','sport',a.sport)}${field('City','athlete','city',a.city)}${field('Ranking system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}${field('Ranking','athlete','ranking',a.ranking)}${field('Career high','athlete','careerHigh',a.careerHigh)}${field('Season high','athlete','seasonHigh',a.seasonHigh)}${field('Ranking goal','athlete','rankingGoal',a.rankingGoal)}${field('Coach','athlete','coach',a.coach)}${field('Club','athlete','club',a.club)}${field('School','athlete','school',a.school)}${field('Summary','athlete','summary',a.summary,'textarea','', 'w12')}${field('Strengths','athlete','strengths',a.strengths,'textarea','','w6')}${field('Development needs','athlete','needs',a.needs,'textarea','','w6')}${field('Cutout path','athlete','cutout',a.cutout,'text','','w6')}${field('Background path','athlete','background',a.background,'text','','w6')}</div>`}
+function renderCareer(){document.getElementById('career').innerHTML=header('Career timeline','Accomplishments, ranking milestones, and résumé items. Mark anything uncertain in notes before sending externally.',`<button class="btn primary" id="addCareer">Add milestone</button>`)+`<div class="timeline">${state.career.map((e,i)=>`<div class="event"><div><input data-scope="career" data-idx="${i}" data-key="date" value="${esc(e.date)}"></div><div><input data-scope="career" data-idx="${i}" data-key="title" value="${esc(e.title)}"><textarea data-scope="career" data-idx="${i}" data-key="body">${esc(e.body)}</textarea></div></div>`).join('')}</div>`}
+function renderCalendar(){let days=[];for(let i=1;i<=31;i++){let ev=state.tournaments.filter(t=>Number((t.start||'').split('-')[2])===i);days.push(`<div class="day"><strong>${i}</strong>${ev.map(e=>`<span class="pill">${esc(e.name)}</span>`).join('')}</div>`)}document.getElementById('calendar').innerHTML=header('Calendar','Month-style schedule view. Add dates in Tournaments and they appear here.')+`<div class="calendar">${days.join('')}</div>`}
+function renderTournaments(){document.getElementById('tournaments').innerHTML=header('Tournaments','Plan ITF Junior, Tennis Europe, FRT, training, sponsor/admin, and pro pathway events.',`<button class="btn primary" id="addTournament">Add tournament</button>`)+`<div class="table-wrap"><table><thead><tr><th>Name</th><th>Start</th><th>End</th><th>Track</th><th>Level</th><th>Surface</th><th>Status</th><th>Priority</th><th>Budget</th><th>Result</th></tr></thead><tbody>${state.tournaments.map((t,i)=>`<tr><td>${cell('tournaments',i,'name',t.name)}</td><td>${cell('tournaments',i,'start',t.start,'date')}</td><td>${cell('tournaments',i,'end',t.end,'date')}</td><td>${cell('tournaments',i,'track',t.track)}</td><td>${selectCell('tournaments',i,'level',t.level,LEVELS)}</td><td>${selectCell('tournaments',i,'surface',t.surface,SURFACES)}</td><td>${selectCell('tournaments',i,'status',t.status,STATUS)}</td><td>${cell('tournaments',i,'priority',t.priority)}</td><td>${cell('tournaments',i,'budget',t.budget,'number')}</td><td>${cell('tournaments',i,'result',t.result)}</td></tr>`).join('')}</tbody></table></div>`}
+function renderRankings(){document.getElementById('rankings').innerHTML=header('Rankings','Track each ranking system separately. ITF Junior, Tennis Europe age groups, FRT domestic ranking, WTA, UTR, and WTN are different systems.',`<button class="btn primary" id="addRanking">Add ranking</button>`)+`<div class="table-wrap"><table><thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Goal</th></tr></thead><tbody>${state.rankings.map((r,i)=>`<tr><td>${selectCell('rankings',i,'system',r.system,RANKING_SYSTEMS)}</td><td>${selectCell('rankings',i,'category',r.category,CATEGORIES)}</td><td>${cell('rankings',i,'value',r.value)}</td><td>${cell('rankings',i,'date',r.date,'date')}</td><td>${cell('rankings',i,'goal',r.goal)}</td></tr>`).join('')}</tbody></table></div>`}
+function renderBudget(){document.getElementById('budget').innerHTML=header('Budget','Build sponsor asks from real costs.',`<button class="btn primary" id="addBudget">Add item</button>`)+`<div class="table-wrap"><table><thead><tr><th>Category</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead><tbody>${state.budget.map((b,i)=>`<tr><td>${cell('budget',i,'category',b.category)}</td><td>${cell('budget',i,'description',b.description)}</td><td>${cell('budget',i,'amount',b.amount,'number')}</td><td>${cell('budget',i,'status',b.status)}</td></tr>`).join('')}</tbody></table></div>`}
+function renderSponsors(){document.getElementById('sponsors').innerHTML=header('Sponsors','Track sponsor pipeline, agreements, deliverables, and generate personalized emails.',`<button class="btn primary" id="addSponsor">Add sponsor</button>`)+`<div class="sponsor-tools"><div>${state.sponsors.map((s,i)=>`<div class="card"><div class="label">${esc(s.stage)}</div><h3>${esc(s.company)}</h3><p>${money(s.ask)} · ${esc(s.package)} · ${esc(s.nextAction)}</p><button class="btn" data-email-sponsor="${i}">Generate email</button></div>`).join('')}</div><div><div class="email-box" id="emailBox">Choose a sponsor and click Generate email.</div><button class="btn primary" id="copyEmail">Copy email</button></div></div><div class="table-wrap"><table><thead><tr><th>Company</th><th>Contact</th><th>Email</th><th>Package</th><th>Ask</th><th>Stage</th><th>Contract</th><th>Deliverables</th><th>Next action</th></tr></thead><tbody>${state.sponsors.map((s,i)=>`<tr><td>${cell('sponsors',i,'company',s.company)}</td><td>${cell('sponsors',i,'contact',s.contact)}</td><td>${cell('sponsors',i,'email',s.email)}</td><td>${cell('sponsors',i,'package',s.package)}</td><td>${cell('sponsors',i,'ask',s.ask,'number')}</td><td>${cell('sponsors',i,'stage',s.stage)}</td><td>${cell('sponsors',i,'contract',s.contract)}</td><td>${cell('sponsors',i,'deliverables',s.deliverables)}</td><td>${cell('sponsors',i,'nextAction',s.nextAction)}</td></tr>`).join('')}</tbody></table></div>`}
+function docs(){let a=state.athlete,full=`${a.firstName} ${a.lastName}`.trim(),next=state.tournaments[0],s=state.sponsors[0];return {dev:['Development Plan',`${full} · ${a.sport} · ${a.city}`,[['Profile',a.summary],['Ranking path',`${a.rankingSystem}: ${a.ranking}. Career high: ${a.careerHigh}. Goal: ${a.rankingGoal}.`],['Strengths',a.strengths],['Development priorities',a.needs],['Calendar',state.tournaments.map(t=>`${date(t.start)}: ${t.name} · ${t.level} · ${money(t.budget)}`).join('\n')],['Budget',`Current planned need: ${money(totalBudget())}.`]]],profile:['Athlete Profile / Media Kit',full,[['Short bio',a.summary],['Career highlights',state.career.map(c=>`${c.date}: ${c.title}`).join('\n')],['Current ranking',`${a.rankingSystem}: ${a.ranking}`],['Sponsor fit',`A sponsor can support tournament travel, coaching, equipment, and recovery with clear updates and deliverables.`]]],sponsorEmail:['Local Sponsor Email',`For ${s?.company||'Sponsor'}`,[['Subject',`Sponsorship opportunity: ${full}`],['Email body',sponsorEmail(s||{})]]],proposal:['Sponsor Proposal One-Pager',s?.company||'Sponsor',[['Opportunity',`Support ${full}, a Romanian junior tennis player building an international tournament pathway.`],['Ask',`${money(s?.ask||state.settings.defaultAsk)} for ${s?.package||'sponsor support'}.`],['Use of funds',`Tournament travel, training blocks, equipment, and recovery support.`],['Deliverables',s?.deliverables||'Sponsor updates and recognition where appropriate.']]],trip:['Tournament Travel Brief',next?.name||'Tournament',[['Event',`${next?.name}\n${date(next?.start)} - ${date(next?.end)}\n${next?.city}, ${next?.country}\n${next?.level} · ${next?.surface}`],['Budget',money(next?.budget)],['Purpose',`Competition reps aligned to ranking goal: ${a.rankingGoal}.`]]],calendar:['Tournament Calendar One-Pager','Season schedule',[['Schedule',state.tournaments.map(t=>`${date(t.start)} - ${date(t.end)} · ${t.name} · ${t.city}, ${t.country} · ${money(t.budget)}`).join('\n')]]],budget:['Budget Request',money(totalBudget()),[['Funding need',state.budget.map(b=>`${b.category}: ${b.description} · ${money(b.amount)} · ${b.status}`).join('\n')]]],update:['Sponsor Update',full,[['Overview',`${full} continues toward ${a.rankingGoal}.`],['Recent activity',state.tournaments.map(t=>`${t.name}: ${t.result||'pending / research'}`).join('\n')],['Current focus',a.needs]]],thanks:['Sponsor Thank You Email',s?.company||'Sponsor',[['Email body',`Hi ${s?.contact||'[Name]'},\n\nThank you for supporting ${full}. Your contribution helps with the real costs behind training, travel, competition, and athlete development. We will keep you updated with clear progress notes and event summaries.\n\nBest,\n${state.settings.senderName}`]]],agreement:['Sponsor Agreement Summary',s?.company||'Sponsor',[['Sponsor',s?.company||''],['Support amount',money(s?.ask||0)],['Deliverables',s?.deliverables||''],['Contract status',s?.contract||'Not started'],['Renewal date',s?.renewal||'TBD']]]}}
+function renderDocuments(){let D=docs();document.getElementById('documents').innerHTML=header('Documents','Generate, copy, export, and print documents from dashboard inputs.',`<button class="btn primary" onclick="window.print()">Print / PDF</button>`)+`<div class="doc-layout"><div class="doc-list">${Object.entries(D).map(([k,v])=>`<button class="${k==activeDoc?'active':''}" data-doc="${k}">${v[0]}</button>`).join('')}</div><div><div class="doc-paper" id="docPaper"></div><button class="btn primary" id="copyDoc">Copy document text</button><button class="btn" id="downloadDoc">Download .txt</button></div></div>`;renderDocPaper()}
+function renderDocPaper(){let d=docs()[activeDoc];document.getElementById('docPaper').innerHTML=`<h1>${esc(d[0])}</h1><div style="color:#60748d;margin-bottom:24px">${esc(d[1])}</div>${d[2].map(([h,b])=>`<section class="doc-sec"><h4>${esc(h)}</h4><p>${esc(b)}</p></section>`).join('')}`}
+function renderSettings(){document.getElementById('settings').innerHTML=header('Settings','Export/import data and control reusable sender fields.')+`<div class="form-grid">${field('Sender name','settings','senderName',state.settings.senderName)}${field('Sender email','settings','senderEmail',state.settings.senderEmail)}${field('Phone','settings','phone',state.settings.phone)}${field('Default ask','settings','defaultAsk',state.settings.defaultAsk,'number')}</div><br><button class="btn primary" id="exportBtn">Export JSON backup</button> <label class="btn" for="importFile">Import JSON backup</label><input id="importFile" type="file" accept="application/json" style="display:none"> <button class="btn" id="resetBtn">Reset demo data</button>`}
+function sponsorEmail(s){let a=state.athlete,full=`${a.firstName} ${a.lastName}`.trim();return `Hi ${s.contact||'[Name]'},\n\nI am reaching out because we are building a structured development and sponsorship plan for ${full}, a Romanian junior tennis player based in ${a.city}.\n\n${a.summary}\n\nCurrent ranking context: ${a.rankingSystem} ${a.ranking}, career high ${a.careerHigh}, with a goal of ${a.rankingGoal}.\n\nWe are looking for a ${s.package||'sponsor'} partner at ${money(s.ask||state.settings.defaultAsk)} to support tournament travel, training, equipment, and recovery. In return, we can provide sponsor updates, event summaries, and the agreed deliverables: ${s.deliverables||'periodic updates and recognition where appropriate'}.\n\nWould you be open to a short conversation next week?\n\nBest,\n${state.settings.senderName}`}
+function field(label,scope,key,val,type='text',options='',cls=''){if(type==='textarea')return `<div class="field ${cls}"><label>${label}</label><textarea data-scope="${scope}" data-key="${key}">${esc(val)}</textarea></div>`;if(type==='select')return `<div class="field ${cls}"><label>${label}</label><select data-scope="${scope}" data-key="${key}">${opt(options,val)}</select></div>`;return `<div class="field ${cls}"><label>${label}</label><input type="${type}" data-scope="${scope}" data-key="${key}" value="${esc(val)}"></div>`}
+function cell(scope,i,key,val,type='text'){return `<input type="${type}" data-scope="${scope}" data-idx="${i}" data-key="${key}" value="${esc(val)}">`}function selectCell(scope,i,key,val,list){return `<select data-scope="${scope}" data-idx="${i}" data-key="${key}">${opt(list,val)}</select>`}
+function render(){save();nav();chrome();renderDashboard();renderProfile();renderCareer();renderCalendar();renderTournaments();renderRankings();renderBudget();renderSponsors();renderDocuments();renderSettings();document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===active));}
+document.addEventListener('click',e=>{let tab=e.target.closest('[data-tab]')?.dataset.tab||e.target.closest('[data-go]')?.dataset.go;if(tab){active=tab;render();scrollTo({top:0,behavior:'smooth'});return}let doc=e.target.closest('[data-doc]')?.dataset.doc;if(doc){activeDoc=doc;renderDocuments();return}let em=e.target.closest('[data-email-sponsor]')?.dataset.emailSponsor;if(em!=null){document.getElementById('emailBox').textContent=sponsorEmail(state.sponsors[Number(em)]);return}if(e.target.id==='addCareer'){state.career.push({date:'',title:'New milestone',body:''});render()}if(e.target.id==='addTournament'){state.tournaments.push({name:'New Tournament',start:'',end:'',track:'ITF Junior',level:'ITF Junior J60',surface:'Clay',city:'',country:'',status:'Research',priority:'B',budget:0,result:''});render()}if(e.target.id==='addRanking'){state.rankings.push({system:'ITF Junior',category:'Girls 18U',value:'',date:'',goal:''});render()}if(e.target.id==='addBudget'){state.budget.push({category:'Training',description:'New item',amount:0,status:'Planned'});render()}if(e.target.id==='addSponsor'){state.sponsors.push({company:'New Sponsor',contact:'',email:'',package:'Local Partner',ask:1000,stage:'Prospect',contract:'Not started',deliverables:'',nextAction:'Research contact',renewal:'',notes:''});render()}if(e.target.id==='copyEmail'){navigator.clipboard.writeText(document.getElementById('emailBox').textContent)}if(e.target.id==='copyDoc'){navigator.clipboard.writeText(document.getElementById('docPaper').innerText)}if(e.target.id==='downloadDoc'){let blob=new Blob([document.getElementById('docPaper').innerText],{type:'text/plain'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='athlete-os-document.txt';a.click()}if(e.target.id==='exportBtn'){let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='andreea-athlete-os-backup.json';a.click()}if(e.target.id==='resetBtn'&&confirm('Reset all data?')){state=structuredClone(DATA);render()}})
+document.addEventListener('input',e=>{let el=e.target,{scope,idx,key}=el.dataset;if(!scope)return;let val=el.type==='number'?Number(el.value||0):el.value;if(idx!=null)state[scope][Number(idx)][key]=val;else state[scope][key]=val;render()});document.addEventListener('change',async e=>{if(e.target.id==='importFile'){let f=e.target.files[0];if(!f)return;try{state=JSON.parse(await f.text());render();alert('Imported')}catch{alert('Could not import file')}}});
+render();
+</script>
 </body>
 </html>
