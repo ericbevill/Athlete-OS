@@ -4,265 +4,614 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Athlete OS</title>
+  <meta name="description" content="Private athlete dashboard" />
   <style>
-    :root {
-      --ink: #0b1020;
-      --ink-2: #182033;
-      --muted: #667085;
-      --line: #e5e7eb;
-      --card: #ffffff;
-      --bg: #f6f1e8;
-      --gold: #ffd33d;
-      --gold-2: #fff3b8;
-      --blue: #284b8f;
-      --green: #087f5b;
-      --red: #b42318;
-      --shadow: 0 16px 50px rgba(15, 23, 42, 0.10);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    :root{
+      --bg:#07111d;
+      --bg-2:#0c1828;
+      --panel:rgba(15,26,43,.68);
+      --panel-2:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.08);
+      --text:#edf4ff;
+      --muted:#9eb2c9;
+      --brand:#77f2d2;
+      --brand-2:#95b8ff;
+      --accent:#ffc46b;
+      --danger:#ff8d8d;
+      --shadow:0 24px 80px rgba(0,0,0,.4);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1480px;
     }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--ink); }
-    button, input, textarea, select { font: inherit; }
-    button { cursor: pointer; }
-    a { color: inherit; }
-    .app { display: grid; grid-template-columns: 290px 1fr; min-height: 100vh; }
-    .sidebar { position: sticky; top: 0; height: 100vh; background: var(--ink); color: white; padding: 22px; display: flex; flex-direction: column; gap: 18px; }
-    .brand { border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 22px; }
-    .kicker { color: var(--gold); letter-spacing: .22em; text-transform: uppercase; font-size: 12px; font-weight: 800; }
-    .brand h1 { margin: 12px 0 10px; font-size: 25px; line-height: 1.12; }
-    .brand p { margin: 0; color: #cbd5e1; font-size: 14px; line-height: 1.55; }
-    .nav { display: grid; gap: 8px; }
-    .nav button { border: 0; width: 100%; text-align: left; border-radius: 18px; padding: 13px 15px; background: transparent; color: #cbd5e1; font-weight: 750; display: flex; gap: 11px; align-items: center; }
-    .nav button.active { background: var(--gold); color: var(--ink); }
-    .note { margin-top: auto; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 16px; color: #d6d9e3; font-size: 13px; line-height: 1.45; }
-    .main { padding: 28px; max-width: 1260px; width: 100%; }
-    .mobile-top { display: none; background: white; border: 1px solid var(--line); border-radius: 22px; padding: 12px; margin-bottom: 18px; justify-content: space-between; align-items: center; box-shadow: 0 8px 20px rgba(15,23,42,.06); }
-    .hero { background: var(--ink); color: white; border-radius: 34px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
-    .hero-inner { display: grid; grid-template-columns: 1.25fr .75fr; gap: 28px; padding: 34px; }
-    .pill { display: inline-flex; gap: 8px; align-items: center; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.10); border-radius: 999px; padding: 9px 13px; font-size: 12px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: #fde68a; }
-    .hero h2 { margin: 18px 0 12px; font-size: clamp(32px, 5vw, 58px); line-height: .98; letter-spacing: -0.045em; }
-    .hero p { margin: 0; color: #d1d5db; max-width: 720px; line-height: 1.7; }
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .chip { background: rgba(255,255,255,.10); border-radius: 999px; padding: 9px 13px; font-size: 13px; color: #f8fafc; }
-    .focus { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.09); border-radius: var(--radius-xl); padding: 22px; }
-    .focus h3 { margin: 12px 0 8px; font-size: 24px; }
-    .focus-box { margin-top: 16px; background: white; color: var(--ink); border-radius: 18px; padding: 16px; }
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
-    .stat, .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-xl); box-shadow: 0 10px 24px rgba(15,23,42,.055); }
-    .stat { padding: 20px; }
-    .stat-label { color: var(--muted); font-weight: 750; font-size: 13px; }
-    .stat-value { margin-top: 7px; font-size: 31px; font-weight: 900; letter-spacing: -0.04em; }
-    .stat-detail { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 18px; margin: 4px 0 18px; }
-    .section-head h2 { margin: 0; font-size: 30px; letter-spacing: -0.035em; }
-    .section-head p { margin: 7px 0 0; color: var(--muted); line-height: 1.55; max-width: 760px; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-    .card { padding: 22px; }
-    .row-list { display: grid; gap: 12px; }
-    .row { border: 1px solid #eef0f4; background: #f9fafb; border-radius: var(--radius-lg); padding: 16px; display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
-    .row h4 { margin: 0; }
-    .row p { margin: 5px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
-    .badge { border-radius: 999px; padding: 7px 10px; font-weight: 800; font-size: 12px; white-space: nowrap; }
-    .badge.gold { background: var(--gold-2); color: #7a4b00; }
-    .badge.dark { background: var(--ink); color: white; }
-    .badge.green { background: #d1fadf; color: var(--green); }
-    .form-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
-    label { display: block; }
-    label span { display: block; margin: 0 0 8px; color: #667085; text-transform: uppercase; letter-spacing: .17em; font-size: 11px; font-weight: 900; }
-    input, textarea, select { width: 100%; border: 1px solid var(--line); border-radius: 16px; background: #fff; color: var(--ink); padding: 12px 14px; outline: none; transition: box-shadow .15s, border-color .15s; }
-    textarea { min-height: 92px; resize: vertical; line-height: 1.55; }
-    input:focus, textarea:focus, select:focus { border-color: var(--ink); box-shadow: 0 0 0 4px rgba(15,23,42,.08); }
-    .span-2 { grid-column: span 2; }
-    .span-4 { grid-column: span 4; }
-    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
-    .btn { border: 0; border-radius: 17px; padding: 12px 16px; font-weight: 900; background: var(--ink); color: white; box-shadow: 0 10px 18px rgba(15,23,42,.18); }
-    .btn.secondary { border: 1px solid var(--line); background: white; color: var(--ink); box-shadow: none; }
-    .btn.gold { background: var(--gold); color: var(--ink); }
-    .btn.red { background: #fee4e2; color: var(--red); box-shadow: none; }
-    .link-card { display: block; text-decoration: none; background: white; border: 1px solid var(--line); border-radius: var(--radius-xl); padding: 20px; box-shadow: 0 9px 22px rgba(15,23,42,.055); transition: transform .15s, box-shadow .15s; }
-    .link-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-    .link-card b { display: block; margin: 12px 0 6px; }
-    .link-card p { color: var(--muted); margin: 0; line-height: 1.45; font-size: 14px; }
-    .item-card { margin-bottom: 14px; }
-    .doc-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-    .print-sheet { background: white; border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 30px; padding: 42px; max-width: 900px; margin: 0 auto; }
-    .print-sheet h1 { font-size: 42px; line-height: 1; margin: 10px 0; letter-spacing: -.045em; }
-    .print-sheet .sub { color: var(--muted); margin-bottom: 26px; }
-    .doc-section { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 20px; }
-    .doc-section h3 { margin: 0 0 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .16em; font-size: 12px; }
-    .doc-section div { white-space: pre-line; line-height: 1.75; }
-    .hidden { display: none !important; }
-    .utility { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    .small { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    @media (max-width: 980px) {
-      .app { display: block; }
-      .sidebar { display: none; }
-      .mobile-top { display: flex; }
-      .main { padding: 16px; }
-      .hero-inner, .grid-2 { grid-template-columns: 1fr; }
-      .stats, .grid-3 { grid-template-columns: 1fr 1fr; }
-      .form-grid { grid-template-columns: 1fr 1fr; }
-      .span-4 { grid-column: span 2; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(119,242,210,.18), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(149,184,255,.16), transparent 55%),
+        linear-gradient(180deg, #08111d 0%, #091421 50%, #060d16 100%);
+      min-height:100%;
     }
-    @media (max-width: 640px) {
-      .stats, .grid-3, .form-grid { grid-template-columns: 1fr; }
-      .span-2, .span-4 { grid-column: span 1; }
-      .hero-inner { padding: 22px; }
-      .print-sheet { padding: 24px; }
+    .page{max-width:var(--max);margin:0 auto;padding:28px 22px 60px}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:36px;
+      min-height:420px;
+      background:
+        linear-gradient(90deg, rgba(3,9,18,.88) 0%, rgba(3,9,18,.72) 42%, rgba(3,9,18,.35) 68%, rgba(3,9,18,.60) 100%),
+        url('assets/hero-athlete.jpg') center/cover no-repeat,
+        linear-gradient(135deg, #14253d, #0b1726);
+      box-shadow:var(--shadow);
     }
-    @media print {
-      body { background: white; }
-      .sidebar, .mobile-top, .section-head, .doc-tabs, .no-print { display: none !important; }
-      .app { display: block; }
-      .main { padding: 0; max-width: none; }
-      .screen { display: none !important; }
-      #printView { display: block !important; }
-      .print-sheet { border: 0; box-shadow: none; border-radius: 0; max-width: none; padding: 30px; }
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;padding:34px;min-height:420px}
+    .brand{display:inline-flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;color:#dffaf5;font-weight:700;letter-spacing:.15em;text-transform:uppercase;font-size:12px;backdrop-filter:blur(14px)}
+    .brand-dot{width:10px;height:10px;border-radius:99px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 20px rgba(119,242,210,.45)}
+    h1{font-size:clamp(38px,5vw,74px);line-height:.95;margin:18px 0 10px;letter-spacing:-.04em;max-width:700px}
+    .lead{font-size:18px;line-height:1.75;color:#c4d2e2;max-width:680px;margin:0 0 22px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .chip{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:13px;color:#dbe7f7;backdrop-filter:blur(10px)}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .btn{
+      border:none;cursor:pointer;text-decoration:none;
+      display:inline-flex;align-items:center;gap:10px;
+      padding:13px 18px;border-radius:16px;font-weight:700;font-size:14px;
+      transition:transform .15s ease, opacity .15s ease, background .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),#9cf4db);color:#05211b;box-shadow:0 8px 30px rgba(119,242,210,.25)}
+    .btn-secondary{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--line)}
+    .hero-side{display:flex;align-items:flex-end;justify-content:flex-end}
+    .hero-card{
+      width:min(420px,100%);padding:20px;border-radius:28px;
+      border:1px solid var(--line);background:rgba(7,14,25,.52);backdrop-filter:blur(20px)
+    }
+    .hero-card h3{margin:0 0 6px;font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:var(--brand)}
+    .hero-card .focus-title{font-size:30px;line-height:1.05;letter-spacing:-.03em;margin:0 0 12px}
+    .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    .mini{padding:14px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+    .mini .k{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px}
+    .mini strong{font-size:22px;display:block;letter-spacing:-.03em}
+    .layout{display:grid;grid-template-columns:310px 1fr;gap:26px;margin-top:26px}
+    .sidebar,.panel{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(18px);box-shadow:var(--shadow)}
+    .sidebar{border-radius:28px;padding:20px;position:sticky;top:18px;height:fit-content}
+    .profile-card{padding:18px;border-radius:24px;background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));border:1px solid var(--line)}
+    .avatar{width:88px;height:88px;border-radius:22px;object-fit:cover;border:1px solid var(--line);background:#101e30}
+    .sidebar h2{font-size:28px;line-height:1.02;margin:14px 0 6px;letter-spacing:-.04em}
+    .sub{color:var(--muted);font-size:14px;line-height:1.6}
+    .nav{margin-top:18px;display:grid;gap:10px}
+    .nav button{all:unset;cursor:pointer;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid transparent;color:#d9e7f7;font-weight:600}
+    .nav button.active{background:linear-gradient(135deg, rgba(119,242,210,.18), rgba(149,184,255,.16));border-color:rgba(119,242,210,.35);color:#fff}
+    .note{margin-top:18px;padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:13px;color:var(--muted);line-height:1.6}
+    .content{display:grid;gap:22px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .stat{border-radius:24px;padding:20px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));min-height:135px}
+    .stat .label{font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
+    .stat .value{font-size:42px;letter-spacing:-.05em;margin:8px 0 6px}
+    .stat .hint{font-size:14px;color:#b8c8dc;line-height:1.5}
+    .panel{border-radius:28px;padding:22px}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+    .panel-head h3{margin:0;font-size:28px;letter-spacing:-.03em}
+    .panel-head p{margin:6px 0 0;color:var(--muted);line-height:1.6}
+    .tools{display:flex;flex-wrap:wrap;gap:10px}
+    .link-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .link-card{display:block;text-decoration:none;color:var(--text);padding:18px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));min-height:150px}
+    .link-card span{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--brand);margin-bottom:12px}
+    .link-card strong{display:block;font-size:22px;line-height:1.1;letter-spacing:-.03em;margin-bottom:10px}
+    .link-card p{margin:0;color:#b7c6d8;line-height:1.6;font-size:14px}
+    .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .table-wrap{overflow:auto;border-radius:20px;border:1px solid var(--line)}
+    table{width:100%;border-collapse:collapse;min-width:760px;background:rgba(255,255,255,.02)}
+    th,td{padding:14px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);font-size:14px}
+    th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;background:rgba(255,255,255,.03)}
+    tr:hover td{background:rgba(255,255,255,.03)}
+    .tag{display:inline-block;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .tag.ok{background:rgba(119,242,210,.12);color:#a8f7e4}
+    .tag.warn{background:rgba(255,196,107,.12);color:#ffd59a}
+    .tag.info{background:rgba(149,184,255,.14);color:#c2d5ff}
+    .card-list{display:grid;gap:12px}
+    .sponsor-card{padding:16px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.03)}
+    .sponsor-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+    .sponsor-name{font-size:18px;font-weight:700;letter-spacing:-.02em}
+    .money{padding:8px 11px;border-radius:999px;background:rgba(119,242,210,.13);color:#a9f8e4;font-size:13px;font-weight:700;white-space:nowrap}
+    .muted{color:var(--muted)}
+    .doc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .doc-btn{padding:18px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;color:var(--text);text-align:left}
+    .doc-btn.active{background:linear-gradient(135deg, rgba(119,242,210,.18), rgba(149,184,255,.14));border-color:rgba(119,242,210,.35)}
+    .doc-btn strong{display:block;font-size:16px;margin-bottom:6px}
+    .doc-view{margin-top:16px;padding:28px;border-radius:26px;background:#fcfdff;color:#07101d}
+    .doc-view h1{font-size:44px;line-height:1;letter-spacing:-.04em;margin:0 0 12px;color:#0b1220}
+    .doc-sub{color:#4e627b;font-size:15px;margin-bottom:24px}
+    .doc-section{padding:18px 0;border-top:1px solid #dbe5f2}
+    .doc-section:first-of-type{border-top:none;padding-top:0}
+    .doc-section h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:#69809b}
+    .doc-section p{margin:0;white-space:pre-line;line-height:1.9;color:#152235}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .field-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .field{grid-column:span 4;display:grid;gap:7px}
+    .field.w6{grid-column:span 6}.field.w12{grid-column:span 12}.field.w3{grid-column:span 3}
+    .field label{font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);font-weight:700}
+    .field input,.field textarea,.field select{width:100%;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);padding:14px 14px;font:inherit;outline:none}
+    .field textarea{min-height:110px;resize:vertical}
+    .field input::placeholder,.field textarea::placeholder{color:#7c92aa}
+    .tiny{font-size:12px;color:var(--muted)}
+    .inline-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .hidden{display:none!important}
+    .footer{margin-top:18px;color:#7f94aa;font-size:13px;text-align:center}
+    @media (max-width:1200px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:relative;top:0}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .hero-grid,.grid-2{grid-template-columns:1fr}
+      .link-card-grid,.doc-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:760px){
+      .page{padding:14px 12px 40px}
+      .hero{min-height:auto}
+      .hero-grid{padding:18px}
+      h1{font-size:38px}
+      .stats,.link-card-grid,.doc-grid{grid-template-columns:1fr}
+      .field,.field.w6,.field.w3{grid-column:span 12}
+      .panel{padding:16px}
+    }
+    @media print{
+      body{background:#fff;color:#111}
+      .page,.layout,.content,.panel,.sidebar{display:block!important;max-width:none!important;margin:0!important;padding:0!important;background:#fff!important;color:#111!important;box-shadow:none!important;border:none!important}
+      .sidebar,.hero,.stats,.link-card-grid,.doc-grid,.tools,.btn,.footer,.hide-print{display:none!important}
+      .doc-view{margin:0;padding:0;background:#fff;color:#111}
+      .doc-view h1{color:#111}
+      .doc-section p,.doc-sub{color:#222}
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="kicker">Athlete OS</div>
-        <h1>Private family command center</h1>
-        <p>Track tournaments, build profile documents, manage budgets, and coordinate sponsor outreach.</p>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="brand"><span class="brand-dot"></span> Athlete OS</div>
+          <h1 id="heroName">Ramona Athlete Dashboard</h1>
+          <p class="lead" id="heroStory">A premium private dashboard for planning tournaments, tracking development, managing sponsors, and running the family side of a junior tennis career.</p>
+          <div class="chips">
+            <div class="chip" id="heroSport">Tennis</div>
+            <div class="chip" id="heroCity">Timișoara, Romania</div>
+            <div class="chip" id="heroRanking">Ranking: TBD</div>
+          </div>
+          <div class="cta-row">
+            <button class="btn btn-primary" id="goPrint">Open print center</button>
+            <button class="btn btn-secondary" id="goProfile">Edit athlete profile</button>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-card">
+            <h3>Next focus</h3>
+            <div class="focus-title" id="focusTitle">Summer tournament block</div>
+            <div class="muted" id="focusMeta">Add the next tournament to populate this card.</div>
+            <div class="meta">
+              <div class="mini"><span class="k">Annual budget</span><strong id="miniBudget">€0</strong></div>
+              <div class="mini"><span class="k">Sponsor pipeline</span><strong id="miniPipeline">€0</strong></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <nav class="nav" id="nav"></nav>
-      <div class="note">
-        <b>Storage:</b> this single-file app saves data in this browser using localStorage. Use Export JSON for backup or sharing.
-      </div>
-    </aside>
+    </section>
 
-    <main class="main">
-      <div class="mobile-top no-print">
-        <strong>Athlete OS</strong>
-        <select id="mobileNav"></select>
-      </div>
-      <div class="screen" id="appView"></div>
-      <div class="hidden" id="printView"></div>
-    </main>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="profile-card">
+          <img class="avatar" id="avatarPreview" src="assets/hero-athlete.jpg" alt="Athlete photo" onerror="this.style.display='none'" />
+          <h2 id="sideName">Athlete Name</h2>
+          <div class="sub" id="sideSub">Private family operating system for a junior athlete.</div>
+        </div>
+        <div class="nav" id="navTabs">
+          <button class="active" data-tab="dashboard">Dashboard</button>
+          <button data-tab="profile">Profile</button>
+          <button data-tab="tournaments">Tournaments</button>
+          <button data-tab="budget">Budget</button>
+          <button data-tab="sponsors">Sponsors</button>
+          <button data-tab="documents">Print Center</button>
+          <button data-tab="settings">Settings</button>
+        </div>
+        <div class="note">
+          This app uses <strong>localStorage</strong> in the browser for persistence. It does not have a server or cloud database. Export JSON backups regularly and never commit private backup files into a public GitHub repo.
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="tab" data-tab="dashboard">
+          <div class="stats">
+            <div class="stat"><div class="label">Tournaments</div><div class="value" id="statTournaments">0</div><div class="hint">Confirmed and research targets in the calendar</div></div>
+            <div class="stat"><div class="label">Annual budget</div><div class="value" id="statBudget">€0</div><div class="hint">Travel, coaching, equipment, and competition plan</div></div>
+            <div class="stat"><div class="label">Sponsor pipeline</div><div class="value" id="statSponsors">€0</div><div class="hint">Current sponsor opportunities and target asks</div></div>
+            <div class="stat"><div class="label">Win rate</div><div class="value" id="statWinRate">--</div><div class="hint">Manual KPI placeholder for results tracking</div></div>
+          </div>
+
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>Tournament discovery</h3>
+                <p>Keep the external research links here, then enter only the tournaments you actually care about.</p>
+              </div>
+            </div>
+            <div class="link-card-grid">
+              <a class="link-card" href="https://www.itftennis.com/en/tournament-calendar/world-tennis-tour-juniors-calendar/" target="_blank" rel="noreferrer"><span>Official source</span><strong>ITF Junior Calendar</strong><p>Research junior events, dates, categories, and locations.</p></a>
+              <a class="link-card" href="https://www.tenniseurope.org/" target="_blank" rel="noreferrer"><span>Regional pathway</span><strong>Tennis Europe</strong><p>Find development opportunities and regional junior events.</p></a>
+              <a class="link-card" href="https://www.frt.ro/" target="_blank" rel="noreferrer"><span>Romania</span><strong>FRT Calendar</strong><p>Use domestic events for lower-cost competition and match reps.</p></a>
+            </div>
+          </section>
+
+          <div class="grid-2">
+            <section class="panel">
+              <div class="panel-head"><div><h3>Upcoming tournaments</h3><p>Your priority event board.</p></div></div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Name</th><th>Dates</th><th>Location</th><th>Status</th><th>Budget</th></tr></thead>
+                  <tbody id="dashTournamentRows"></tbody>
+                </table>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-head"><div><h3>Sponsor actions</h3><p>Most important prospects and next actions.</p></div></div>
+              <div class="card-list" id="dashSponsorList"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="tab hidden" data-tab="profile">
+          <section class="panel">
+            <div class="panel-head"><div><h3>Athlete profile</h3><p>Fill this out once, then reuse it in documents and sponsor outreach.</p></div></div>
+            <div class="field-grid">
+              <div class="field"><label>First name</label><input id="pFirstName" placeholder="First name"></div>
+              <div class="field"><label>Last name</label><input id="pLastName" placeholder="Last name"></div>
+              <div class="field"><label>Sport</label><input id="pSport" placeholder="Sport"></div>
+              <div class="field"><label>City</label><input id="pCity" placeholder="City"></div>
+              <div class="field"><label>Birth year</label><input id="pBirthYear" placeholder="Birth year"></div>
+              <div class="field"><label>Ranking</label><input id="pRanking" placeholder="Ranking"></div>
+              <div class="field"><label>Coach</label><input id="pCoach" placeholder="Coach"></div>
+              <div class="field"><label>Club</label><input id="pClub" placeholder="Club"></div>
+              <div class="field"><label>Handedness</label><input id="pHandedness" placeholder="Right-handed"></div>
+              <div class="field w12"><label>Hero summary</label><textarea id="pStory" placeholder="Short positioning summary for the athlete."></textarea></div>
+              <div class="field w6"><label>12-month goal</label><textarea id="pGoal"></textarea></div>
+              <div class="field w6"><label>Development priorities</label><textarea id="pNeeds"></textarea></div>
+              <div class="field w6"><label>Strengths</label><textarea id="pStrengths"></textarea></div>
+              <div class="field w6"><label>Photo path</label><input id="pPhoto" placeholder="assets/hero-athlete.jpg"><div class="tiny">Drop the image into an <strong>assets</strong> folder and point this field to it.</div></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab hidden" data-tab="tournaments">
+          <section class="panel">
+            <div class="panel-head">
+              <div><h3>Tournament planner</h3><p>Track real events, costs, priorities, and outcomes.</p></div>
+              <div class="tools"><button class="btn btn-primary" id="addTournament">Add tournament</button></div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Name</th><th>Start</th><th>End</th><th>City</th><th>Country</th><th>Level</th><th>Status</th><th>Priority</th><th>Budget</th><th>Result</th></tr></thead>
+                <tbody id="tournamentEditorRows"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab hidden" data-tab="budget">
+          <section class="panel">
+            <div class="panel-head">
+              <div><h3>Budget model</h3><p>Be specific. Sponsors respond better to real costs than vague support asks.</p></div>
+              <div class="tools"><button class="btn btn-primary" id="addBudget">Add budget item</button></div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Category</th><th>Description</th><th>Amount EUR</th><th>Status</th></tr></thead>
+                <tbody id="budgetRows"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab hidden" data-tab="sponsors">
+          <section class="panel">
+            <div class="panel-head">
+              <div><h3>Sponsor CRM</h3><p>Prospects, asks, outreach, and next actions.</p></div>
+              <div class="tools"><button class="btn btn-primary" id="addSponsor">Add sponsor</button></div>
+            </div>
+            <div class="card-list" id="sponsorEditorList"></div>
+          </section>
+        </section>
+
+        <section class="tab hidden" data-tab="documents">
+          <section class="panel">
+            <div class="panel-head">
+              <div><h3>Print center</h3><p>Generate polished working documents from the dashboard data.</p></div>
+              <div class="tools hide-print"><button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button></div>
+            </div>
+            <div class="doc-grid hide-print" id="docButtons">
+              <button class="doc-btn active" data-doc="dev"><strong>Development Plan</strong><span class="muted">High-level athlete roadmap</span></button>
+              <button class="doc-btn" data-doc="sponsor"><strong>Local Sponsor Email</strong><span class="muted">Personalized sponsor outreach draft</span></button>
+              <button class="doc-btn" data-doc="trip"><strong>Tournament Brief</strong><span class="muted">Trip and event planning summary</span></button>
+              <button class="doc-btn" data-doc="update"><strong>Sponsor Update</strong><span class="muted">Status report and progress note</span></button>
+            </div>
+            <div class="doc-view" id="docView"></div>
+          </section>
+        </section>
+
+        <section class="tab hidden" data-tab="settings">
+          <section class="panel">
+            <div class="panel-head"><div><h3>Backups and privacy</h3><p>Use JSON exports to move data between family devices.</p></div></div>
+            <div class="row">
+              <button class="btn btn-primary" id="exportBtn">Export JSON backup</button>
+              <label class="btn btn-secondary" for="importFile">Import JSON backup</label>
+              <input id="importFile" type="file" accept="application/json" class="hidden">
+              <button class="btn btn-secondary" id="resetBtn">Reset demo data</button>
+            </div>
+            <div class="note" style="margin-top:16px">
+              <strong>Storage used:</strong> this page stores data in <strong>localStorage</strong> only. That means it persists in the current browser on the current device, but it does not sync automatically across devices and is not cloud-backed. Export backups often.
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">Athlete OS · static single-file app for GitHub Pages · no external libraries · no build step</div>
   </div>
 
-<script>
-const KEY = 'athlete_os_private_single_file_v1';
-const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-const money = v => new Intl.NumberFormat('en-US',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
-const fmtDate = v => !v ? 'TBD' : new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(v + 'T00:00:00'));
-const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
-const nl2br = value => escapeHtml(value).replace(/\n/g, '<br>');
-const tabs = [
-  ['dashboard','Dashboard'], ['profile','Profile'], ['tournaments','Tournaments'], ['budget','Budget'], ['sponsors','Sponsors'], ['milestones','Milestones'], ['print','Print Center'], ['data','Data']
-];
-const defaults = {
-  athlete: {
-    firstName: '', lastName: '', sport: 'Tennis', city: 'Timișoara, Romania', birthYear: '', handedness: 'Right-handed', height: '', coach: '', club: '', ranking: '',
-    story: 'A promising junior athlete from Romania working toward stronger regional and international opportunities.',
-    strengths: 'Competitive, disciplined, coachable, resilient under pressure.',
-    developmentNeeds: 'Match scheduling, international exposure, physical preparation, recovery planning.',
-    goal12Months: 'Build a stronger tournament calendar, improve match toughness, and secure local sponsor support.'
-  },
-  tournaments: [
-    {id:uid(), name:'Sample ITF Junior Tournament', city:'TBD', country:'Romania', startDate:'2026-06-15', endDate:'2026-06-21', level:'Juniors', surface:'Clay', status:'Researching', priority:'A', budget:950, result:'', notes:'Replace with a real event once confirmed.'},
-    {id:uid(), name:'Regional Prep Event', city:'Timișoara', country:'Romania', startDate:'2026-07-05', endDate:'2026-07-07', level:'Local', surface:'Clay', status:'Shortlist', priority:'B', budget:300, result:'', notes:'Use as a lower-cost preparation event.'}
-  ],
-  budget: [
-    {id:uid(), category:'Coaching', description:'Monthly private training block', amount:600, status:'Planned'},
-    {id:uid(), category:'Travel', description:'Tournament transport and lodging', amount:950, status:'Planned'},
-    {id:uid(), category:'Equipment', description:'Strings, grips, shoes', amount:250, status:'Needed'}
-  ],
-  sponsors: [
-    {id:uid(), name:'Local Business Prospect', contact:'Owner or Marketing Manager', email:'', category:'Local sponsor', ask:1500, stage:'Prospect', nextAction:'Send local sponsor email', valueProposition:'Support a promising local junior athlete with a clear monthly update and community story.'}
-  ],
-  milestones: [
-    {id:uid(), date:'2026-06-01', title:'Finalize summer tournament calendar', type:'Planning', notes:'Build shortlist and budget.'},
-    {id:uid(), date:'2026-06-10', title:'Publish sponsor profile', type:'Sponsorship', notes:'Prepare profile and first email list.'},
-    {id:uid(), date:'2026-07-01', title:'Begin physical preparation block', type:'Training', notes:'Add measurable weekly habits.'}
-  ]
-};
-let data = load();
-let active = 'dashboard';
-let docType = 'dev';
-function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || structuredClone(defaults); } catch { return structuredClone(defaults); } }
-function save(){ localStorage.setItem(KEY, JSON.stringify(data)); render(); }
-function resetData(){ if(confirm('Reset all data to sample defaults?')){ data = structuredClone(defaults); save(); } }
-function section(title, desc, action=''){ return `<div class="section-head"><div><h2>${title}</h2><p>${desc}</p></div><div class="btn-row">${action}</div></div>`; }
-function field(path, label, value, opts={}) {
-  const type = opts.type || 'text'; const span = opts.span ? ` span-${opts.span}` : ''; const textarea = opts.textarea;
-  const safe = escapeHtml(value || '');
-  return `<label class="${span}"><span>${label}</span>${textarea ? `<textarea data-path="${path}">${safe}</textarea>` : `<input data-path="${path}" type="${type}" value="${safe}">`}</label>`;
-}
-function arrayField(collection, id, key, label, value, opts={}) {
-  const type = opts.type || 'text'; const span = opts.span ? ` span-${opts.span}` : ''; const textarea = opts.textarea;
-  const safe = escapeHtml(value || '');
-  return `<label class="${span}"><span>${label}</span>${textarea ? `<textarea data-collection="${collection}" data-id="${id}" data-key="${key}">${safe}</textarea>` : `<input data-collection="${collection}" data-id="${id}" data-key="${key}" type="${type}" value="${safe}">`}</label>`;
-}
-function addButton(label, action){ return `<button class="btn" data-action="${action}">+ ${label}</button>`; }
-function hero(){
-  const a = data.athlete;
-  const next = [...data.tournaments].sort((x,y)=>(x.startDate||'9999').localeCompare(y.startDate||'9999'))[0];
-  return `<div class="hero"><div class="hero-inner"><div><span class="pill">★ Athlete command center</span><h2>${escapeHtml(a.firstName||'Athlete')} ${escapeHtml(a.lastName||'Profile')}</h2><p>${escapeHtml(a.goal12Months)}</p><div class="chips"><span class="chip">${escapeHtml(a.sport)}</span><span class="chip">${escapeHtml(a.city)}</span><span class="chip">Ranking: ${escapeHtml(a.ranking||'TBD')}</span></div></div><div class="focus"><span class="kicker">Next focus</span><h3>${escapeHtml(next?.name||'Add a tournament')}</h3><p>${next ? `${fmtDate(next.startDate)} in ${escapeHtml(next.city||'TBD')}, ${escapeHtml(next.country||'TBD')}` : 'Create a calendar and assign priorities.'}</p><div class="focus-box"><div class="stat-label">Estimated event budget</div><div class="stat-value">${money(next?.budget||0)}</div></div></div></div></div>`;
-}
-function stats(){
- const budget = data.budget.reduce((s,i)=>s+Number(i.amount||0),0); const pipeline=data.sponsors.reduce((s,i)=>s+Number(i.ask||0),0); const confirmed=data.tournaments.filter(t=>t.status==='Confirmed').length;
- return `<div class="stats"><div class="stat"><div class="stat-label">Tournaments</div><div class="stat-value">${data.tournaments.length}</div><div class="stat-detail">${confirmed} confirmed, ${data.tournaments.length-confirmed} open</div></div><div class="stat"><div class="stat-label">Annual needs</div><div class="stat-value">${money(budget)}</div><div class="stat-detail">Training, travel, and equipment</div></div><div class="stat"><div class="stat-label">Sponsor pipeline</div><div class="stat-value">${money(pipeline)}</div><div class="stat-detail">${data.sponsors.length} prospects tracked</div></div><div class="stat"><div class="stat-label">Milestones</div><div class="stat-value">${data.milestones.length}</div><div class="stat-detail">Career and support roadmap</div></div></div>`;
-}
-function renderDashboard(){
- return hero()+stats()+`<div class="grid-2"><div class="card"><h3>Priority tournament board</h3><div class="row-list">${data.tournaments.map(t=>`<div class="row"><div><h4>${escapeHtml(t.name)}</h4><p>${fmtDate(t.startDate)} · ${escapeHtml(t.city||'TBD')} · ${escapeHtml(t.level||'Level TBD')}</p></div><div class="btn-row"><span class="badge dark">Priority ${escapeHtml(t.priority)}</span><span class="badge gold">${escapeHtml(t.status)}</span></div></div>`).join('')}</div></div><div class="card"><h3>Sponsor actions</h3><div class="row-list">${data.sponsors.map(s=>`<div class="row"><div><h4>${escapeHtml(s.name)}</h4><p>${escapeHtml(s.nextAction||'No next action')}</p></div><span class="badge dark">${money(s.ask)}</span></div>`).join('')}</div></div></div>`;
-}
-function renderProfile(){ const a=data.athlete; return section('Profile builder','Build the athlete story once and reuse it in the generated documents.')+`<div class="grid-2"><div class="card"><div class="form-grid">${field('athlete.firstName','First name',a.firstName)}${field('athlete.lastName','Last name',a.lastName)}${field('athlete.sport','Sport',a.sport)}${field('athlete.city','City',a.city)}${field('athlete.birthYear','Birth year',a.birthYear)}${field('athlete.handedness','Handedness',a.handedness)}${field('athlete.height','Height',a.height)}${field('athlete.ranking','Ranking',a.ranking)}${field('athlete.coach','Coach',a.coach,{span:2})}${field('athlete.club','Club',a.club,{span:2})}</div></div><div class="card"><div class="form-grid">${field('athlete.story','Athlete story',a.story,{span:4,textarea:true})}${field('athlete.strengths','Strengths',a.strengths,{span:4,textarea:true})}${field('athlete.developmentNeeds','Development needs',a.developmentNeeds,{span:4,textarea:true})}${field('athlete.goal12Months','12-month goal',a.goal12Months,{span:4,textarea:true})}</div></div></div>`; }
-function renderTournaments(){ return section('Tournament tracker','Research, shortlist, confirm, budget, and capture results for every tournament.', addButton('Add tournament','addTournament'))+`<div class="grid-3"><a class="link-card" target="_blank" href="https://www.itftennis.com/en/tournament-calendar/world-tennis-tour-juniors-calendar/"><b>Find ITF Junior events</b><p>Open the official calendar, copy details, then paste into tracker.</p></a><a class="link-card" target="_blank" href="https://www.tenniseurope.org/"><b>Check European pathway</b><p>Use for regional junior planning and age-category opportunities.</p></a><a class="link-card" target="_blank" href="https://www.frt.ro/"><b>Romania calendar</b><p>Use local events for lower-cost competition and match reps.</p></a></div><br>${data.tournaments.map(t=>`<div class="card item-card"><div class="form-grid">${arrayField('tournaments',t.id,'name','Tournament name',t.name,{span:2})}${arrayField('tournaments',t.id,'city','City',t.city)}${arrayField('tournaments',t.id,'country','Country',t.country)}${arrayField('tournaments',t.id,'startDate','Start date',t.startDate,{type:'date'})}${arrayField('tournaments',t.id,'endDate','End date',t.endDate,{type:'date'})}${arrayField('tournaments',t.id,'level','Level',t.level)}${arrayField('tournaments',t.id,'surface','Surface',t.surface)}${arrayField('tournaments',t.id,'status','Status',t.status)}${arrayField('tournaments',t.id,'priority','Priority',t.priority)}${arrayField('tournaments',t.id,'budget','Budget EUR',t.budget,{type:'number'})}${arrayField('tournaments',t.id,'result','Result',t.result)}${arrayField('tournaments',t.id,'notes','Notes',t.notes,{span:4,textarea:true})}<div class="span-4"><button class="btn red" data-delete="tournaments" data-id="${t.id}">Delete tournament</button></div></div></div>`).join('')}`; }
-function renderBudget(){ const total=data.budget.reduce((s,i)=>s+Number(i.amount||0),0); return section('Budget and funding needs','Track the real cost of the season so sponsor asks are specific and credible.', addButton('Add budget item','addBudget'))+`<div class="stats"><div class="stat"><div class="stat-label">Total need</div><div class="stat-value">${money(total)}</div><div class="stat-detail">Current budget list</div></div><div class="stat"><div class="stat-label">Suggested first ask</div><div class="stat-value">${money(Math.ceil(total/3||0))}</div><div class="stat-detail">Rough starter sponsor target</div></div></div>${data.budget.map(b=>`<div class="card item-card"><div class="form-grid">${arrayField('budget',b.id,'category','Category',b.category)}${arrayField('budget',b.id,'description','Description',b.description,{span:2})}${arrayField('budget',b.id,'amount','EUR',b.amount,{type:'number'})}${arrayField('budget',b.id,'status','Status',b.status)}<div class="span-4"><button class="btn red" data-delete="budget" data-id="${b.id}">Delete item</button></div></div></div>`).join('')}`; }
-function renderSponsors(){ return section('Sponsor CRM','Manage prospects, asks, next actions, and the message each sponsor should hear.', addButton('Add sponsor','addSponsor'))+`<div class="grid-2">${data.sponsors.map(s=>`<div class="card item-card"><div class="form-grid">${arrayField('sponsors',s.id,'name','Sponsor',s.name)}${arrayField('sponsors',s.id,'contact','Contact',s.contact)}${arrayField('sponsors',s.id,'email','Email',s.email)}${arrayField('sponsors',s.id,'category','Category',s.category)}${arrayField('sponsors',s.id,'ask','Ask EUR',s.ask,{type:'number'})}${arrayField('sponsors',s.id,'stage','Stage',s.stage)}${arrayField('sponsors',s.id,'nextAction','Next action',s.nextAction,{span:2})}${arrayField('sponsors',s.id,'valueProposition','Value proposition',s.valueProposition,{span:4,textarea:true})}<div class="span-4"><button class="btn red" data-delete="sponsors" data-id="${s.id}">Delete sponsor</button></div></div></div>`).join('')}</div>`; }
-function renderMilestones(){ return section('Milestones','Track meaningful moments, decisions, and progress markers.', addButton('Add milestone','addMilestone'))+data.milestones.map(m=>`<div class="card item-card"><div class="form-grid">${arrayField('milestones',m.id,'date','Date',m.date,{type:'date'})}${arrayField('milestones',m.id,'title','Title',m.title,{span:2})}${arrayField('milestones',m.id,'type','Type',m.type)}${arrayField('milestones',m.id,'notes','Notes',m.notes,{span:4,textarea:true})}<div class="span-4"><button class="btn red" data-delete="milestones" data-id="${m.id}">Delete milestone</button></div></div></div>`).join(''); }
-function buildDoc(){
- const a=data.athlete; const total=data.budget.reduce((s,i)=>s+Number(i.amount||0),0); const upcoming=[...data.tournaments].sort((x,y)=>(x.startDate||'9999').localeCompare(y.startDate||'9999')).slice(0,6);
- if(docType==='sponsor') return {title:'Local Sponsor Email', sub:'Copy, personalize, and send to a local business', sections:[['Subject',`Local sponsorship opportunity for ${a.firstName || 'a Romanian junior athlete'}`],['Email body',`Hi [Name],\n\nI am reaching out because we are building a clear development and support plan for ${a.firstName || 'a promising junior athlete'} ${a.lastName || ''}, a ${a.sport.toLowerCase()} player based in ${a.city}.\n\n${a.story}\n\nThe current 12-month goal is simple: ${a.goal12Months}\n\nWe are looking for local partners who want to support a specific, transparent athlete pathway. The current planned budget need is ${money(total)}, covering training, tournament travel, equipment, and development support.\n\nA sponsorship could support one tournament trip, one month of training, equipment, or another specific need. In return, we can provide a professional athlete profile, regular progress updates, sponsor recognition where appropriate, and a clear record of how support is used.\n\nWould you be open to a 15-minute conversation next week?\n\nBest,\n[Your Name]`]]};
- if(docType==='trip'){ const n=upcoming[0]; return {title:'Tournament Trip Brief', sub:n?`${n.name} · ${fmtDate(n.startDate)} to ${fmtDate(n.endDate)}`:'No tournament selected', sections:[['Athlete',`${a.firstName || 'Athlete'} ${a.lastName || ''} · ${a.sport} · ${a.city}`],['Event',n?`${n.name}\n${n.city||'TBD'}, ${n.country||'TBD'}\nLevel: ${n.level||'TBD'}\nSurface: ${n.surface||'TBD'}\nStatus: ${n.status}`:'Add a tournament to generate this brief.'],['Budget',n?`Estimated event budget: ${money(n.budget)}`:'TBD'],['Purpose',n?(n.notes||'Add notes about why this event matters.'):'TBD'],['Post-event reporting','Capture matches played, result, lessons, costs, photos, and next development priority.']]}; }
- if(docType==='update'){ const recent=data.tournaments.filter(t=>t.result).slice(-3); return {title:'Sponsor Update', sub:`${a.firstName || 'Athlete'} ${a.lastName || ''} progress note`, sections:[['Overview',`${a.firstName || 'The athlete'} continues to work toward the 12-month objective: ${a.goal12Months}`],['Recent results',recent.length?recent.map(t=>`${t.name}: ${t.result}`).join('\n'):'No results entered yet. Add tournament results to populate this section.'],['Current focus',a.developmentNeeds],['Thank you note','Your support helps turn training and tournament access into a structured development pathway.']]}; }
- return {title:'Athlete Development Plan', sub:`${a.firstName || 'Athlete'} ${a.lastName || ''} · ${a.sport} · ${a.city}`, sections:[['Athlete profile',`${a.story}\n\nCurrent ranking: ${a.ranking || 'TBD'}. Coach: ${a.coach || 'TBD'}. Club: ${a.club || 'TBD'}.`],['12-month objective',a.goal12Months],['Strengths',a.strengths],['Development needs',a.developmentNeeds],['Tournament calendar',upcoming.map(t=>`${fmtDate(t.startDate)}: ${t.name}, ${t.city||'TBD'}, ${t.country||'TBD'} · Priority ${t.priority} · ${money(t.budget)}`).join('\n') || 'No tournaments added yet.'],['Budget summary',`Current planned funding need: ${money(total)}.`]]};
-}
-function renderPrint(){ const doc=buildDoc(); const tabBtn=(id,label)=>`<button class="btn ${docType===id?'gold':'secondary'}" data-doc="${id}">${label}</button>`; return section('Print center','Generate polished documents from the data already entered. Use browser print to save as PDF.', '<button class="btn" data-action="print">Print selected</button>')+`<div class="doc-tabs no-print">${tabBtn('dev','Development plan')}${tabBtn('sponsor','Local sponsor email')}${tabBtn('trip','Tournament brief')}${tabBtn('update','Sponsor update')}</div>${docHtml(doc)}`; }
-function docHtml(doc){ return `<div class="print-sheet"><div class="kicker">Private athlete file</div><h1>${escapeHtml(doc.title)}</h1><div class="sub">${escapeHtml(doc.sub)}</div>${doc.sections.map(s=>`<div class="doc-section"><h3>${escapeHtml(s[0])}</h3><div>${nl2br(s[1])}</div></div>`).join('')}</div>`; }
-function renderData(){ return section('Data and backup','Use these controls to move data between browsers or keep a backup copy.')+`<div class="card"><div class="btn-row"><button class="btn" data-action="export">Export JSON backup</button><button class="btn secondary" data-action="import">Import JSON backup</button><button class="btn red" data-action="reset">Reset sample data</button></div><input class="hidden" type="file" id="importFile" accept="application/json"><p class="small">This app stores data locally in this browser. Export JSON after important edits. To share with Ramona or family, send them the JSON file and have them import it into their browser.</p></div>`; }
-function render(){
- const nav = document.getElementById('nav'); const mobile = document.getElementById('mobileNav');
- nav.innerHTML = tabs.map(([id,label])=>`<button class="${active===id?'active':''}" data-tab="${id}">${label}</button>`).join('');
- mobile.innerHTML = tabs.map(([id,label])=>`<option value="${id}" ${active===id?'selected':''}>${label}</option>`).join('');
- const view = document.getElementById('appView');
- view.innerHTML = active==='dashboard'?renderDashboard():active==='profile'?renderProfile():active==='tournaments'?renderTournaments():active==='budget'?renderBudget():active==='sponsors'?renderSponsors():active==='milestones'?renderMilestones():active==='print'?renderPrint():renderData();
- document.getElementById('printView').innerHTML = docHtml(buildDoc());
- bind();
-}
-function bind(){
- document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{active=b.dataset.tab; render();});
- document.getElementById('mobileNav').onchange=e=>{active=e.target.value; render();};
- document.querySelectorAll('[data-path]').forEach(el=>el.oninput=e=>{ const [obj,key]=e.target.dataset.path.split('.'); data[obj][key]=e.target.type==='number'?Number(e.target.value):e.target.value; localStorage.setItem(KEY, JSON.stringify(data)); });
- document.querySelectorAll('[data-collection]').forEach(el=>el.oninput=e=>{ const arr=data[e.target.dataset.collection]; const item=arr.find(x=>x.id===e.target.dataset.id); item[e.target.dataset.key]=e.target.type==='number'?Number(e.target.value):e.target.value; localStorage.setItem(KEY, JSON.stringify(data)); });
- document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{ data[b.dataset.delete]=data[b.dataset.delete].filter(x=>x.id!==b.dataset.id); save(); });
- document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>handleAction(b.dataset.action));
- document.querySelectorAll('[data-doc]').forEach(b=>b.onclick=()=>{docType=b.dataset.doc; render();});
- const file=document.getElementById('importFile'); if(file) file.onchange=importData;
-}
-function handleAction(action){
- if(action==='addTournament') data.tournaments.push({id:uid(),name:'New Tournament',city:'',country:'',startDate:'',endDate:'',level:'',surface:'',status:'Researching',priority:'B',budget:0,result:'',notes:''});
- if(action==='addBudget') data.budget.push({id:uid(),category:'Training',description:'New budget item',amount:0,status:'Planned'});
- if(action==='addSponsor') data.sponsors.push({id:uid(),name:'New Sponsor Prospect',contact:'',email:'',category:'Local sponsor',ask:1000,stage:'Prospect',nextAction:'Research contact',valueProposition:''});
- if(action==='addMilestone') data.milestones.push({id:uid(),date:'',title:'New milestone',type:'Planning',notes:''});
- if(action==='print') window.print();
- if(action==='export') exportData();
- if(action==='import') document.getElementById('importFile').click();
- if(action==='reset') return resetData();
- save();
-}
-function exportData(){ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='athlete-os-backup.json'; a.click(); URL.revokeObjectURL(a.href); }
-function importData(e){ const f=e.target.files[0]; if(!f) return; const reader=new FileReader(); reader.onload=()=>{ try{ data=JSON.parse(reader.result); save(); alert('Import complete.'); } catch { alert('Could not import this JSON file.'); } }; reader.readAsText(f); }
-render();
-</script>
+  <script>
+    const KEY = 'athlete-os-single-file-v2';
+    const defaults = {
+      athlete: {
+        firstName: 'Ramona',
+        lastName: 'Athlete',
+        sport: 'Tennis',
+        city: 'Timișoara, Romania',
+        birthYear: '',
+        ranking: 'TBD',
+        coach: '',
+        club: '',
+        handedness: 'Right-handed',
+        story: 'A premium private dashboard for planning tournaments, tracking development, managing sponsors, and running the family side of a junior tennis career.',
+        goal: 'Build a clean tournament calendar, manage the budget with discipline, and create a sponsor-ready development story.',
+        needs: 'Competition planning, travel budgeting, strength and recovery support, and consistent development tracking.',
+        strengths: 'Competitive, disciplined, coachable, and resilient.',
+        photo: 'assets/hero-athlete.jpg'
+      },
+      tournaments: [
+        { name:'ITF Junior Example', start:'2026-06-15', end:'2026-06-21', city:'TBD', country:'Romania', level:'Juniors', status:'Researching', priority:'A', budget:950, result:'' },
+        { name:'Regional Prep Event', start:'2026-07-05', end:'2026-07-07', city:'Timișoara', country:'Romania', level:'Local', status:'Shortlist', priority:'B', budget:300, result:'' }
+      ],
+      budget: [
+        { category:'Coaching', description:'Monthly private training block', amount:600, status:'Planned' },
+        { category:'Travel', description:'Transport and lodging', amount:950, status:'Planned' },
+        { category:'Equipment', description:'Strings, grips, shoes', amount:250, status:'Needed' }
+      ],
+      sponsors: [
+        { name:'Local Business Prospect', contact:'Owner or Marketing Manager', email:'', category:'Local Sponsor', ask:1500, stage:'Prospect', nextAction:'Send local sponsor email', value:'Support a promising local junior athlete with a clear development plan and periodic updates.' },
+        { name:'Regional Brand Opportunity', contact:'Marketing Lead', email:'', category:'Regional Sponsor', ask:3000, stage:'Research', nextAction:'Find contact and tailor proposal', value:'Help fund competition travel and equipment in exchange for structured reporting and brand association.' }
+      ]
+    };
+
+    const $ = (s,p=document)=>p.querySelector(s);
+    const $$ = (s,p=document)=>[...p.querySelectorAll(s)];
+    const money = v => new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
+    const dateTxt = d => d ? new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : 'TBD';
+    let state = load();
+    let currentDoc = 'dev';
+
+    function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || structuredClone(defaults); } catch { return structuredClone(defaults); } }
+    function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+    function totalBudget(){ return state.budget.reduce((a,b)=>a+Number(b.amount||0),0); }
+    function totalSponsors(){ return state.sponsors.reduce((a,b)=>a+Number(b.ask||0),0); }
+    function nextTournament(){ return [...state.tournaments].sort((a,b)=>(a.start||'9999').localeCompare(b.start||'9999'))[0]; }
+
+    function render(){
+      save();
+      renderShell();
+      renderProfile();
+      renderDash();
+      renderTournaments();
+      renderBudget();
+      renderSponsors();
+      renderDoc();
+    }
+
+    function renderShell(){
+      const a = state.athlete;
+      const full = `${a.firstName||''} ${a.lastName||''}`.trim() || 'Athlete';
+      const next = nextTournament();
+      $('#heroName').textContent = full + ' Dashboard';
+      $('#heroStory').textContent = a.story || '';
+      $('#heroSport').textContent = a.sport || 'Sport';
+      $('#heroCity').textContent = a.city || 'City';
+      $('#heroRanking').textContent = `Ranking: ${a.ranking || 'TBD'}`;
+      $('#sideName').textContent = full;
+      $('#sideSub').textContent = `${a.sport || 'Sport'} · ${a.city || 'City'}`;
+      $('#focusTitle').textContent = next ? next.name : 'Add first tournament';
+      $('#focusMeta').textContent = next ? `${dateTxt(next.start)} · ${next.city || 'TBD'}, ${next.country || 'TBD'} · Budget ${money(next.budget)}` : 'Add the next tournament to populate this card.';
+      $('#miniBudget').textContent = money(totalBudget());
+      $('#miniPipeline').textContent = money(totalSponsors());
+      const hero = $('.hero');
+      const path = a.photo || 'assets/hero-athlete.jpg';
+      hero.style.background = `linear-gradient(90deg, rgba(3,9,18,.88) 0%, rgba(3,9,18,.72) 42%, rgba(3,9,18,.35) 68%, rgba(3,9,18,.60) 100%), url('${path}') center/cover no-repeat, linear-gradient(135deg,#14253d,#0b1726)`;
+      const avatar = $('#avatarPreview');
+      avatar.src = path;
+      avatar.style.display = 'block';
+    }
+
+    function renderProfile(){
+      const a = state.athlete;
+      const map = {
+        pFirstName:'firstName', pLastName:'lastName', pSport:'sport', pCity:'city', pBirthYear:'birthYear',
+        pRanking:'ranking', pCoach:'coach', pClub:'club', pHandedness:'handedness', pStory:'story',
+        pGoal:'goal', pNeeds:'needs', pStrengths:'strengths', pPhoto:'photo'
+      };
+      Object.entries(map).forEach(([id,key])=>{ const el = $('#'+id); if(document.activeElement !== el) el.value = a[key] || ''; });
+    }
+
+    function renderDash(){
+      $('#statTournaments').textContent = state.tournaments.length;
+      $('#statBudget').textContent = money(totalBudget());
+      $('#statSponsors').textContent = money(totalSponsors());
+      $('#statWinRate').textContent = '--';
+      const tRows = $('#dashTournamentRows'); tRows.innerHTML='';
+      state.tournaments.slice().sort((a,b)=>(a.start||'9999').localeCompare(b.start||'9999')).forEach(t=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${escapeHtml(t.name)}</td><td>${dateTxt(t.start)} - ${dateTxt(t.end)}</td><td>${escapeHtml(t.city||'TBD')}, ${escapeHtml(t.country||'')}</td><td><span class="tag ${tagClass(t.status)}">${escapeHtml(t.status||'TBD')}</span></td><td>${money(t.budget)}</td>`;
+        tRows.appendChild(tr);
+      });
+      const sList = $('#dashSponsorList'); sList.innerHTML='';
+      state.sponsors.slice(0,4).forEach(s=>{
+        const div=document.createElement('div'); div.className='sponsor-card';
+        div.innerHTML = `<div class="sponsor-top"><div><div class="sponsor-name">${escapeHtml(s.name)}</div><div class="muted">${escapeHtml(s.nextAction||'')}</div></div><div class="money">${money(s.ask)}</div></div>`;
+        sList.appendChild(div);
+      });
+    }
+
+    function renderTournaments(){
+      const tbody = $('#tournamentEditorRows'); tbody.innerHTML='';
+      state.tournaments.forEach((t,idx)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input data-scope="tournament" data-idx="${idx}" data-key="name" value="${attr(t.name)}"></td>
+          <td><input type="date" data-scope="tournament" data-idx="${idx}" data-key="start" value="${attr(t.start)}"></td>
+          <td><input type="date" data-scope="tournament" data-idx="${idx}" data-key="end" value="${attr(t.end)}"></td>
+          <td><input data-scope="tournament" data-idx="${idx}" data-key="city" value="${attr(t.city)}"></td>
+          <td><input data-scope="tournament" data-idx="${idx}" data-key="country" value="${attr(t.country)}"></td>
+          <td><input data-scope="tournament" data-idx="${idx}" data-key="level" value="${attr(t.level)}"></td>
+          <td><input data-scope="tournament" data-idx="${idx}" data-key="status" value="${attr(t.status)}"></td>
+          <td><input data-scope="tournament" data-idx="${idx}" data-key="priority" value="${attr(t.priority)}"></td>
+          <td><input type="number" data-scope="tournament" data-idx="${idx}" data-key="budget" value="${attr(t.budget)}"></td>
+          <td><input data-scope="tournament" data-idx="${idx}" data-key="result" value="${attr(t.result)}"></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderBudget(){
+      const tbody = $('#budgetRows'); tbody.innerHTML='';
+      state.budget.forEach((b,idx)=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML = `
+          <td><input data-scope="budget" data-idx="${idx}" data-key="category" value="${attr(b.category)}"></td>
+          <td><input data-scope="budget" data-idx="${idx}" data-key="description" value="${attr(b.description)}"></td>
+          <td><input type="number" data-scope="budget" data-idx="${idx}" data-key="amount" value="${attr(b.amount)}"></td>
+          <td><input data-scope="budget" data-idx="${idx}" data-key="status" value="${attr(b.status)}"></td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderSponsors(){
+      const wrap = $('#sponsorEditorList'); wrap.innerHTML='';
+      state.sponsors.forEach((s,idx)=>{
+        const card=document.createElement('div'); card.className='sponsor-card';
+        card.innerHTML = `
+          <div class="sponsor-top"><div><div class="sponsor-name">${escapeHtml(s.name||'New sponsor')}</div><div class="muted">${escapeHtml(s.stage||'')}</div></div><div class="money">${money(s.ask)}</div></div>
+          <div class="field-grid" style="margin-top:14px">
+            <div class="field w6"><label>Sponsor</label><input data-scope="sponsor" data-idx="${idx}" data-key="name" value="${attr(s.name)}"></div>
+            <div class="field w6"><label>Contact</label><input data-scope="sponsor" data-idx="${idx}" data-key="contact" value="${attr(s.contact)}"></div>
+            <div class="field w6"><label>Email</label><input data-scope="sponsor" data-idx="${idx}" data-key="email" value="${attr(s.email)}"></div>
+            <div class="field w6"><label>Category</label><input data-scope="sponsor" data-idx="${idx}" data-key="category" value="${attr(s.category)}"></div>
+            <div class="field w3"><label>Ask EUR</label><input type="number" data-scope="sponsor" data-idx="${idx}" data-key="ask" value="${attr(s.ask)}"></div>
+            <div class="field w3"><label>Stage</label><input data-scope="sponsor" data-idx="${idx}" data-key="stage" value="${attr(s.stage)}"></div>
+            <div class="field w6"><label>Next action</label><input data-scope="sponsor" data-idx="${idx}" data-key="nextAction" value="${attr(s.nextAction)}"></div>
+            <div class="field w12"><label>Value proposition</label><textarea data-scope="sponsor" data-idx="${idx}" data-key="value">${escapeHtml(s.value||'')}</textarea></div>
+          </div>`;
+        wrap.appendChild(card);
+      });
+    }
+
+    function renderDoc(){
+      const a=state.athlete; const full=`${a.firstName||''} ${a.lastName||''}`.trim() || 'Athlete';
+      const next=nextTournament();
+      const docs={
+        dev:{ title:'Athlete Development Plan', sub:`${full} · ${a.sport||''} · ${a.city||''}`, sections:[
+          ['Athlete profile', `${a.story}\n\nCoach: ${a.coach||'TBD'}\nClub: ${a.club||'TBD'}\nRanking: ${a.ranking||'TBD'}`],
+          ['12-month objective', a.goal||''],
+          ['Strengths', a.strengths||''],
+          ['Development priorities', a.needs||''],
+          ['Tournament roadmap', state.tournaments.map(t=>`${dateTxt(t.start)}: ${t.name} · ${t.city||''}, ${t.country||''} · Priority ${t.priority||''} · ${money(t.budget)}`).join('\n') || 'No tournaments added yet.'],
+          ['Budget summary', `Current planned funding need: ${money(totalBudget())}. Use the budget tab to track the details behind this number.`]
+        ]},
+        sponsor:{ title:'Local Sponsor Email', sub:'A personalized outreach draft', sections:[
+          ['Subject', `Local sponsorship opportunity for ${full}`],
+          ['Email body', `Hi [Name],\n\nI am reaching out because we are building a clear development plan for ${full}, a ${a.sport?.toLowerCase()||'junior athlete'} based in ${a.city||'Romania'}.\n\n${a.story}\n\nThe current 12-month objective is simple: ${a.goal}\n\nThe current planned budget need is ${money(totalBudget())}, covering training, tournament travel, and equipment. We are looking for local partners who prefer to support a specific and transparent athlete pathway rather than a vague sponsorship request.\n\nWould you be open to a short conversation next week?\n\nBest,\n[Your Name]`]
+        ]},
+        trip:{ title:'Tournament Brief', sub: next ? `${next.name} · ${dateTxt(next.start)} to ${dateTxt(next.end)}` : 'No tournament selected', sections:[
+          ['Athlete', `${full} · ${a.sport||''} · ${a.city||''}`],
+          ['Event', next ? `${next.name}\n${next.city||'TBD'}, ${next.country||''}\nLevel: ${next.level||'TBD'}\nStatus: ${next.status||'TBD'}` : 'Add a tournament to generate this brief.'],
+          ['Budget', next ? `Estimated event budget: ${money(next.budget)}` : 'TBD'],
+          ['Purpose', next ? (next.result ? `Previous / captured result: ${next.result}` : 'Add custom notes and prep actions in your own working copy.') : 'TBD']
+        ]},
+        update:{ title:'Sponsor Update', sub:`${full} monthly progress note`, sections:[
+          ['Overview', `${full} continues to work toward the 12-month objective: ${a.goal}`],
+          ['Recent activity', state.tournaments.map(t=>`${t.name}: ${t.result || 'No result entered yet.'}`).slice(0,4).join('\n')],
+          ['Current focus', a.needs || ''],
+          ['Thank you', 'Your support helps turn planning, training, and tournament access into a structured athlete pathway.']
+        ]}
+      };
+      const doc=docs[currentDoc];
+      $('#docView').innerHTML = `<h1>${escapeHtml(doc.title)}</h1><div class="doc-sub">${escapeHtml(doc.sub)}</div>` + doc.sections.map(([h,b])=>`<section class="doc-section"><h4>${escapeHtml(h)}</h4><p>${escapeHtml(b)}</p></section>`).join('');
+    }
+
+    function tagClass(status=''){ status=status.toLowerCase(); if(status.includes('confirm')) return 'ok'; if(status.includes('research')) return 'warn'; return 'info'; }
+    function attr(v){ return String(v ?? '').replace(/"/g,'&quot;'); }
+    function escapeHtml(s){ return String(s ?? '').replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+    // events
+    $('#navTabs').addEventListener('click', e=>{
+      const btn=e.target.closest('button[data-tab]'); if(!btn) return;
+      const tab=btn.dataset.tab;
+      $$('.nav button').forEach(b=>b.classList.toggle('active', b===btn));
+      $$('.tab').forEach(s=>s.classList.toggle('hidden', s.dataset.tab!==tab));
+      if(tab==='documents') renderDoc();
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+
+    $('#goPrint').onclick = ()=> $$('button[data-tab="documents"]')[0].click();
+    $('#goProfile').onclick = ()=> $$('button[data-tab="profile"]')[0].click();
+
+    ['pFirstName','pLastName','pSport','pCity','pBirthYear','pRanking','pCoach','pClub','pHandedness','pStory','pGoal','pNeeds','pStrengths','pPhoto'].forEach(id=>{
+      $('#'+id).addEventListener('input', e=>{
+        const key={pFirstName:'firstName',pLastName:'lastName',pSport:'sport',pCity:'city',pBirthYear:'birthYear',pRanking:'ranking',pCoach:'coach',pClub:'club',pHandedness:'handedness',pStory:'story',pGoal:'goal',pNeeds:'needs',pStrengths:'strengths',pPhoto:'photo'}[id];
+        state.athlete[key]=e.target.value; render();
+      });
+    });
+
+    document.body.addEventListener('input', e=>{
+      const el=e.target; const {scope,idx,key}=el.dataset || {}; if(!scope) return;
+      const i=Number(idx); const value = el.type==='number' ? Number(el.value || 0) : el.value;
+      if(scope==='tournament') state.tournaments[i][key]=value;
+      if(scope==='budget') state.budget[i][key]=value;
+      if(scope==='sponsor') state.sponsors[i][key]=value;
+      render();
+    });
+
+    $('#addTournament').onclick = ()=>{ state.tournaments.push({ name:'New Tournament', start:'', end:'', city:'', country:'', level:'', status:'Researching', priority:'B', budget:0, result:'' }); render(); };
+    $('#addBudget').onclick = ()=>{ state.budget.push({ category:'Training', description:'New budget item', amount:0, status:'Planned' }); render(); };
+    $('#addSponsor').onclick = ()=>{ state.sponsors.push({ name:'New Sponsor Prospect', contact:'', email:'', category:'Local Sponsor', ask:1000, stage:'Prospect', nextAction:'Research contact', value:'' }); render(); };
+
+    $('#docButtons').addEventListener('click', e=>{
+      const btn=e.target.closest('.doc-btn'); if(!btn) return;
+      currentDoc=btn.dataset.doc; $$('.doc-btn').forEach(b=>b.classList.toggle('active', b===btn)); renderDoc();
+    });
+
+    $('#exportBtn').onclick = ()=>{
+      const blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'athlete-os-backup.json'; a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href), 500);
+    };
+    $('#importFile').addEventListener('change', async e=>{
+      const file=e.target.files[0]; if(!file) return;
+      try{ state = JSON.parse(await file.text()); render(); alert('Backup imported.'); }
+      catch(err){ alert('Could not import JSON backup.'); }
+      e.target.value='';
+    });
+    $('#resetBtn').onclick = ()=>{ if(confirm('Reset local data to demo values?')){ state = structuredClone(defaults); render(); } };
+
+    render();
+  </script>
 </body>
 </html>
