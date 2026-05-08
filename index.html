@@ -3,54 +3,78 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Andreea Athlete OS</title>
-  <link rel="stylesheet" href="css/styles.css?v=v4" />
+  <title>Andreea Olariu · Campaign HQ</title>
+  <meta name="description" content="2026 campaign command center for Romanian junior tennis player Andreea Olariu — schedule, ranking, budget, sponsors, and ready-to-send documents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=v6" />
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="brand">Andreea Athlete OS</div>
-        <nav class="nav" id="nav"></nav>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark">AO</span>
+        <span class="brand-text">
+          <strong>Andreea Olariu</strong>
+          <small>Campaign HQ · 2026</small>
+        </span>
       </div>
-    </header>
+      <nav class="nav" id="nav"></nav>
+      <div class="live-chip"><span class="dot"></span><span id="liveChipText">LIVE</span></div>
+    </div>
+  </header>
 
-    <main class="wrap">
-      <section class="hero">
-        <div class="court"></div>
-        <div class="hero-bg"></div>
-        <div class="tennis-ribbon"><span>Clay</span><span>Hard</span><span>ITF Juniors</span><span>Sponsor Ready</span></div>
-        <img class="hero-cutout" id="heroCutout" src="assets/andreea-cutout.png" alt="Andreea" onerror="this.style.display='none'" />
-        <div class="hero-text">
-          <div class="eyebrow">Romania · Junior Tennis</div>
-          <h1 id="heroName">Andreea Olariu</h1>
-          <p id="heroSummary"></p>
+  <main class="wrap">
+    <section class="hero" id="hero">
+      <div class="hero-court"></div>
+      <div class="hero-grid">
+        <div class="hero-info">
+          <div class="hero-flagline"><span class="flag">🇷🇴</span> ROMANIA · ITF JUNIOR · TIMIȘOARA</div>
+          <h1 class="hero-name">ANDREEA<br/>OLARIU</h1>
+          <div class="hero-tagline" id="heroTagline"></div>
           <div class="hero-actions">
-            <button class="btn primary" data-go="documents">Generate documents</button>
-            <button class="btn" data-go="career">View career roadmap</button>
+            <button class="btn primary" data-go="documents">Generate document</button>
+            <button class="btn ghost" data-go="sponsors">Open sponsors</button>
+            <button class="btn ghost" data-go="dashboard">Today's plays</button>
           </div>
         </div>
-        <div class="hero-stats">
-          <div class="hero-stat"><span>ITF Junior</span><strong id="heroItf">503</strong></div>
-          <div class="hero-stat"><span>Funding Need</span><strong id="heroBudget">€0</strong></div>
-          <div class="hero-stat"><span>Pipeline</span><strong id="heroPipeline">€0</strong></div>
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-frame">
+            <img class="hero-photo" id="heroCutout" src="assets/andreea-cutout.png" alt="Andreea Olariu" onerror="this.style.display='none'" />
+          </div>
+          <div class="surface-chips">
+            <span class="chip surface-clay">CLAY</span>
+            <span class="chip surface-hard">HARD</span>
+            <span class="chip surface-indoor">INDOOR</span>
+            <span class="chip sponsor-ready">SPONSOR READY</span>
+          </div>
         </div>
-      </section>
+      </div>
+      <div class="scoreboard" id="scoreboard"></div>
+    </section>
 
-      <section class="metrics" id="metrics"></section>
+    <section class="page active" id="dashboard"></section>
+    <section class="page" id="profile"></section>
+    <section class="page" id="career"></section>
+    <section class="page" id="calendar"></section>
+    <section class="page" id="tournaments"></section>
+    <section class="page" id="rankings"></section>
+    <section class="page" id="budget"></section>
+    <section class="page" id="sponsors"></section>
+    <section class="page" id="documents"></section>
+    <section class="page" id="settings"></section>
+  </main>
 
-      <section class="page active" id="dashboard"></section>
-      <section class="page" id="profile"></section>
-      <section class="page" id="career"></section>
-      <section class="page" id="calendar"></section>
-      <section class="page" id="tournaments"></section>
-      <section class="page" id="rankings"></section>
-      <section class="page" id="budget"></section>
-      <section class="page" id="sponsors"></section>
-      <section class="page" id="documents"></section>
-      <section class="page" id="settings"></section>
-    </main>
-  </div>
-  <script src="js/app.js?v=v4"></script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Andreea Olariu · 2026 Development Campaign · Timișoara</span>
+      <span class="muted" id="footerStamp"></span>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js?v=v6"></script>
 </body>
 </html>
