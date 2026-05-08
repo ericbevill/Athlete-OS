@@ -5,11 +5,11 @@
 
 /* ---- Domain constants -------------------------------------- */
 const TABS = ['dashboard','profile','career','calendar','tournaments','rankings','budget','sponsors','documents','settings'];
-const RANKING_SYSTEMS = ['ITF Junior','Tennis Europe','FRT Romania','WTA','UTR','WTN'];
-const CATEGORIES = ['Girls 18U','U16','U14','U12','Open','Professional'];
-const LEVELS = ['ITF Junior J30','ITF Junior J60','ITF Junior J100','ITF Junior J200','ITF Junior J300','ITF Junior J500','Junior Grand Slam','Tennis Europe U12','Tennis Europe U14','Tennis Europe U16','FRT U12','FRT U14','FRT U16','FRT U18','W15','W35','Training','Sponsor/Admin'];
+const RANKING_SYSTEMS = ['ITF Junior','Tennis Europe','FRT Romania','German LK','WTA','UTR','WTN'];
+const CATEGORIES = ['Girls 18U','U16','U14','U12','German club','Open','Professional'];
+const LEVELS = ['ITF Junior J30','ITF Junior J60','ITF Junior J100','ITF Junior J200','ITF Junior J300','ITF Junior J500','Junior Grand Slam','Tennis Europe U12','Tennis Europe U14','Tennis Europe U16','FRT U12','FRT U14','FRT U16','FRT U18','German Ostliga Damen','German Club League','German LK Registration','W15','W35','Training','Sponsor/Admin'];
 const SURFACES = ['Clay','Hard','Indoor','Grass','Carpet'];
-const STATUS = ['Research','Acceptance list','Target','Planned','Confirmed','Active','Completed','Skipped'];
+const STATUS = ['Research','Acceptance list','Rostered','Target','Planned','Scheduled','Confirmed','Active','Completed','Skipped'];
 const PRIORITY = ['A','B','C','Watch'];
 const SPONSOR_STAGE = ['Research','Prospect','Contacted','Meeting','Proposal sent','Negotiating','Committed','Active','Completed','Renewal','Closed lost'];
 const FUNNEL_STAGES = ['Prospect','Contacted','Meeting','Proposal sent','Negotiating','Committed','Active'];
@@ -800,14 +800,15 @@ const VERIFIED_TOURNAMENT_ROWS = [
     "track": "ITF Junior",
     "level": "ITF Junior J60",
     "surface": "Indoor",
-    "city": "Frederiksberg",
+    "city": "Frederiksberg / Copenhagen",
     "country": "Denmark",
     "status": "Completed",
     "priority": "B",
-    "result": "Listed in 2026 activity",
+    "result": "1R / R32 loss as No. 2 seed",
+    "matchRecord": "Lost to Valerie Hafstrom (SWE, Q) 6-3 7-6(5).",
     "points": 0,
-    "outcome": "",
-    "notes": "Tennis DB / CoreTennis"
+    "outcome": "1R",
+    "notes": "CoreTennis and Junior Tennis Database show 1R result; use as verified 2026 ITF junior result."
   },
   {
     "name": "J60 Larnaca",
@@ -820,10 +821,164 @@ const VERIFIED_TOURNAMENT_ROWS = [
     "country": "Cyprus",
     "status": "Completed",
     "priority": "B",
-    "result": "Listed in 2026 activity",
+    "result": "1/16 listing on CoreTennis profile; draw shows wins as No. 1 seed",
+    "matchRecord": "Draw table shows Olariu [1] with 6-0 6-0, 6-1 7-6(4), and 6-3 Ret. results in her section. Final placement should be double-checked against ITF draw before sponsor publication.",
     "points": 0,
-    "outcome": "",
-    "notes": "CoreTennis"
+    "outcome": "Needs verify",
+    "notes": "CoreTennis profile lists 1/16 for 2026 stats, while tournament table indicates a deeper run. Keep flagged until official ITF draw is reconciled."
+  },
+  {
+    "name": "TC Wolfsberg Pforzheim Damen roster",
+    "start": "2025-04-15",
+    "end": "2025-09-30",
+    "track": "German Club League / nuLiga",
+    "level": "German Club League",
+    "surface": "Clay",
+    "city": "Pforzheim",
+    "country": "Germany",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Registered on Sommer 2025 Damen roster",
+    "matchRecord": "nuLiga roster lists Olariu, Andreea (ROU gA), ID 21065884, LK2.5, B/A127, rank 13 for TC Wolfsberg Pforzheim Damen.",
+    "points": 0,
+    "outcome": "Rostered",
+    "notes": "German club registration record; match appearances still need individual Spielbericht checks."
+  },
+  {
+    "name": "TLZ Espenhain Damen roster / LK",
+    "start": "2026-03-04",
+    "end": "2026-06-30",
+    "track": "German Club League / nuLiga",
+    "level": "German LK Registration",
+    "surface": "Clay",
+    "city": "Espenhain / Rötha",
+    "country": "Germany",
+    "status": "Rostered",
+    "priority": "A",
+    "result": "Rostered for TLZ Espenhain Damen; LK2.8 on 06.05.2026",
+    "matchRecord": "nuLiga lists LK3.6 on 04.03.2026, LK2.7 on 01.04.2026, and LK2.8 on 06.05.2026.",
+    "points": 0,
+    "outcome": "Rostered",
+    "notes": "Add individual match reports when confirmed. Women team is Ostliga Damen; men's team is 2. Bundesliga Herren Süd."
+  },
+  {
+    "name": "Internationaler TC vs TLZ Espenhain Damen",
+    "start": "2026-05-02",
+    "end": "2026-05-02",
+    "track": "German Club League / nuLiga",
+    "level": "German Ostliga Damen",
+    "surface": "Clay",
+    "city": "Berlin / Germany",
+    "country": "Germany",
+    "status": "Completed",
+    "priority": "A",
+    "result": "TLZ Espenhain won team tie 5-4",
+    "matchRecord": "Team score: Internationaler TC 4-5 TLZ Espenhain; sets 9-10; games 73-82. Individual Andreea line not confirmed from public snippet.",
+    "points": 0,
+    "outcome": "Team W",
+    "notes": "nuLiga meeting list; click Spielbericht manually to confirm whether Andreea played singles/doubles."
+  },
+  {
+    "name": "TLZ Espenhain Damen vs Grunewald TC",
+    "start": "2026-05-09",
+    "end": "2026-05-09",
+    "track": "German Club League / nuLiga",
+    "level": "German Ostliga Damen",
+    "surface": "Clay",
+    "city": "Espenhain / Rötha",
+    "country": "Germany",
+    "status": "Scheduled",
+    "priority": "A",
+    "result": "Scheduled Ostliga Damen tie",
+    "matchRecord": "Scheduled for 11:00 local time. Confirm lineup and result after match report posts.",
+    "points": 0,
+    "outcome": "Scheduled",
+    "notes": "nuLiga fixture."
+  },
+  {
+    "name": "SV Berliner Bären vs TLZ Espenhain Damen",
+    "start": "2026-05-16",
+    "end": "2026-05-16",
+    "track": "German Club League / nuLiga",
+    "level": "German Ostliga Damen",
+    "surface": "Clay",
+    "city": "Berlin",
+    "country": "Germany",
+    "status": "Scheduled",
+    "priority": "A",
+    "result": "Scheduled Ostliga Damen tie",
+    "matchRecord": "Scheduled for 11:00 local time. Confirm lineup and result after match report posts.",
+    "points": 0,
+    "outcome": "Scheduled",
+    "notes": "nuLiga fixture."
+  },
+  {
+    "name": "SV Zehlendorfer Wespen II vs TLZ Espenhain Damen",
+    "start": "2026-05-30",
+    "end": "2026-05-30",
+    "track": "German Club League / nuLiga",
+    "level": "German Ostliga Damen",
+    "surface": "Clay",
+    "city": "Berlin",
+    "country": "Germany",
+    "status": "Scheduled",
+    "priority": "A",
+    "result": "Scheduled Ostliga Damen tie",
+    "matchRecord": "Scheduled for 11:00 local time. Confirm lineup and result after match report posts.",
+    "points": 0,
+    "outcome": "Scheduled",
+    "notes": "nuLiga fixture."
+  },
+  {
+    "name": "TLZ Espenhain Damen vs BW DD Blasewitz II",
+    "start": "2026-06-13",
+    "end": "2026-06-13",
+    "track": "German Club League / nuLiga",
+    "level": "German Ostliga Damen",
+    "surface": "Clay",
+    "city": "Espenhain / Rötha",
+    "country": "Germany",
+    "status": "Scheduled",
+    "priority": "A",
+    "result": "Scheduled Ostliga Damen tie",
+    "matchRecord": "Scheduled for 13:30 local time. Confirm lineup and result after match report posts.",
+    "points": 0,
+    "outcome": "Scheduled",
+    "notes": "nuLiga fixture."
+  },
+  {
+    "name": "TLZ Espenhain Damen vs Erfurter TC RW",
+    "start": "2026-06-20",
+    "end": "2026-06-20",
+    "track": "German Club League / nuLiga",
+    "level": "German Ostliga Damen",
+    "surface": "Clay",
+    "city": "Espenhain / Rötha",
+    "country": "Germany",
+    "status": "Scheduled",
+    "priority": "A",
+    "result": "Scheduled Ostliga Damen tie",
+    "matchRecord": "Scheduled for 11:00 local time. Confirm lineup and result after match report posts.",
+    "points": 0,
+    "outcome": "Scheduled",
+    "notes": "nuLiga fixture."
+  },
+  {
+    "name": "Tennis-Club SCC Berlin II vs TLZ Espenhain Damen",
+    "start": "2026-06-27",
+    "end": "2026-06-27",
+    "track": "German Club League / nuLiga",
+    "level": "German Ostliga Damen",
+    "surface": "Clay",
+    "city": "Berlin",
+    "country": "Germany",
+    "status": "Scheduled",
+    "priority": "A",
+    "result": "Scheduled Ostliga Damen tie",
+    "matchRecord": "Scheduled for 11:00 local time. Confirm lineup and result after match report posts.",
+    "points": 0,
+    "outcome": "Scheduled",
+    "notes": "nuLiga fixture."
   },
   {
     "name": "J60 Dunakeszi",
@@ -932,6 +1087,27 @@ const VERIFIED_RANKING_ROWS = [
     "value": "503",
     "date": "2026-05-07",
     "goal": "Current secondary-source snapshot"
+  },
+  {
+    "system": "German LK",
+    "category": "German club",
+    "value": "3.6",
+    "date": "2026-03-04",
+    "goal": "nuLiga TLZ Espenhain LK snapshot"
+  },
+  {
+    "system": "German LK",
+    "category": "German club",
+    "value": "2.7",
+    "date": "2026-04-01",
+    "goal": "nuLiga TLZ Espenhain LK snapshot"
+  },
+  {
+    "system": "German LK",
+    "category": "German club",
+    "value": "2.8",
+    "date": "2026-05-06",
+    "goal": "nuLiga TLZ Espenhain LK snapshot"
   },
   {
     "system": "WTA",
@@ -1776,18 +1952,38 @@ const SPONSOR_LEAD_ROWS = [
   }
 ];
 
+function contactRoleFor(category=''){
+  const c = String(category).toLowerCase();
+  if(c.includes('bank') || c.includes('financial')) return 'CSR / Sponsorship / Community Marketing decision-maker';
+  if(c.includes('medical') || c.includes('recovery') || c.includes('health')) return 'Clinic owner, medical director, or marketing manager';
+  if(c.includes('hotel') || c.includes('travel') || c.includes('hospitality')) return 'Owner, general manager, or partnerships manager';
+  if(c.includes('equipment') || c.includes('sports') || c.includes('fitness')) return 'Owner, brand manager, or sports marketing contact';
+  if(c.includes('media')) return 'Editor, producer, or commercial partnerships contact';
+  if(c.includes('private')) return 'Warm-intro decision maker';
+  return 'Marketing / Partnerships / Sponsorship decision-maker';
+}
+
 function seedSponsorRows(eventIdByName={}) {
   const preferredEvents = [eventIdByName['J60 Podgorica 2026'], eventIdByName['J60 Ulcinj 2026'], eventIdByName['J200 Târgu Jiu 2026'], eventIdByName['J60 Dunakeszi']].filter(Boolean);
   return SPONSOR_LEAD_ROWS.map((s, i) => {
     const sponsoredEventId = s.sponsoredItem === 'Season partner' ? '' : (preferredEvents[i % preferredEvents.length] || '');
     const guide = SPONSORED_ITEMS[s.sponsoredItem] || SPONSORED_ITEMS['Tournament travel'];
+    const role = s.contactRole || contactRoleFor(s.category || '');
     return {
-      id:id(), company:s.company, contact:'Marketing / Partnerships Lead', email:'', phone:'',
+      id:id(), company:s.company,
+      contact:s.contact || role,
+      contactRole:role,
+      email:s.email || '',
+      emailStatus:s.email ? 'Verified public email' : 'Research needed',
+      phone:s.phone || '',
+      website:s.website || '',
+      contactUrl:s.contactUrl || '',
       category:s.category || '', package:s.package || 'Supporter', ask:s.ask || 1500,
       stage:i < 12 ? 'Prospect' : 'Research', contract:'Not started', agreementStart:'', agreementEnd:'',
       paymentStatus:'Not invoiced', paidAmount:0, scheduledPayment:'', sponsoredItem:s.sponsoredItem || 'Tournament travel',
-      sponsoredEventId, deliverables:guide.deliverables, nextAction:'Find correct contact, verify fit, then send tailored sponsor email',
-      renewal:'', notes:(s.notes || '') + ' Prospect only; verify decision-maker, legal entity, and sponsorship rules before outreach.'
+      sponsoredEventId, deliverables:guide.deliverables, nextAction:'Find named decision-maker and verified email, then send tailored sponsor email',
+      renewal:'', lastContact:'', owner:'', mailerTag:(s.sponsoredItem || 'Tournament travel').replace(/[^a-z0-9]+/gi,'-').toLowerCase(),
+      notes:(s.notes || '') + ' Prospect only; verify decision-maker, public email, legal entity, and sponsorship rules before outreach.'
     };
   });
 }
@@ -1795,7 +1991,7 @@ function seedSponsorRows(eventIdByName={}) {
 const SURFACE_CSS = s => 'surface-' + (s||'').toLowerCase().replace(/[^a-z]/g,'') || 'clay';
 const STATUS_CSS = s => 'pill-status ' + (s||'').toLowerCase().replace(/[^a-z]/g,'');
 
-const KEY = 'andreea-os-v7';
+const KEY = 'andreea-os-v8';
 let state;          // initialized at end after all helpers/factories defined
 let active = 'dashboard';
 let funnelFilter = '';
@@ -1839,9 +2035,9 @@ function createDefaultState(){
       club:'Sport 4 Fun Timișoara', coach:'Petru Mergheș / Mihai Gavra / Narcis Varan listed in public coverage; current coach TBD', school:'TBD',
       rankingSystem:'ITF Junior', ranking:'503', careerHigh:'464', seasonHigh:'491', rankingGoal:'300',
       handed:'Unknown', height:'',
-      summary:'Romanian junior tennis player from Timișoara. Verified public record includes Romanian U10 team success, Romanian U12 singles and doubles national titles, Romanian U14 winter national title, Tennis Europe titles, Romania junior team participation, ITF junior finals and semifinals, and early W15 transition appearances.',
+      summary:'Romanian junior tennis player from Timișoara. Verified public record includes Romanian national junior titles, Tennis Europe titles, Romania junior team participation, ITF junior results, early W15 transition appearances, and German club-league activity through nuLiga.',
       strengths:'Verified national-title record in Romania, international junior experience across Tennis Europe and ITF Juniors, strong doubles résumé, Romania team exposure, and a clear sponsor story built around specific tournament blocks, training blocks, equipment, recovery, and transparent updates.',
-      needs:'Confirm current coach, training base, height, handedness, and 2026 event schedule before external sponsor distribution. Continue transition from junior ITF results to women\'s ITF qualification and main-draw consistency while keeping ranking, tournament, budget, and sponsor data editable.',
+      needs:'Confirm current coach, training base, height, handedness, German lineups, and 2026 event schedule before external sponsor distribution. Track the full pathway: Romanian/FRT, Tennis Europe, ITF Juniors, women\'s ITF, German club league, rankings, budget, sponsors, and documents.',
       cutout:'assets/andreea-cutout.png'
     },
     career:VERIFIED_CAREER_ROWS.map(c => ({...c, id:id()})),
@@ -1894,7 +2090,7 @@ function migrate(s){
   const f = createDefaultState();
   s.athlete = {...f.athlete, ...(s.athlete||{})};
   s.career = (s.career||f.career).map(c=>({...c, id:c.id||id(), type:c.type||'Other'}));
-  s.tournaments = (s.tournaments||f.tournaments).map(t=>({...t, id:t.id||id(), points:t.points||0, outcome:t.outcome||''}));
+  s.tournaments = (s.tournaments||f.tournaments).map(t=>({...t, id:t.id||id(), points:t.points||0, outcome:t.outcome||'', matchRecord:t.matchRecord||'', sourceUrl:t.sourceUrl||''}));
   s.rankings = (s.rankings||f.rankings).map(r=>({...r, id:r.id||id()}));
   s.sponsors = (s.sponsors||f.sponsors).map(x=>({
     ...x, id:x.id||id(),
@@ -1905,7 +2101,14 @@ function migrate(s){
     sponsoredEventId:x.sponsoredEventId||'',
     deliverables:x.deliverables||SPONSORED_ITEMS['Tournament travel'].deliverables,
     category:x.category||'',
+    contactRole:x.contactRole||contactRoleFor(x.category||''),
+    emailStatus:x.emailStatus||(x.email?'Verified public email':'Research needed'),
+    website:x.website||'',
+    contactUrl:x.contactUrl||'',
     phone:x.phone||'',
+    lastContact:x.lastContact||'',
+    owner:x.owner||'',
+    mailerTag:x.mailerTag||'',
     agreementStart:x.agreementStart||'',
     agreementEnd:x.agreementEnd||'',
     scheduledPayment:x.scheduledPayment||'',
@@ -2084,37 +2287,62 @@ function gaugeSvg(percent){
   </svg></div>`;
 }
 
-function rankingChartCard(){
-  const r = state.rankings.filter(x=>x.system==='ITF Junior' && x.value!=='TBD' && Number(x.value));
-  if(r.length<2) return '';
-  const sorted = [...r].filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)).sort((a,b)=>a.date.localeCompare(b.date));
-  if(sorted.length<2) return '';
+function numericRankingRows(system){
+  return state.rankings
+    .filter(x=>x.system===system && /^\d{4}-\d{2}-\d{2}$/.test(x.date||''))
+    .map(x=>({...x, n:Number(String(x.value).replace(/[^0-9.]/g,''))}))
+    .filter(x=>Number.isFinite(x.n) && x.n>0)
+    .sort((a,b)=>a.date.localeCompare(b.date));
+}
+function latestRankingBySystem(){
+  const systems = [...new Set(state.rankings.map(r=>r.system).filter(Boolean))];
+  return systems.map(system=>{
+    const rows = [...state.rankings.filter(r=>r.system===system)].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+    return {system, row:rows[0] || {}};
+  });
+}
+function rankingSummaryCards(){
+  const rows = latestRankingBySystem();
+  if(!rows.length) return '';
+  return `<div class="cards" style="margin-top:18px">${rows.map(({system,row})=>`<div class="card">
+    <div class="card-accent"></div>
+    <div class="label">${esc(system)}</div>
+    <h3>${esc(row.value || 'TBD')}</h3>
+    <p>${esc(row.category || '')} · ${esc(row.date || 'No date')}<br>${esc(row.goal || '')}</p>
+  </div>`).join('')}</div>`;
+}
+function rankingChartCard(system){
+  const chartSystem = system || state.athlete.rankingSystem || 'ITF Junior';
+  const sorted = numericRankingRows(chartSystem);
+  if(sorted.length<2) return `<div class="chart-card">
+    <div class="chart-head"><div><h3>Ranking trajectory · ${esc(chartSystem)}</h3><div class="muted" style="font-size:13px;margin-top:4px">Add at least two numeric ranking rows for this system to draw a chart.</div></div></div>
+  </div>`;
   const W=900,H=300,pad={l:48,r:24,t:20,b:36};
   const xs = sorted.map(s=>new Date(s.date+'T00:00:00').getTime());
-  const ys = sorted.map(s=>Number(s.value));
+  const ys = sorted.map(s=>Number(s.n));
   const minX=Math.min(...xs), maxX=Math.max(...xs);
-  const yMin=Math.min(...ys, 300), yMax=Math.max(...ys);
+  const parsedGoal = String(state.athlete.rankingGoal || '300').match(/\d+(\.\d+)?/);
+  const goal = parsedGoal ? Number(parsedGoal[0]) : Math.min(...ys);
+  const careerHigh = Number(String(state.athlete.careerHigh||'').replace(/[^0-9.]/g,''));
+  const yMin=Math.min(...ys, Number.isFinite(goal)?goal:Infinity, Number.isFinite(careerHigh)?careerHigh:Infinity);
+  const yMax=Math.max(...ys, Number.isFinite(goal)?goal:-Infinity, Number.isFinite(careerHigh)?careerHigh:-Infinity);
   const xScale = x => pad.l + (x-minX)/(maxX-minX||1) * (W-pad.l-pad.r);
-  // ranking is "lower = better" so we INVERT the y-axis (higher rank# = lower on chart)
+  // ranking is lower-is-better, so smaller rank numbers appear higher on the chart
   const yScale = y => pad.t + (y-yMin)/(yMax-yMin||1) * (H-pad.t-pad.b);
-  const points = sorted.map(s=>({x:xScale(new Date(s.date+'T00:00:00').getTime()), y:yScale(Number(s.value)), val:s.value, date:s.date}));
+  const points = sorted.map(s=>({x:xScale(new Date(s.date+'T00:00:00').getTime()), y:yScale(Number(s.n)), val:s.value, date:s.date}));
   const linePath = 'M ' + points.map(p=>`${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' L ');
   const areaPath = linePath + ` L ${points[points.length-1].x.toFixed(1)} ${H-pad.b} L ${points[0].x.toFixed(1)} ${H-pad.b} Z`;
-  const parsedGoal = String(state.athlete.rankingGoal || '300').match(/\d+/);
-  const goal = parsedGoal ? Number(parsedGoal[0]) : 300;
   const goalY = yScale(goal);
-  const careerHigh = Number(state.athlete.careerHigh);
   const chY = yScale(careerHigh);
-  // grid
-  const gridYs = [yMin, Math.round((yMin+yMax)/2), yMax];
+  const gridYs = [yMin, (yMin+yMax)/2, yMax];
   const labels = sorted.filter((_,i)=>i%Math.ceil(sorted.length/6)===0 || i===sorted.length-1);
   return `<div class="chart-card">
     <div class="chart-head">
-      <div><h3>Ranking trajectory · ITF Junior</h3><div class="muted" style="font-size:13px;margin-top:4px">Lower number is better. Chart reads the editable goal field below.</div></div>
+      <div><h3>Ranking trajectory · ${esc(chartSystem)}</h3><div class="muted" style="font-size:13px;margin-top:4px">Lower number is better. Change the chart with the Current ranking system field and editable rows.</div></div>
       <div class="legend">
         <span><i style="background:var(--clay)"></i>Ranking</span>
-        <span><i style="background:var(--gold);height:1.5px"></i>Career high (${careerHigh})</span>
-        <span><i style="background:var(--money);height:1.5px"></i>Goal (${goal})</span>
+        ${Number.isFinite(careerHigh)?`<span><i style="background:var(--gold);height:1.5px"></i>Reference high (${careerHigh})</span>`:''}
+        ${Number.isFinite(goal)?`<span><i style="background:var(--money);height:1.5px"></i>Goal (${goal})</span>`:''}
       </div>
     </div>
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
@@ -2124,12 +2352,12 @@ function rankingChartCard(){
       <g class="chart-area-grid">
         ${gridYs.map(y=>{const py=yScale(y);return `<line x1="${pad.l}" x2="${W-pad.r}" y1="${py}" y2="${py}"/>`;}).join('')}
       </g>
-      ${chY>pad.t&&chY<H-pad.b?`<line x1="${pad.l}" x2="${W-pad.r}" y1="${chY}" y2="${chY}" class="chart-line career"/>`:''}
-      ${goalY>pad.t&&goalY<H-pad.b?`<line x1="${pad.l}" x2="${W-pad.r}" y1="${goalY}" y2="${goalY}" class="chart-line goal"/>`:''}
+      ${Number.isFinite(careerHigh)&&chY>pad.t&&chY<H-pad.b?`<line x1="${pad.l}" x2="${W-pad.r}" y1="${chY}" y2="${chY}" class="chart-line career"/>`:''}
+      ${Number.isFinite(goal)&&goalY>pad.t&&goalY<H-pad.b?`<line x1="${pad.l}" x2="${W-pad.r}" y1="${goalY}" y2="${goalY}" class="chart-line goal"/>`:''}
       <path d="${areaPath}" class="chart-area"/>
       <path d="${linePath}" class="chart-line"/>
       ${points.map((p,i)=>`<circle cx="${p.x}" cy="${p.y}" r="${i===points.length-1?6:4}" class="chart-dot"/>`).join('')}
-      ${gridYs.map(y=>`<text class="chart-axis" x="${pad.l-8}" y="${yScale(y)+4}" text-anchor="end">${y}</text>`).join('')}
+      ${gridYs.map(y=>`<text class="chart-axis" x="${pad.l-8}" y="${yScale(y)+4}" text-anchor="end">${Number.isInteger(y)?y:y.toFixed(1)}</text>`).join('')}
       ${labels.map(s=>`<text class="chart-axis" x="${xScale(new Date(s.date+'T00:00:00').getTime())}" y="${H-12}" text-anchor="middle">${s.date.slice(2,7)}</text>`).join('')}
     </svg>
   </div>`;
@@ -2284,45 +2512,89 @@ function dateInRange(iso,start,end){ return start && end && iso>=start && iso<=e
 
 /* ---- Tournaments ------------------------------------------- */
 function renderTournaments(){
-  document.getElementById('tournaments').innerHTML = header('Tournaments','One row per event. Historical career events and future planning rows stay editable. Costs still come from budget rows linked to the event.',`<button class="btn primary" id="addTournament">+ Tournament</button>`) +
-    `<div class="table-wrap"><table>
-      <thead><tr><th></th><th>Name</th><th>Track</th><th>Start</th><th>End</th><th>Level</th><th>Surface</th><th>City</th><th>Country</th><th>Status</th><th>Pri</th><th>Cost</th><th>Committed</th><th>Gap</th><th>W/L</th><th>Points</th><th>Result</th><th>Notes / source</th><th></th></tr></thead>
-      <tbody>${state.tournaments.map((t,i)=>`<tr id="tour-${t.id}" class="${state.selected.tournamentId===t.id?'selected':''}">
+  const sorted = [...state.tournaments].sort((a,b)=>(a.start||'9999').localeCompare(b.start||'9999'));
+  const cur = currentTournament();
+  const curIdx = state.tournaments.findIndex(t=>t.id===cur.id);
+  const tf = (label,key,type='text') => curIdx<0 ? '' : `<div class="field"><label>${label}</label><input type="${type}" data-scope="tournaments" data-idx="${curIdx}" data-key="${key}" value="${esc(cur[key]||'')}"></div>`;
+  const tt = (label,key) => curIdx<0 ? '' : `<div class="field w12"><label>${label}</label><textarea data-scope="tournaments" data-idx="${curIdx}" data-key="${key}">${esc(cur[key]||'')}</textarea></div>`;
+  const ts = (label,key,list) => curIdx<0 ? '' : `<div class="field"><label>${label}</label><select data-scope="tournaments" data-idx="${curIdx}" data-key="${key}">${opt(list,cur[key])}</select></div>`;
+  const outcomeOptions = ['','W','L','1R','2R','R16','QF','SF','F','Champion','Team W','Team L','Rostered','Scheduled','Needs verify'];
+  const list = sorted.map(t=>`<div id="tour-${t.id}" class="sponsor-card ${state.selected.tournamentId===t.id?'selected':''}" data-edit-tournament="${t.id}">
+    <div class="head"><div><h3>${esc(t.name)}</h3><div class="muted" style="font-size:13px">${dateShort(t.start)} → ${dateShort(t.end)} · ${esc(t.city||'')}, ${esc(t.country||'')}</div></div><span class="pill-status ${t.status==='Completed'?'active':'acceptance'}"><span class="d"></span>${esc(t.status||'')}</span></div>
+    <div class="row"><span>${esc(t.track||'')}</span><span>${esc(t.level||'')}</span><span>${esc(t.surface||'')}</span><span>${esc(t.priority||'')}</span></div>
+    <div class="next"><strong style="color:var(--ink)">Result:</strong> ${esc(t.result || 'No result entered')}</div>
+    <div class="next"><strong style="color:var(--ink)">Match:</strong> ${esc(t.matchRecord || t.notes || 'No match detail entered')}</div>
+  </div>`).join('');
+
+  document.getElementById('tournaments').innerHTML = header('Tournaments','Full activity manager, not only ITF. Select an event on the left, edit every field on the right, and keep long match notes out of the cramped table.',`<button class="btn primary" id="addTournament">+ Tournament</button>`) +
+    `<div class="sponsor-grid" style="margin-top:18px">
+      <div class="sponsor-list">${list}</div>
+      <div class="sponsor-side">
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="label">Selected activity</div>
+          <h3>${esc(cur.name || 'No event selected')}</h3>
+          <p>${dateShort(cur.start)} → ${dateShort(cur.end)} · ${esc(cur.track||'')} · ${esc(cur.result||'No result entered')}</p>
+          <div class="actions"><button class="btn primary" data-go="documents" data-doc="tournamentBrief">Create activity document</button><button class="btn" data-go="budget">Open budget</button></div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <div class="label">Edit selected activity</div>
+          <div class="form-grid" style="margin-top:12px">
+            ${tf('Name','name')}
+            ${tf('Track','track')}
+            ${tf('Start','start','date')}
+            ${tf('End','end','date')}
+            ${ts('Level','level',LEVELS)}
+            ${ts('Surface','surface',SURFACES)}
+            ${tf('City','city')}
+            ${tf('Country','country')}
+            ${ts('Status','status',STATUS)}
+            ${ts('Priority','priority',PRIORITY)}
+            ${ts('Result / stage','outcome',outcomeOptions)}
+            ${tf('Ranking points','points','number')}
+            ${tf('Result summary','result')}
+            ${tf('Source URL','sourceUrl','url')}
+            ${tt('Match record / scores / placement detail','matchRecord')}
+            ${tt('Notes / source / follow-up','notes')}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-head" style="margin-top:30px"><div><h2 class="ttl" style="font-size:32px">Activity summary</h2><p class="desc">Compact view for scanning. Click any row to edit it above.</p></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>Event</th><th>Track</th><th>Dates</th><th>Level</th><th>Surface</th><th>Status</th><th>Stage</th><th>Result</th><th>Match detail</th><th>Cost</th><th>Gap</th><th></th></tr></thead>
+      <tbody>${sorted.map(t=>{ const i=state.tournaments.findIndex(x=>x.id===t.id); return `<tr class="${state.selected.tournamentId===t.id?'selected':''}" data-edit-tournament="${t.id}">
         <td class="row-bar ${SURFACE_CSS(t.surface)}"><div></div></td>
-        <td>${cell('tournaments',i,'name',t.name)}</td>
-        <td>${cell('tournaments',i,'track',t.track||'')}</td>
-        <td>${cell('tournaments',i,'start',t.start,'date')}</td>
-        <td>${cell('tournaments',i,'end',t.end,'date')}</td>
-        <td>${selectCell('tournaments',i,'level',t.level,LEVELS)}</td>
-        <td>${selectCell('tournaments',i,'surface',t.surface,SURFACES)}</td>
-        <td>${cell('tournaments',i,'city',t.city||'')}</td>
-        <td>${cell('tournaments',i,'country',t.country||'')}</td>
-        <td>${selectCell('tournaments',i,'status',t.status,STATUS)}</td>
-        <td>${selectCell('tournaments',i,'priority',t.priority,PRIORITY)}</td>
+        <td><strong>${esc(t.name)}</strong><div class="muted" style="font-size:12px">${esc(t.city||'')}, ${esc(t.country||'')}</div></td>
+        <td>${esc(t.track||'')}</td>
+        <td>${dateShort(t.start)} → ${dateShort(t.end)}</td>
+        <td>${esc(t.level||'')}</td>
+        <td>${esc(t.surface||'')}</td>
+        <td><span class="${STATUS_CSS(t.status)}"><span class="d"></span>${esc(t.status||'')}</span></td>
+        <td>${esc(t.outcome||'')}</td>
+        <td>${esc(t.result||'')}</td>
+        <td>${esc(t.matchRecord||'')}</td>
         <td>${moneyShort(eventCost(t.id))}</td>
-        <td>${moneyShort(eventCommitted(t.id))}</td>
         <td style="color:${eventGap(t.id)>0?'var(--live)':'var(--win)'}">${moneyShort(eventGap(t.id))}</td>
-        <td>${selectCell('tournaments',i,'outcome',t.outcome,['','W','L','SF','F','QF'])}</td>
-        <td>${cell('tournaments',i,'points',t.points||0,'number')}</td>
-        <td>${cell('tournaments',i,'result',t.result)}</td>
-        <td>${cell('tournaments',i,'notes',t.notes||'')}</td>
         <td><button class="btn tiny danger" data-delete="tournaments:${i}">×</button></td>
-      </tr>`).join('')}</tbody>
+      </tr>`;}).join('')}</tbody>
     </table></div>`;
 }
 
 /* ---- Rankings ---------------------------------------------- */
 function renderRankings(){
   const a = state.athlete;
-  document.getElementById('rankings').innerHTML = header('Rankings','Track each ranking system separately. Every ranking chart value is driven by editable inputs below.',`<button class="btn primary" id="addRanking">+ Ranking entry</button>`) +
-    rankingChartCard() +
+  document.getElementById('rankings').innerHTML = header('Rankings','Track every ranking structure separately. ITF Junior is the sponsor headline today, but Tennis Europe, FRT, German LK, WTA, UTR, and WTN can all be tracked here.',`<button class="btn primary" id="addRanking">+ Ranking entry</button>`) +
     `<div class="form-grid" style="margin-top:18px">
-      ${field('Current ranking system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
+      ${field('Chart / current ranking system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
       ${field('Current ranking','athlete','ranking',a.ranking)}
-      ${field('Career high','athlete','careerHigh',a.careerHigh)}
+      ${field('Career high / reference high','athlete','careerHigh',a.careerHigh)}
       ${field('Season high','athlete','seasonHigh',a.seasonHigh)}
       ${field('Chart goal rank','athlete','rankingGoal',a.rankingGoal)}
-    </div>
+    </div>` +
+    rankingSummaryCards() +
+    rankingChartCard(a.rankingSystem) +
+    `<div class="section-head" style="margin-top:30px"><div><h2 class="ttl" style="font-size:32px">Ranking entries</h2><p class="desc">These rows drive the chart. Use numeric values for charted systems; use Unranked/TBD for WTA or other systems without a numeric value.</p></div></div>
     <div class="table-wrap" style="margin-top:18px"><table>
       <thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Goal / note / source</th><th></th></tr></thead>
       <tbody>${state.rankings.map((r,i)=>`<tr>
@@ -2377,20 +2649,25 @@ function renderBudget(){
 function renderSponsors(){
   const filtered = funnelFilter ? state.sponsors.filter(s=>s.stage===funnelFilter) : state.sponsors;
   const cur = currentSponsor();
+  const curIdx = state.sponsors.findIndex(s=>s.id===cur.id);
   const list = filtered.map(s=>{
-    const cls = SURFACE_CSS('clay'); // visual placeholder
-    const guide = SPONSORED_ITEMS[s.sponsoredItem] || SPONSORED_ITEMS['Tournament travel'];
+    const contactLine = s.contactRole || s.contact || 'Contact role not set';
+    const emailLine = s.email ? s.email : (s.emailStatus || 'Email needed');
     return `<div class="sponsor-card ${s.id===cur.id?'selected':''}" data-select-sponsor="${s.id}">
-      <div class="head"><div><h3>${esc(s.company)}</h3><div class="muted" style="font-size:13px">${esc(s.contact||'No contact yet')}</div></div>
+      <div class="head"><div><h3>${esc(s.company)}</h3><div class="muted" style="font-size:13px">${esc(contactLine)}</div></div>
       <span class="pill-status ${s.stage==='Active'||s.stage==='Committed'?'active':'acceptance'}"><span class="d"></span>${esc(s.stage)}</span></div>
       <div class="row"><span>${esc(s.package||'Partner')}</span><span>${moneyShort(s.ask)} ask</span><span>${moneyShort(s.paidAmount)} paid</span><span>${esc(s.sponsoredItem||'')}</span></div>
+      <div class="next"><strong style="color:var(--ink)">Email:</strong> ${esc(emailLine)}</div>
       <div class="next"><strong style="color:var(--ink)">Next:</strong> ${esc(s.nextAction || 'No next action set')}</div>
     </div>`;
   }).join('') || '<div class="muted" style="padding:30px;text-align:center;border:1px dashed var(--line)">No sponsors in this stage yet.</div>';
 
   const guide = SPONSORED_ITEMS[cur.sponsoredItem] || SPONSORED_ITEMS['Tournament travel'];
+  const sf = (label,key,type='text') => curIdx<0 ? '' : `<div class="field"><label>${label}</label><input type="${type}" data-scope="sponsors" data-idx="${curIdx}" data-key="${key}" value="${esc(cur[key]||'')}"></div>`;
+  const st = (label,key) => curIdx<0 ? '' : `<div class="field w12"><label>${label}</label><textarea data-scope="sponsors" data-idx="${curIdx}" data-key="${key}">${esc(cur[key]||'')}</textarea></div>`;
+  const ss = (label,key,list) => curIdx<0 ? '' : `<div class="field"><label>${label}</label><select data-scope="sponsors" data-idx="${curIdx}" data-key="${key}">${opt(list,cur[key])}</select></div>`;
 
-  document.getElementById('sponsors').innerHTML = header('Sponsor pipeline','CRM for prospects, conversations, agreements, payments, and renewals. Click a stage in the funnel to filter.', `<button class="btn primary" id="addSponsor">+ Sponsor</button>${funnelFilter?`<button class="btn" id="clearFunnel">Clear filter: ${esc(funnelFilter)}</button>`:''}`) +
+  document.getElementById('sponsors').innerHTML = header('Sponsor pipeline','CRM for prospects, contacts, emails, agreements, payments, renewals, and mailer export. Click a stage in the funnel to filter.', `<button class="btn primary" id="addSponsor">+ Sponsor</button><button class="btn" id="exportSponsorCsv">Export sponsor CSV</button>${funnelFilter?`<button class="btn" id="clearFunnel">Clear filter: ${esc(funnelFilter)}</button>`:''}`) +
     pipelineFunnelCard() +
     `<div class="sponsor-grid" style="margin-top:18px">
       <div class="sponsor-list">${list}</div>
@@ -2399,11 +2676,28 @@ function renderSponsors(){
           <div class="card-accent"></div>
           <div class="label">Selected sponsor</div>
           <h3>${esc(cur.company || 'No sponsor')}</h3>
-          <p>${esc(cur.contact||'No contact')} · ${esc(cur.package||'')}</p>
+          <p>${esc(cur.contactRole||cur.contact||'Contact role not set')} · ${cur.email ? esc(cur.email) : esc(cur.emailStatus||'Email needed')}</p>
           <div class="advice-box"><strong>Approach:</strong> ${esc(guide.advice)}<br><strong>Suggested document:</strong> ${esc(recommendedDoc(cur))}</div>
           <div class="actions">
             <button class="btn primary" data-go="documents" data-doc="${suggestedDocKey(cur)}">Generate document</button>
             <button class="btn" data-email-preview>Preview outreach email</button>
+            <button class="btn" id="exportSponsorCsvSide">Export CSV</button>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <div class="label">Quick edit selected sponsor</div>
+          <div class="form-grid" style="margin-top:12px">
+            ${sf('Company','company')}
+            ${sf('Right contact / role','contactRole')}
+            ${sf('Named contact','contact')}
+            ${sf('Email','email','email')}
+            ${sf('Email status','emailStatus')}
+            ${sf('Phone','phone')}
+            ${sf('Website','website','url')}
+            ${sf('Contact URL','contactUrl','url')}
+            ${ss('Stage','stage',SPONSOR_STAGE)}
+            ${sf('Next action','nextAction')}
+            ${st('Notes','notes')}
           </div>
         </div>
         <div class="card" style="margin-top:14px">
@@ -2413,15 +2707,19 @@ function renderSponsors(){
         </div>
       </div>
     </div>
-    <div class="section-head" style="margin-top:30px"><div><h2 class="ttl" style="font-size:32px">Sponsor database</h2><p class="desc">Inline editable CRM. Sponsored item drives the recommended document and deliverables.</p></div></div>
+    <div class="section-head" style="margin-top:30px"><div><h2 class="ttl" style="font-size:32px">Sponsor database</h2><p class="desc">Inline editable CRM. Email and contact fields export cleanly for a mailer. Do not bulk-send rows marked Research needed.</p></div></div>
     <div class="table-wrap"><table>
-      <thead><tr><th>Company</th><th>Category</th><th>Contact</th><th>Email</th><th>Phone</th><th>Package</th><th>Ask</th><th>Paid</th><th>Stage</th><th>Contract</th><th>Payment</th><th>Start</th><th>End</th><th>Scheduled payment</th><th>Sponsored event</th><th>Sponsored item</th><th>Deliverables</th><th>Next action</th><th>Renewal</th><th>Notes</th><th></th></tr></thead>
+      <thead><tr><th>Company</th><th>Category</th><th>Right contact / role</th><th>Named contact</th><th>Email</th><th>Email status</th><th>Phone</th><th>Website</th><th>Contact URL</th><th>Package</th><th>Ask</th><th>Paid</th><th>Stage</th><th>Contract</th><th>Payment</th><th>Start</th><th>End</th><th>Scheduled payment</th><th>Sponsored event</th><th>Sponsored item</th><th>Deliverables</th><th>Next action</th><th>Last contact</th><th>Renewal</th><th>Owner</th><th>Mailer tag</th><th>Notes</th><th></th></tr></thead>
       <tbody>${state.sponsors.map((s,i)=>`<tr>
         <td>${cell('sponsors',i,'company',s.company)}</td>
         <td>${cell('sponsors',i,'category',s.category||'')}</td>
-        <td>${cell('sponsors',i,'contact',s.contact)}</td>
-        <td>${cell('sponsors',i,'email',s.email)}</td>
+        <td>${cell('sponsors',i,'contactRole',s.contactRole||'')}</td>
+        <td>${cell('sponsors',i,'contact',s.contact||'')}</td>
+        <td>${cell('sponsors',i,'email',s.email||'','email')}</td>
+        <td>${cell('sponsors',i,'emailStatus',s.emailStatus||'')}</td>
         <td>${cell('sponsors',i,'phone',s.phone||'')}</td>
+        <td>${cell('sponsors',i,'website',s.website||'','url')}</td>
+        <td>${cell('sponsors',i,'contactUrl',s.contactUrl||'','url')}</td>
         <td>${cell('sponsors',i,'package',s.package)}</td>
         <td>${cell('sponsors',i,'ask',s.ask,'number')}</td>
         <td>${cell('sponsors',i,'paidAmount',s.paidAmount,'number')}</td>
@@ -2434,8 +2732,11 @@ function renderSponsors(){
         <td><select data-scope="sponsors" data-idx="${i}" data-key="sponsoredEventId"><option value="">General / season</option>${state.tournaments.map(t=>`<option value="${t.id}" ${t.id==s.sponsoredEventId?'selected':''}>${esc(t.name)}</option>`).join('')}</select></td>
         <td><select data-scope="sponsors" data-idx="${i}" data-key="sponsoredItem">${opt(Object.keys(SPONSORED_ITEMS),s.sponsoredItem)}</select></td>
         <td><textarea data-scope="sponsors" data-idx="${i}" data-key="deliverables">${esc(s.deliverables||'')}</textarea></td>
-        <td>${cell('sponsors',i,'nextAction',s.nextAction)}</td>
+        <td>${cell('sponsors',i,'nextAction',s.nextAction||'')}</td>
+        <td>${cell('sponsors',i,'lastContact',s.lastContact||'','date')}</td>
         <td>${cell('sponsors',i,'renewal',s.renewal||'','date')}</td>
+        <td>${cell('sponsors',i,'owner',s.owner||'')}</td>
+        <td>${cell('sponsors',i,'mailerTag',s.mailerTag||'')}</td>
         <td><textarea data-scope="sponsors" data-idx="${i}" data-key="notes">${esc(s.notes||'')}</textarea></td>
         <td><button class="btn tiny danger" data-delete="sponsors:${i}">×</button></td>
       </tr>`).join('')}</tbody>
@@ -2477,7 +2778,7 @@ function docsCatalog(){
     sub:`${full} · 2026 development campaign`,
     band:[['Athlete', `${full}, age ${a.age}`],['Ranking', `${a.rankingSystem} ${a.ranking}`],['Funding need', money(state.settings.annualBudget||totalBudget())]],
     sections:[
-      ['Become a local supporter of '+full, `${full} is a Romanian junior tennis player from ${a.city}, building an international pathway through national titles, European junior recognition, and ITF junior results. The next stage is more expensive and more demanding: higher-level tournaments, travel, coaching support, equipment, fitness, recovery, and consistent match exposure. Local partners can help turn momentum into a structured 2026 development campaign.`],
+      ['Become a local supporter of '+full, `${full} is a Romanian junior tennis player from ${a.city}, building an international pathway through national titles, European junior recognition, and ITF junior results and German club-league activity. The next stage is more expensive and more demanding: higher-level tournaments, travel, coaching support, equipment, fitness, recovery, and consistent match exposure. Local partners can help turn momentum into a structured 2026 development campaign.`],
       ['Verified accomplishments', null, listFrom(state.career.filter(c=>c.type==='Trophy'||c.type==='Final').slice(0,6).map(c=>`${c.title} (${c.date})`))],
       ['What a local sponsor makes possible', null, listFrom([
         'Tournament blocks: travel, lodging, meals, local transport, entry logistics.',
@@ -2493,12 +2794,12 @@ function docsCatalog(){
   const sponsorDeck = {
     cat:'Pitch materials',
     title:'2026 Sponsor Proposal',
-    sub:`Andreea Olariu · Romanian ITF Junior Tennis Player · Prepared for corporate, local, and individual partners`,
-    band:[['Campaign', '2026 development'],['Stage', 'ITF Junior'],['Home base', a.city+', '+a.country]],
+    sub:`Andreea Olariu · Romanian junior tennis player · Prepared for corporate, local, and individual partners`,
+    band:[['Campaign', '2026 development'],['Stage', 'Junior / club league / early pro pathway'],['Home base', a.city+', '+a.country]],
     sections:[
       ['A story of ambition, discipline, and momentum', `${full} has already built a real record in Romanian and international junior tennis. The next step is turning that momentum into sustained international progress. From ${a.city} to international junior competition, ${full} has progressed from national titles in Romania to European recognition, ITF junior results, and national team participation. Behind those milestones is the daily reality of serious junior tennis: training, travel, coaching, recovery, and a family commitment that grows as the level rises.${NL}${NL}This proposal invites partners to support an athlete at an important development stage, where the right help can expand access to stronger tournament opportunities and accelerate the path ahead.`],
       ['Athlete snapshot', null, kvFrom([
-        ['Name', full],['Nationality', a.country],['Date of birth', a.dob || 'TBD'],['Stage','ITF Junior Circuit and early women\'s ITF exposure'],['Home base', `${a.city} pathway with national and international junior results`],['2026 focus','Ranking growth, competition efficiency, and long-term development']
+        ['Name', full],['Nationality', a.country],['Date of birth', a.dob || 'TBD'],['Stage','Romanian/FRT, Tennis Europe, ITF Juniors, German club league, and early women\'s ITF exposure'],['Home base', `${a.city} pathway with national and international junior results`],['2026 focus','Ranking growth, competition efficiency, and long-term development']
       ])],
       ['Verified performance foundation', null, listFrom(state.career.filter(c=>c.type==='Trophy' || c.type==='Final').map(c=>`${c.date} — ${c.title}: ${c.body}`))],
       ['2026 campaign plan', `Ranking conversion: prioritise J30 and J60 events where deep runs and ranking points are realistic.${NL}Selective escalation: add J100 or higher events when acceptance, surface, and travel cost align.${NL}Cost-controlled scheduling: cluster tournament weeks by geography and surface to improve efficiency.${NL}Pathway flexibility: maintain junior ITF progress while preserving long-term professional and academic options.`],
@@ -2524,7 +2825,7 @@ function docsCatalog(){
       ['Athlete snapshot', a.summary],
       ['Verified performance foundation', null, listFrom(state.career.filter(c=>['Trophy','Final','Ranking'].includes(c.type)).map(c=>`${c.date}: ${c.title} — ${c.body}`))],
       ['The development challenge', `Junior tennis is expensive because opportunity depends on repetition: training blocks, tournament blocks, coach support, travel, accommodation, recovery, stringing, shoes, and planning. The tournament entry fee is only one small piece of the real cost.${NL}${NL}Access — higher-level tournament opportunities require travel, acceptance planning, and reliable support around the player.${NL}Consistency — a single strong result is useful, but sponsors and institutions respond better to a season plan with targets and reporting.${NL}Timing — at ${a.age}, the next 12 to 24 months matter. Results, ranking, academics, and video should be organized now.${NL}Sustainability — the family needs a model that avoids emotional spending and funds the highest-return tournament and training decisions.`],
-      ['2026 objectives', `Competition — build a targeted ITF junior schedule centred on ranking conversion and meaningful match experience.${NL}Performance — convert J30/J60 events into deep runs and use J100 opportunities selectively when draw, surface, and cost make sense.${NL}Development — support coaching, fitness, recovery, and match analysis around tournament blocks.${NL}Visibility — produce stronger match video, sponsor updates, photography, and source-backed media materials.${NL}Pathway — keep open junior ITF progress, selective women's ITF events, academy support, and U.S. college recruiting.`],
+      ['2026 objectives', `Competition — build a targeted schedule across ITF juniors, Tennis Europe, FRT/national activity, German club league, and selective women's ITF opportunities and meaningful match experience.${NL}Performance — convert J30/J60 events into deep runs and use J100 opportunities selectively when draw, surface, and cost make sense.${NL}Development — support coaching, fitness, recovery, and match analysis around tournament blocks.${NL}Visibility — produce stronger match video, sponsor updates, photography, and source-backed media materials.${NL}Pathway — keep open junior ITF progress, selective women's ITF events, academy support, and U.S. college recruiting.`],
       ['Target schedule', null, tableFrom(['Dates','Event','Level','Surface','Cost'], state.tournaments.map(t=>[`${dateShort(t.start)} → ${dateShort(t.end)}`, t.name, t.level, t.surface, money(eventCost(t.id))]))],
       ['Funding picture', `Total budget model: ${money(state.settings.annualBudget||totalBudget())}. Sponsor pipeline: ${money(totalSponsors())}. Paid: ${money(sponsorPaid())}. Open funding gap: ${money(fundingGap())}. Suggested first ask for a sponsor: fund one tournament block or one training block.`],
       ['Sponsor value and deliverables', `Visibility — logo or name in sponsor materials, promo video, landing page, and permitted apparel or training gear.${NL}Content — thank-you posts, tournament photos, short video assets, and selected sponsor mentions.${NL}Community — meet-and-greet, junior tennis clinic, sponsor visit, signed photo, or local press moment.${NL}Reporting — monthly update covering results, next events, photos, ranking movement, and use-of-funds summary.${NL}Compliance — logo use and sponsor categories checked against tournament, federation, apparel, and amateur eligibility rules before activation.`],
@@ -2536,11 +2837,11 @@ function docsCatalog(){
     cat:'Pitch materials',
     title:'Press Kit & Athlete Profile',
     sub:`${full} · For media, sponsors, federations, and event programs`,
-    band:[['Profile','ITF Junior'],['Born', a.dob || ''],['Home', a.city]],
+    band:[['Profile','Junior pathway'],['Born', a.dob || ''],['Home', a.city]],
     sections:[
-      ['Short bio', `${full} is a Romanian ITF junior tennis player from ${a.city}. She has earned Romanian national junior titles, represented Romania in junior team competition, received European junior recognition, and competed internationally across Tennis Europe and ITF junior events. Her 2026 campaign focuses on continued ranking growth, disciplined tournament planning, and long-term development.`],
-      ['Long bio', `${full} is a Romanian junior tennis player from ${a.city} competing on the ITF junior pathway. Her early results include national junior titles in Romania, European team recognition, and international junior competition experience. Romanian media has reported her U12 national singles and doubles titles, her recognition as best player at the U12 European final tournament, her U14 national progress, and her ITF J60 results in Montenegro.${NL}${NL}${full}'s development story reflects the reality of high-performance junior tennis: serious training, frequent travel, tournament planning, coaching support, physical preparation, recovery, school coordination, and family commitment. The 2026 campaign is designed to build on her verified results through a targeted international competition plan while keeping long-term academic and tennis options open.`],
-      ['One-sentence', `${full} is a Romanian ITF junior tennis player from ${a.city} building an international pathway through national results, European recognition, and a disciplined 2026 development plan.`],
+      ['Short bio', `${full} is a Romanian junior tennis player from ${a.city}. She has earned Romanian national junior titles, represented Romania in junior team competition, received European junior recognition, and competed internationally across Tennis Europe and ITF junior events. Her 2026 campaign focuses on continued ranking growth, disciplined tournament planning, and long-term development.`],
+      ['Long bio', `${full} is a Romanian junior tennis player from ${a.city} competing across the junior tennis pathway. Her early results include national junior titles in Romania, European team recognition, and international junior competition experience. Romanian media has reported her U12 national singles and doubles titles, her recognition as best player at the U12 European final tournament, her U14 national progress, and her ITF J60 results in Montenegro.${NL}${NL}${full}'s development story reflects the reality of high-performance junior tennis: serious training, frequent travel, tournament planning, coaching support, physical preparation, recovery, school coordination, and family commitment. The 2026 campaign is designed to build on her verified results through a targeted international competition plan while keeping long-term academic and tennis options open.`],
+      ['One-sentence', `${full} is a Romanian junior tennis player from ${a.city} building an international pathway through national results, European recognition, and a disciplined 2026 development plan.`],
       ['Verified accomplishments', null, listFrom(state.career.filter(c=>['Trophy','Final','Ranking'].includes(c.type)).map(c=>`${c.title} (${c.date})`))],
       ['Story angles for journalists', null, listFrom([
         'Local excellence from '+a.city+': a young athlete building a path into international junior tennis.',
@@ -2858,7 +3159,7 @@ function docsCatalog(){
     band:[['Released',dateLong(todayISO())],['Contact',state.settings.senderName||'[Family contact]'],['Email', state.settings.senderEmail||'[email]']],
     sections:[
       ['Headline', `${full} announces 2026 international junior tennis development campaign from ${a.city}`],
-      ['Lead paragraph', `${full}, a Romanian junior tennis player from ${a.city}, has launched a structured 2026 development campaign focused on disciplined international competition, ranking growth, and long-term pathway development. ${full} has built a verified record through Romanian national titles, European junior recognition, and ITF junior results.`],
+      ['Lead paragraph', `${full}, a Romanian junior tennis player from ${a.city}, has launched a structured 2026 development campaign focused on disciplined international competition, ranking growth, and long-term pathway development. ${full} has built a verified record through Romanian national titles, European junior recognition, and ITF junior results and German club-league activity.`],
       ['Verified accomplishments', null, listFrom(state.career.filter(c=>c.type==='Trophy' || c.type==='Final').map(c=>`${c.title} (${c.date})`))],
       ['Quote', `"This campaign is about building a real plan around tournament selection, training quality, and clear sponsor reporting," said the family. "We want to give partners a credible, organised story to support, not a vague request for help."`],
       ['Sponsor opportunity', `Local businesses, corporate partners, foundations, and private supporters can support specific parts of the campaign — tournament blocks, equipment, recovery, training — with documented use of funds and monthly reporting. Suggested first commitment: one tournament block or training block.`],
@@ -2915,7 +3216,7 @@ function emailLocal(s){
 
 I am reaching out to introduce ${full}, a Romanian junior tennis player from ${a.city} with national titles, international junior results, and Romanian team experience.
 
-${full} is preparing for her 2026 development campaign, which includes selected ITF junior tournaments, training blocks, equipment, travel, coaching support, and recovery. The costs of competing internationally are significant, and we are looking for local partners who want to support a serious young athlete with a clear plan.
+${full} is preparing for her 2026 development campaign, which includes selected junior tournaments, German club-league dates, training blocks, equipment, travel, coaching support, and recovery. The costs of competing internationally are significant, and we are looking for local partners who want to support a serious young athlete with a clear plan.
 
 A local partnership can be structured around a defined amount, for example support for one tournament block, equipment, recovery, or travel. In return, partners receive clear recognition, updates, photos, and permitted visibility in ${full}'s campaign materials.
 
@@ -2930,7 +3231,7 @@ function emailCorporate(s){
   const a=state.athlete, full=`${a.firstName} ${a.lastName}`;
   return `Hello ${s.contact||'[Name]'},
 
-I am writing to share a potential partnership opportunity involving ${full}, a Romanian ITF junior tennis player from ${a.city}. ${full} has built a verified junior record that includes Romanian national titles, European junior recognition, Romanian team participation, and recent ITF junior results.
+I am writing to share a potential partnership opportunity involving ${full}, a Romanian junior tennis player from ${a.city}. ${full} has built a verified junior record that includes Romanian national titles, European junior recognition, Romanian team participation, and recent ITF junior results and German club-league activity.
 
 The 2026 campaign is focused on disciplined international development: selected ITF junior tournament blocks, coaching support, training, travel, equipment, recovery, and structured reporting for partners.
 
@@ -3083,6 +3384,37 @@ function kvFrom(rows){
   return `<table><tbody>${rows.map(([k,v])=>`<tr><td style="background:#f1f5fa;font-weight:700;width:30%">${esc(k)}</td><td>${esc(v||'')}</td></tr>`).join('')}</tbody></table>`;
 }
 
+
+function attachmentsForCurrentDoc(docKey){
+  const base = ['Athlete one-page summary PDF', 'Proof folder links: ITF/WTA/CoreTennis/FRT/press sources', 'Recent results and ranking snapshot'];
+  if(docKey==='corporateProposal') return ['Corporate sponsorship proposal PDF', 'One-page athlete summary PDF', 'Season budget overview PDF', 'Proof folder links', 'Logo/use-of-name preference form'];
+  if(docKey==='tournamentBrief') return ['Activity/tournament brief PDF', 'Budget line items for selected activity', 'Athlete one-page summary PDF', 'Recent results and ranking snapshot'];
+  if(String(docKey).includes('Email')) return ['One-page athlete summary PDF', 'Relevant sponsor proposal or tournament brief', 'Proof folder links'];
+  if(docKey==='contract') return ['Draft sponsorship agreement PDF', 'Sponsor information form', 'Deliverables checklist'];
+  return base;
+}
+function documentSendInstructions(d){
+  const s = currentSponsor();
+  const t = currentTournament();
+  const email = s.email || '[research and enter verified email first]';
+  const contact = s.contact || s.contactRole || '[contact name / role]';
+  const subject = d.email?.subject || `${state.athlete.firstName} ${state.athlete.lastName} sponsorship material`;
+  const attach = attachmentsForCurrentDoc(state.selected.doc);
+  return `<div class="card" style="margin-bottom:18px">
+    <div class="card-accent"></div>
+    <div class="label">Send instructions</div>
+    <h3>${esc(s.company || 'Selected sponsor')} · ${esc(t.name || 'Selected activity')}</h3>
+    <div class="advice-box"><strong>Send to:</strong> ${esc(contact)} · ${esc(email)}<br><strong>Subject:</strong> ${esc(subject)}<br><strong>Activity:</strong> ${esc(t.name||'General / season')} · ${esc(t.result||'No result entered')}<br><strong>Next action:</strong> ${esc(s.nextAction||'Set next action in sponsor CRM')}</div>
+    <div class="doc-sec" style="border-top:none;padding-top:12px"><h4>Attach / include</h4>${listFrom(attach)}</div>
+    <div class="doc-sec" style="border-top:none;padding-top:0"><h4>Before sending</h4>${listFrom([
+      s.email ? 'Email is entered. Confirm it is the right public/business address before any bulk send.' : 'Do not send yet. Research and enter a verified public/business email address.',
+      'Confirm the sponsor name, contact role, ask amount, sponsored item, and selected activity.',
+      'Export sponsor CSV only after rows are marked ready for mailer.',
+      'For minors, keep parent/guardian approval and avoid sharing private school, travel, or contact details.'
+    ])}</div>
+  </div>`;
+}
+
 /* ---- Documents render -------------------------------------- */
 function renderDocuments(){
   const D = docsCatalog();
@@ -3106,6 +3438,7 @@ function renderDocuments(){
         ${docs.map(({key,t})=>`<button class="doc-list-btn ${key===state.selected.doc?'active':''}" data-doc="${key}">${esc(t)}</button>`).join('')}
       `).join('')}</div>
       <div>
+        ${documentSendInstructions(d)}
         <div class="doc-paper" id="docPaper">${docHtml(d)}</div>
         <div class="doc-actions">
           <button class="btn primary" onclick="window.print()">Print / save as PDF</button>
@@ -3131,6 +3464,35 @@ function docHtml(d){
     <div class="doc-sec" style="border-top:none;padding-top:6px;color:#5b7188;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:24px">Generated ${dateLong(todayISO())} · ${esc(a.firstName)} ${esc(a.lastName)} · Campaign HQ</div>`;
 }
 
+
+function csvValue(v){
+  const text = String(v ?? '').replace(/\r?\n/g,' ').trim();
+  return '"' + text.replace(/"/g,'""') + '"';
+}
+function downloadTextFile(filename, type, content){
+  const blob = new Blob([content], {type});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+}
+function exportSponsorCsv(){
+  const headers = ['company','category','contact_role','contact_name','email','email_status','phone','website','contact_url','package','ask_eur','paid_eur','stage','contract','payment_status','agreement_start','agreement_end','scheduled_payment','sponsored_event','sponsored_item','deliverables','next_action','last_contact','renewal','owner','mailer_tag','ready_for_mailer','notes'];
+  const rows = state.sponsors.map(s=>{
+    const ready = s.email && s.email.includes('@') && !String(s.emailStatus||'').toLowerCase().includes('research');
+    return [
+      s.company, s.category, s.contactRole, s.contact, s.email, s.emailStatus, s.phone, s.website, s.contactUrl,
+      s.package, s.ask, s.paidAmount, s.stage, s.contract, s.paymentStatus, s.agreementStart, s.agreementEnd,
+      s.scheduledPayment, eventName(s.sponsoredEventId), s.sponsoredItem, s.deliverables, s.nextAction,
+      s.lastContact, s.renewal, s.owner, s.mailerTag, ready ? 'yes' : 'no', s.notes
+    ];
+  });
+  const csv = [headers, ...rows].map(r=>r.map(csvValue).join(',')).join('\n');
+  downloadTextFile('andreea-sponsor-mailer.csv','text/csv;charset=utf-8',csv);
+  toast('Sponsor CSV exported');
+}
+
 /* ---- Settings ---------------------------------------------- */
 function renderSettings(){
   document.getElementById('settings').innerHTML = header('Settings','Sender details that appear in every email and document. Export and import data as JSON for backups.') +
@@ -3143,6 +3505,7 @@ function renderSettings(){
     </div>
     <div style="margin-top:24px;display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn primary" id="exportBtn">Export JSON backup</button>
+      <button class="btn" id="exportSponsorCsvSettings">Export sponsor CSV</button>
       <label class="btn" for="importFile">Import JSON backup</label>
       <input id="importFile" type="file" accept="application/json" style="display:none">
       <button class="btn danger" id="resetBtn">Reset demo data</button>
@@ -3159,7 +3522,7 @@ function cell(scope,i,key,val,type='text'){ return `<input type="${type}" data-s
 function selectCell(scope,i,key,val,list){ return `<select data-scope="${scope}" data-idx="${i}" data-key="${key}">${opt(list,val)}</select>`; }
 
 function addTournament(start=''){
-  const t = {id:id(),name:'New tournament',start,end:start,track:'ITF Junior',level:'ITF Junior J60',surface:'Clay',city:'',country:'',status:'Research',priority:'B',result:'',points:0,outcome:''};
+  const t = {id:id(),name:'New activity',start,end:start,track:'ITF Junior',level:'ITF Junior J60',surface:'Clay',city:'',country:'',status:'Research',priority:'B',result:'',matchRecord:'',sourceUrl:'',points:0,outcome:''};
   state.tournaments.push(t);
   state.budget.push({id:id(),eventId:t.id,category:'Tournament travel',description:`Travel for ${t.name}`,amount:0,status:'Needed'});
   state.selected.tournamentId=t.id;
@@ -3207,7 +3570,8 @@ document.addEventListener('click', e => {
   if(e.target.id==='addTournament'){ addTournament(); return; }
   if(e.target.id==='addRanking'){ state.rankings.push({id:id(),system:'ITF Junior',category:'Girls 18U',value:'',date:todayISO(),goal:''}); render(); return; }
   if(e.target.id==='addBudget'){ state.budget.push({id:id(),eventId:state.selected.tournamentId||'',category:'Tournament travel',description:'New budget item',amount:0,status:'Needed'}); render(); return; }
-  if(e.target.id==='addSponsor'){ state.sponsors.push({id:id(),company:'New sponsor',category:'',contact:'',email:'',phone:'',package:'Local Partner',ask:state.settings.defaultAsk,stage:'Prospect',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Tournament travel',sponsoredEventId:state.selected.tournamentId||'',deliverables:SPONSORED_ITEMS['Tournament travel'].deliverables,nextAction:'Research contact',renewal:'',notes:''}); render(); return; }
+  if(e.target.id==='addSponsor'){ state.sponsors.push({id:id(),company:'New sponsor',category:'',contact:'',contactRole:'Marketing / Partnerships / Sponsorship decision-maker',email:'',emailStatus:'Research needed',website:'',contactUrl:'',phone:'',package:'Local Partner',ask:state.settings.defaultAsk,stage:'Prospect',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Tournament travel',sponsoredEventId:state.selected.tournamentId||'',deliverables:SPONSORED_ITEMS['Tournament travel'].deliverables,nextAction:'Research contact and email',lastContact:'',renewal:'',owner:'',mailerTag:'tournament-travel',notes:''}); render(); return; }
+  if(e.target.id==='exportSponsorCsv' || e.target.id==='exportSponsorCsvSide' || e.target.id==='exportSponsorCsvSettings'){ exportSponsorCsv(); return; }
 
   if(e.target.id==='copyEmail'){
     const txt=document.getElementById('emailBox').textContent;
