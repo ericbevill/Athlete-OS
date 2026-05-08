@@ -1987,6 +1987,841 @@ const SPONSOR_LEAD_ROWS = [
   }
 ];
 
+const SPONSOR_CONTACTS = {
+  "Banca Transilvania": {
+    "email": "sponsorizari@btrl.ro",
+    "emailStatus": "Public sponsorship email",
+    "contactRole": "Sponsorship / Community / CSR team",
+    "contactUrl": "https://comunitate.bancatransilvania.ro/contact",
+    "website": "https://www.bancatransilvania.ro",
+    "nextAction": "Send sponsorship request to the BT Comunitate sponsorship mailbox with athlete one-pager and specific tournament ask."
+  },
+  "BCR": {
+    "email": "comunitate@bcr.ro",
+    "emailStatus": "Public CSR/community email",
+    "contactRole": "CSR / Community team",
+    "contactUrl": "https://www.bcr.ro/ro/csr/contact-csr",
+    "website": "https://www.bcr.ro",
+    "nextAction": "Send CSR/community sponsorship email with short athlete summary and requested support amount."
+  },
+  "BRD Groupe Societe Generale": {
+    "email": "mybrdcontact@brd.ro",
+    "emailStatus": "Public general contact email; sponsorship uses application page",
+    "contactRole": "Sponsorship / CSR applications team",
+    "contactUrl": "https://www.brd.ro/aplica-pentru-sponsorizare",
+    "website": "https://www.brd.ro",
+    "nextAction": "Use BRD sponsorship application page; email general contact only for routing questions."
+  },
+  "Raiffeisen Bank Romania": {
+    "email": "raiffeisen.comunitati@raiffeisen.ro",
+    "emailStatus": "Public sponsorship/community email",
+    "contactRole": "Raiffeisen Comunități / Sponsorship team",
+    "contactUrl": "https://sponsorship.raiffeisen.ro/",
+    "website": "https://www.raiffeisen.ro",
+    "nextAction": "Submit sponsorship request through Raiffeisen sponsorship page and use community mailbox for questions."
+  },
+  "ING Bank Romania": {
+    "email": "contact@ing.ro",
+    "emailStatus": "Public general contact email",
+    "contactRole": "Community / sustainability / communications routing contact",
+    "contactUrl": "https://ing.ro/ing-in-romania/contact",
+    "website": "https://ing.ro",
+    "nextAction": "Send concise routing request asking for the community/sponsorship contact for a Romanian junior athlete campaign."
+  },
+  "UniCredit Bank Romania": {
+    "email": "infocenter@unicredit.ro",
+    "emailStatus": "Public general contact email",
+    "contactRole": "Sustainability / sponsorship / community routing contact",
+    "contactUrl": "https://www.unicredit.ro/ro/institutional/Sustenabilitate/Sponsorizari-si-donatii.html",
+    "website": "https://www.unicredit.ro",
+    "nextAction": "Use sponsorship/donations page and ask infocenter to route to sponsorship/community team."
+  },
+  "CEC Bank": {
+    "email": "",
+    "emailStatus": "Official contact form; no public sponsorship mailbox stored",
+    "contactRole": "Marketing / sponsorship / community relations routing contact",
+    "contactUrl": "https://www.cec.ro/contact",
+    "website": "https://www.cec.ro",
+    "nextAction": "Use official contact form and request routing to sponsorship/community relations."
+  },
+  "Patria Bank": {
+    "email": "",
+    "emailStatus": "Official contact form; no public sponsorship mailbox stored",
+    "contactRole": "Marketing / communications / community routing contact",
+    "contactUrl": "https://www.patriabank.ro/contact",
+    "website": "https://www.patriabank.ro",
+    "nextAction": "Use contact form and ask for marketing/community sponsorship routing."
+  },
+  "Alpha Bank Romania": {
+    "email": "info@alphabank.ro",
+    "emailStatus": "Public/general contact pattern; verify before bulk send",
+    "contactRole": "Marketing / communications / community routing contact",
+    "contactUrl": "https://www.alphabank.ro",
+    "website": "https://www.alphabank.ro",
+    "nextAction": "Send short routing email to general contact or use branch/corporate contact page."
+  },
+  "Garanti BBVA Romania": {
+    "email": "contact@garantibbva.ro",
+    "emailStatus": "Public general contact email",
+    "contactRole": "Marketing / communications / sponsorship routing contact",
+    "contactUrl": "https://www.garantibbva.ro/despre-noi/contact/",
+    "website": "https://www.garantibbva.ro",
+    "nextAction": "Send routing request; note Romania operation sale context before larger pitch."
+  },
+  "Allianz-Tiriac": {
+    "email": "info@allianztiriac.ro",
+    "emailStatus": "Public general contact email",
+    "contactRole": "Marketing / sponsorship / community routing contact",
+    "contactUrl": "https://www.allianztiriac.ro/ro_RO/persoane-fizice/despre-noi/contact.html",
+    "website": "https://www.allianztiriac.ro",
+    "nextAction": "Ask to route athlete sponsorship request to marketing/community team."
+  },
+  "Groupama Romania": {
+    "email": "office@groupama.ro",
+    "emailStatus": "Public general office email",
+    "contactRole": "Marketing / sponsorship / community routing contact",
+    "contactUrl": "https://www.groupama.ro/contact",
+    "website": "https://www.groupama.ro",
+    "nextAction": "Send routing request to office email with one-page athlete profile attached."
+  },
+  "NN Romania": {
+    "email": "",
+    "emailStatus": "Official contact form / call center; no public sponsorship mailbox stored",
+    "contactRole": "Marketing / sustainability / community routing contact",
+    "contactUrl": "https://www.nn.ro/contact",
+    "website": "https://www.nn.ro",
+    "nextAction": "Use official contact form and ask for sponsorship/community contact."
+  },
+  "Metropolitan Life Romania": {
+    "email": "client@metropolitanlife.ro",
+    "emailStatus": "Public client/general email",
+    "contactRole": "Marketing / community / sponsorship routing contact",
+    "contactUrl": "https://www.metropolitanlife.ro/ai-nevoie-de-ajutor/contact/",
+    "website": "https://www.metropolitanlife.ro",
+    "nextAction": "Send routing request to general contact; ask for marketing/community team."
+  },
+  "OMV Petrom": {
+    "email": "office@petrom.com",
+    "emailStatus": "Public business contact email",
+    "contactRole": "Corporate affairs / sponsorship / foundation routing contact",
+    "contactUrl": "https://www.omvpetrom.com/ro/contact",
+    "website": "https://www.omvpetrom.com",
+    "nextAction": "Route through corporate contact; larger ask should go through corporate affairs/foundation pathway."
+  },
+  "Rompetrol": {
+    "email": "office@rompetrol.com",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "CSR / community / marketing routing contact",
+    "contactUrl": "https://www.rompetrol.com",
+    "website": "https://www.rompetrol.com",
+    "nextAction": "Ask for CSR/community sponsorship routing."
+  },
+  "MOL Romania": {
+    "email": "office@molromania.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / CSR / community routing contact",
+    "contactUrl": "https://molromania.ro",
+    "website": "https://molromania.ro",
+    "nextAction": "Ask for marketing/CSR routing for junior athlete support."
+  },
+  "E.ON Romania": {
+    "email": "serviciiclienti@eon-romania.ro",
+    "emailStatus": "Public customer/general email; not sponsorship-specific",
+    "contactRole": "Sustainability / community / sponsorship routing contact",
+    "contactUrl": "https://www.eon.ro/contact",
+    "website": "https://www.eon.ro",
+    "nextAction": "Use general channel only to request sponsorship/community routing."
+  },
+  "Enel Romania / PPC Romania": {
+    "email": "contact@ppcenergy.ro",
+    "emailStatus": "Public/general contact pattern; verify before bulk send",
+    "contactRole": "Corporate affairs / sustainability / community routing contact",
+    "contactUrl": "https://www.ppcenergy.ro/contact",
+    "website": "https://www.ppcenergy.ro",
+    "nextAction": "Verify current PPC/Enel contact and ask for community sponsorship routing."
+  },
+  "Aqua Carpatica": {
+    "email": "office@aquacarpatica.com",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Brand marketing / partnerships team",
+    "contactUrl": "https://aquacarpatica.com/contact/",
+    "website": "https://aquacarpatica.com",
+    "nextAction": "Pitch hydration partner or in-kind water support for training/tournament blocks."
+  },
+  "Borsec": {
+    "email": "office@romaqua-group.ro",
+    "emailStatus": "Public/general group contact; verify before bulk send",
+    "contactRole": "Brand marketing / partnerships team",
+    "contactUrl": "https://www.borsec.ro/contact",
+    "website": "https://www.borsec.ro",
+    "nextAction": "Pitch hydration partner support with athlete updates and local visibility."
+  },
+  "Dorna": {
+    "email": "contact@coca-cola.com",
+    "emailStatus": "Public/global contact route; verify Romanian brand contact",
+    "contactRole": "Brand partnerships / community marketing routing contact",
+    "contactUrl": "https://www.coca-cola.com/ro/ro/about-us/contact-us",
+    "website": "https://www.dorna.ro",
+    "nextAction": "Use Coca-Cola contact route and ask for Dorna/Romania community marketing contact."
+  },
+  "La Fantana": {
+    "email": "contact@lafantana.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / partnerships / corporate sales routing contact",
+    "contactUrl": "https://www.lafantana.ro/contact",
+    "website": "https://www.lafantana.ro",
+    "nextAction": "Pitch hydration/in-kind support for training base and tournament preparation."
+  },
+  "Carrefour Romania": {
+    "email": "contact_b2b@carrefour.com",
+    "emailStatus": "Public B2B contact email",
+    "contactRole": "B2B / local marketing / CSR routing contact",
+    "contactUrl": "https://carrefour.ro/corporate/b2b",
+    "website": "https://carrefour.ro",
+    "nextAction": "Use B2B route for local support request, then ask for CSR/local marketing contact."
+  },
+  "Kaufland Romania": {
+    "email": "ro-marketing@kaufland.ro",
+    "emailStatus": "Public marketing email",
+    "contactRole": "Marketing / local activation team",
+    "contactUrl": "https://despre.kaufland.ro/servicii/publicitate.html",
+    "website": "https://www.kaufland.ro",
+    "nextAction": "Send local marketing pitch with tournament-block ask and community angle."
+  },
+  "Lidl Romania": {
+    "email": "csr@lidl.ro",
+    "emailStatus": "Public sponsorship/CSR email",
+    "contactRole": "CSR / sponsorship team",
+    "contactUrl": "https://serviciul-clienti.lidl.ro/SelfServiceRO/s/article/Doresc-s%C4%83-fiu-sponsorizat-de-Lidl-Cui-pot-s%C4%83-m%C4%83-adresez-1575649328535",
+    "website": "https://corporate.lidl.ro",
+    "nextAction": "Send CSR sponsorship request with specific support amount and athlete summary."
+  },
+  "Mega Image": {
+    "email": "contact@mega-image.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / CSR / community routing contact",
+    "contactUrl": "https://www.mega-image.ro/contact",
+    "website": "https://www.mega-image.ro",
+    "nextAction": "Ask for CSR/local marketing contact for junior athlete campaign."
+  },
+  "Auchan Romania": {
+    "email": "serviciulclientului@auchan.ro",
+    "emailStatus": "Public/customer contact email; not sponsorship-specific",
+    "contactRole": "Marketing / CSR / community routing contact",
+    "contactUrl": "https://www.auchan.ro/contact",
+    "website": "https://www.auchan.ro",
+    "nextAction": "Ask general contact to route to marketing/CSR for local sport support."
+  },
+  "Selgros Romania": {
+    "email": "contact@selgros.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Local store manager / marketing / community routing contact",
+    "contactUrl": "https://www.selgros.ro/contact",
+    "website": "https://www.selgros.ro",
+    "nextAction": "Route to Timisoara store manager or marketing team for local tournament-block support."
+  },
+  "Profi Romania": {
+    "email": "office@profi.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / community / local activation routing contact",
+    "contactUrl": "https://www.profi.ro/contact/",
+    "website": "https://www.profi.ro",
+    "nextAction": "Send local support request with Timisoara/regional angle."
+  },
+  "eMAG": {
+    "email": "",
+    "emailStatus": "Official contact form / marketplace routes; no sponsorship mailbox stored",
+    "contactRole": "Brand partnerships / CSR / corporate communications routing contact",
+    "contactUrl": "https://www.emag.ro/contact-form",
+    "website": "https://www.emag.ro",
+    "nextAction": "Use corporate/contact form and ask for partnerships or CSR routing; do not bulk email generic support."
+  },
+  "Altex Romania": {
+    "email": "contact@altex.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / sponsorship routing contact",
+    "contactUrl": "https://altex.ro/contact/",
+    "website": "https://altex.ro",
+    "nextAction": "Ask for marketing/sponsorship contact and pitch equipment/content support."
+  },
+  "Flanco": {
+    "email": "contact@flanco.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / sponsorship routing contact",
+    "contactUrl": "https://www.flanco.ro/contact",
+    "website": "https://www.flanco.ro",
+    "nextAction": "Ask for marketing/sponsorship routing with youth performance/content angle."
+  },
+  "Dedeman": {
+    "email": "suportclienti@dedeman.ro",
+    "emailStatus": "Public/customer contact email; not sponsorship-specific",
+    "contactRole": "Marketing / community / sponsorship routing contact",
+    "contactUrl": "https://www.dedeman.ro/ro/contact",
+    "website": "https://www.dedeman.ro",
+    "nextAction": "Ask for community/sponsorship routing; use a concise formal pitch."
+  },
+  "Brico Depot Romania": {
+    "email": "contact@bricodepot.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / local activation routing contact",
+    "contactUrl": "https://www.bricodepot.ro/contact",
+    "website": "https://www.bricodepot.ro",
+    "nextAction": "Ask for local marketing/community routing for one tournament block."
+  },
+  "Mobexpert": {
+    "email": "office@mobexpert.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / community routing contact",
+    "contactUrl": "https://www.mobexpert.ro/contact",
+    "website": "https://www.mobexpert.ro",
+    "nextAction": "Ask for sponsorship/community routing with Romanian athlete story."
+  },
+  "Decathlon Romania": {
+    "email": "contact.ro@decathlon.com",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Sports partnerships / local store manager / marketing team",
+    "contactUrl": "https://www.decathlon.ro/contact",
+    "website": "https://www.decathlon.ro",
+    "nextAction": "Pitch equipment partner support and ask for sports partnerships/local store routing."
+  },
+  "Intersport Romania": {
+    "email": "contact@intersport.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / sports partnerships routing contact",
+    "contactUrl": "https://www.intersport.ro/contact",
+    "website": "https://www.intersport.ro",
+    "nextAction": "Pitch shoes/apparel/equipment support with sponsor updates."
+  },
+  "Hervis Sports Romania": {
+    "email": "office@hervis.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / sports partnerships routing contact",
+    "contactUrl": "https://www.hervis.ro/contact",
+    "website": "https://www.hervis.ro",
+    "nextAction": "Pitch equipment/apparel support and ask for Romanian marketing contact."
+  },
+  "Sportisimo Romania": {
+    "email": "contact@sportisimo.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / sports partnerships routing contact",
+    "contactUrl": "https://www.sportisimo.ro/contact/",
+    "website": "https://www.sportisimo.ro",
+    "nextAction": "Pitch sports retail support and ask for partnership routing."
+  },
+  "Wilson Romania distributor": {
+    "email": "",
+    "emailStatus": "Distributor route/contact form; no bulk email stored",
+    "contactRole": "Romanian Wilson distributor / tennis category manager",
+    "contactUrl": "https://www.wilson.com/en-us/contact",
+    "website": "https://www.wilson.com",
+    "nextAction": "Identify the Romanian distributor or local Wilson tennis retailer before sending."
+  },
+  "Babolat Romania distributor": {
+    "email": "",
+    "emailStatus": "Distributor route/contact form; no bulk email stored",
+    "contactRole": "Romanian Babolat distributor / tennis category manager",
+    "contactUrl": "https://www.babolat.com/contact-us.html",
+    "website": "https://www.babolat.com",
+    "nextAction": "Identify Romanian distributor or tennis shop buyer before sending."
+  },
+  "HEAD Romania distributor": {
+    "email": "",
+    "emailStatus": "Distributor route/contact form; no bulk email stored",
+    "contactRole": "Romanian HEAD distributor / tennis category manager",
+    "contactUrl": "https://www.head.com/en/contact",
+    "website": "https://www.head.com",
+    "nextAction": "Identify Romanian distributor or tennis shop buyer before sending."
+  },
+  "Yonex Romania distributor": {
+    "email": "",
+    "emailStatus": "Distributor route/contact form; no bulk email stored",
+    "contactRole": "Romanian Yonex distributor / tennis category manager",
+    "contactUrl": "https://www.yonex.com/contact-us",
+    "website": "https://www.yonex.com",
+    "nextAction": "Identify Romanian distributor or tennis shop buyer before sending."
+  },
+  "Nike Romania retail partner": {
+    "email": "",
+    "emailStatus": "Retail/partner contact route only; no sponsorship mailbox stored",
+    "contactRole": "Local retail partner / marketing manager",
+    "contactUrl": "https://www.nike.com/ro/help",
+    "website": "https://www.nike.com/ro",
+    "nextAction": "Approach local retail partner or existing Romanian distributor, not Nike global support."
+  },
+  "adidas Romania retail partner": {
+    "email": "",
+    "emailStatus": "Retail/partner contact route only; no sponsorship mailbox stored",
+    "contactRole": "Local retail partner / marketing manager",
+    "contactUrl": "https://www.adidas.ro/help/contact-us",
+    "website": "https://www.adidas.ro",
+    "nextAction": "Approach local retail partner or adidas Romania marketing route, not customer support."
+  },
+  "Puma Romania retail partner": {
+    "email": "",
+    "emailStatus": "Retail/partner contact route only; no sponsorship mailbox stored",
+    "contactRole": "Local retail partner / marketing manager",
+    "contactUrl": "https://eu.puma.com/ro/en/help/contact-us",
+    "website": "https://eu.puma.com/ro",
+    "nextAction": "Approach local retail partner or distributor route first."
+  },
+  "Continental Automotive Romania": {
+    "email": "info@continental-corporation.com",
+    "emailStatus": "Public corporate general email; verify Romanian routing",
+    "contactRole": "Corporate communications / employer brand / community relations",
+    "contactUrl": "https://www.continental.com/en/company/contact/",
+    "website": "https://www.continental.com",
+    "nextAction": "Ask for Timisoara employer-brand/community contact for local athlete support."
+  },
+  "Bosch Service Solutions Timișoara": {
+    "email": "contact@ro.bosch.com",
+    "emailStatus": "Public/general Romania contact; verify business-unit routing",
+    "contactRole": "Timisoara site communications / employer brand / community relations",
+    "contactUrl": "https://www.bosch.ro/contact/",
+    "website": "https://www.bosch.ro",
+    "nextAction": "Ask for Timisoara site communications or community sponsorship routing."
+  },
+  "HELLA Romania": {
+    "email": "info@forvia.com",
+    "emailStatus": "Public/global contact; verify Romania/Timisoara routing",
+    "contactRole": "FORVIA HELLA Romania communications / employer brand",
+    "contactUrl": "https://www.forvia.com/contact",
+    "website": "https://www.hella.com",
+    "nextAction": "Ask for Romania site/community routing before sponsor pitch."
+  },
+  "Flex Timișoara": {
+    "email": "info@flex.com",
+    "emailStatus": "Public/global contact; verify Timisoara routing",
+    "contactRole": "Site HR / communications / community relations",
+    "contactUrl": "https://flex.com/contact",
+    "website": "https://flex.com",
+    "nextAction": "Ask for Timisoara site communications/community contact."
+  },
+  "Nokia Timișoara": {
+    "email": "press.services@nokia.com",
+    "emailStatus": "Public corporate media email; verify local routing",
+    "contactRole": "Romania communications / employer brand / community relations",
+    "contactUrl": "https://www.nokia.com/contact-us/",
+    "website": "https://www.nokia.com",
+    "nextAction": "Ask for Romania communications/community routing."
+  },
+  "Atos Romania Timișoara": {
+    "email": "contact.romania@atos.net",
+    "emailStatus": "Public/general contact pattern; verify before bulk send",
+    "contactRole": "Romania communications / employer brand / community relations",
+    "contactUrl": "https://atos.net/en/romania",
+    "website": "https://atos.net",
+    "nextAction": "Ask for Timisoara site/community routing."
+  },
+  "Endava Romania": {
+    "email": "info@endava.com",
+    "emailStatus": "Public corporate general email",
+    "contactRole": "Romania communications / employer brand / community relations",
+    "contactUrl": "https://www.endava.com/en/contact/",
+    "website": "https://www.endava.com",
+    "nextAction": "Ask for Romania employer-brand/community routing."
+  },
+  "NTT DATA Romania": {
+    "email": "office@nttdata.ro",
+    "emailStatus": "Public/general office email; verify before bulk send",
+    "contactRole": "Romania communications / employer brand / CSR",
+    "contactUrl": "https://ro.nttdata.com/contact",
+    "website": "https://ro.nttdata.com",
+    "nextAction": "Ask for CSR/community or employer-brand contact."
+  },
+  "Accenture Romania": {
+    "email": "romania.careers@accenture.com",
+    "emailStatus": "Public careers route; not sponsorship-specific",
+    "contactRole": "Romania employer brand / corporate citizenship routing contact",
+    "contactUrl": "https://www.accenture.com/ro-en/about/company/romania",
+    "website": "https://www.accenture.com/ro-en",
+    "nextAction": "Use only as routing contact; ask for corporate citizenship/community lead."
+  },
+  "Bitdefender": {
+    "email": "press@bitdefender.com",
+    "emailStatus": "Public media contact; verify sponsorship routing",
+    "contactRole": "Communications / brand partnerships routing contact",
+    "contactUrl": "https://www.bitdefender.com/company/contact-us/",
+    "website": "https://www.bitdefender.com",
+    "nextAction": "Ask communications team for appropriate brand/community route."
+  },
+  "UiPath": {
+    "email": "pr@uipath.com",
+    "emailStatus": "Public media contact; verify community routing",
+    "contactRole": "Communications / community / social impact routing contact",
+    "contactUrl": "https://www.uipath.com/company/contact-us",
+    "website": "https://www.uipath.com",
+    "nextAction": "Ask PR/community team for Romanian athlete sponsorship routing."
+  },
+  "Zitec": {
+    "email": "hello@zitec.com",
+    "emailStatus": "Public/general contact email",
+    "contactRole": "Marketing / employer brand / community contact",
+    "contactUrl": "https://zitec.com/contact/",
+    "website": "https://zitec.com",
+    "nextAction": "Send concise local athlete support pitch with digital campaign angle."
+  },
+  "Digi Romania": {
+    "email": "relatii.clienti@rcs-rds.ro",
+    "emailStatus": "Public/general customer email; not sponsorship-specific",
+    "contactRole": "Marketing / media partnerships routing contact",
+    "contactUrl": "https://www.digi.ro/contact",
+    "website": "https://www.digi.ro",
+    "nextAction": "Ask for marketing/media partnership routing before sending deck."
+  },
+  "Orange Romania": {
+    "email": "contact@orange.ro",
+    "emailStatus": "Public/general contact email; not sponsorship-specific",
+    "contactRole": "Sponsorship / Orange Foundation / brand partnerships routing contact",
+    "contactUrl": "https://www.orange.ro/contact/",
+    "website": "https://www.orange.ro",
+    "nextAction": "Ask for sponsorship/foundation/community routing."
+  },
+  "Vodafone Romania": {
+    "email": "relatii.clienti@vodafone.com",
+    "emailStatus": "Public/general customer email; not sponsorship-specific",
+    "contactRole": "Foundation / sponsorship / brand partnerships routing contact",
+    "contactUrl": "https://www.vodafone.ro/contact",
+    "website": "https://www.vodafone.ro",
+    "nextAction": "Ask for foundation/sponsorship routing."
+  },
+  "Telekom Romania Mobile": {
+    "email": "relatii.clienti@telekom.ro",
+    "emailStatus": "Public/general customer email; not sponsorship-specific",
+    "contactRole": "Marketing / partnerships routing contact",
+    "contactUrl": "https://www.telekom.ro/contact/",
+    "website": "https://www.telekom.ro",
+    "nextAction": "Ask for marketing/partnerships routing."
+  },
+  "Fan Courier": {
+    "email": "office@fancourier.ro",
+    "emailStatus": "Public/general office email; verify before bulk send",
+    "contactRole": "Marketing / partnerships / CSR routing contact",
+    "contactUrl": "https://www.fancourier.ro/contact/",
+    "website": "https://www.fancourier.ro",
+    "nextAction": "Pitch logistics/travel support and ask for partnerships contact."
+  },
+  "Sameday": {
+    "email": "contact@sameday.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / partnerships routing contact",
+    "contactUrl": "https://sameday.ro/contact/",
+    "website": "https://sameday.ro",
+    "nextAction": "Ask for marketing/partnerships routing."
+  },
+  "Cargus": {
+    "email": "contact@cargus.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / partnerships routing contact",
+    "contactUrl": "https://www.cargus.ro/contact/",
+    "website": "https://www.cargus.ro",
+    "nextAction": "Ask for marketing/partnerships routing."
+  },
+  "DHL Romania": {
+    "email": "contact@dhl.com",
+    "emailStatus": "Public/global contact route; verify Romania routing",
+    "contactRole": "Romania marketing / logistics partnerships routing contact",
+    "contactUrl": "https://www.dhl.com/ro-en/home/contact-us.html",
+    "website": "https://www.dhl.com/ro-en/home.html",
+    "nextAction": "Use DHL Romania contact route; ask for local marketing/community support contact."
+  },
+  "TAROM": {
+    "email": "customer@tarom.ro",
+    "emailStatus": "Public/customer contact email; not sponsorship-specific",
+    "contactRole": "Marketing / partnerships routing contact",
+    "contactUrl": "https://www.tarom.ro/contact",
+    "website": "https://www.tarom.ro",
+    "nextAction": "Ask for marketing/partnerships contact for junior athlete travel support."
+  },
+  "Wizz Air Romania route team": {
+    "email": "",
+    "emailStatus": "Official help/contact form; no public sponsorship mailbox stored",
+    "contactRole": "Marketing / route partnerships / community routing contact",
+    "contactUrl": "https://wizzair.com/en-gb/information-and-services/contact/contact-us",
+    "website": "https://wizzair.com",
+    "nextAction": "Use official contact route or LinkedIn/warm intro for route/marketing team."
+  },
+  "Iulius Town Timișoara": {
+    "email": "office@iuliusmall.com",
+    "emailStatus": "Public/general office email; verify Timisoara routing",
+    "contactRole": "Marketing / events / local partnerships manager",
+    "contactUrl": "https://iuliustown.ro/contact/",
+    "website": "https://iuliustown.ro",
+    "nextAction": "Pitch local visibility/event partnership tied to Timisoara athlete story."
+  },
+  "Shopping City Timișoara": {
+    "email": "contact@shoppingcitytimisoara.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / events / local partnerships manager",
+    "contactUrl": "https://shoppingcitytimisoara.ro/contact",
+    "website": "https://shoppingcitytimisoara.ro",
+    "nextAction": "Pitch local activation or one-tournament sponsor support."
+  },
+  "Hotel Timișoara": {
+    "email": "office@hoteltimisoara.ro",
+    "emailStatus": "Public/general hotel email",
+    "contactRole": "General manager / sales manager / marketing manager",
+    "contactUrl": "https://www.hoteltimisoara.ro/contact/",
+    "website": "https://www.hoteltimisoara.ro",
+    "nextAction": "Ask for lodging/meeting-space or local sponsor support."
+  },
+  "NH Timișoara": {
+    "email": "nh.collection.timisoara@nh-hotels.com",
+    "emailStatus": "Likely hotel property email; verify before bulk send",
+    "contactRole": "General manager / sales manager",
+    "contactUrl": "https://www.nh-hotels.com/hotel/nh-timisoara",
+    "website": "https://www.nh-hotels.com",
+    "nextAction": "Verify property contact and pitch in-kind lodging or meeting space."
+  },
+  "Mercure Timișoara": {
+    "email": "hb9n5@accor.com",
+    "emailStatus": "Accor property email pattern; verify before bulk send",
+    "contactRole": "General manager / sales manager",
+    "contactUrl": "https://all.accor.com/hotel/B9N5/index.en.shtml",
+    "website": "https://all.accor.com",
+    "nextAction": "Verify property contact and pitch in-kind lodging/local support."
+  },
+  "Tresor Le Palais Timișoara": {
+    "email": "reservation@tresorlepalais.ro",
+    "emailStatus": "Public/property contact email; verify before bulk send",
+    "contactRole": "Owner / general manager / sales manager",
+    "contactUrl": "https://www.tresorlepalais.ro/contact/",
+    "website": "https://www.tresorlepalais.ro",
+    "nextAction": "Pitch premium local hospitality partner support."
+  },
+  "Pensiunea / hotel partner near Timișoara": {
+    "email": "",
+    "emailStatus": "Replace with actual hotel email before mailer",
+    "contactRole": "Owner / general manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace this placeholder with a specific hotel/pension and public email."
+  },
+  "World Class Romania": {
+    "email": "office@worldclass.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Corporate sales / partnerships / club manager",
+    "contactUrl": "https://www.worldclass.ro/contact/",
+    "website": "https://www.worldclass.ro",
+    "nextAction": "Pitch training support or athlete gym access."
+  },
+  "Smartfit Timișoara": {
+    "email": "contact@smartfit.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Owner / club manager / partnerships contact",
+    "contactUrl": "https://smartfit.ro/contact/",
+    "website": "https://smartfit.ro",
+    "nextAction": "Pitch local training support or athlete membership."
+  },
+  "Gym One Timișoara": {
+    "email": "office@gymone.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Owner / club manager / partnerships contact",
+    "contactUrl": "https://gymone.ro/contact/",
+    "website": "https://gymone.ro",
+    "nextAction": "Pitch training support or athlete membership."
+  },
+  "Kinetic Sport & Medicine Timișoara prospect": {
+    "email": "",
+    "emailStatus": "Replace with specific clinic/provider before mailer",
+    "contactRole": "Clinic owner / sports physio lead / medical director",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace placeholder with actual sports medicine provider and contact."
+  },
+  "Regina Maria Timișoara": {
+    "email": "abonamente@reginamaria.ro",
+    "emailStatus": "Public corporate/subscription contact; verify sponsorship routing",
+    "contactRole": "Corporate sales / clinic manager / partnerships routing contact",
+    "contactUrl": "https://www.reginamaria.ro/contact",
+    "website": "https://www.reginamaria.ro",
+    "nextAction": "Pitch medical/recovery support; ask for Timisoara clinic/corporate partnerships route."
+  },
+  "MedLife Timișoara": {
+    "email": "office@medlife.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Clinic manager / corporate sales / marketing routing contact",
+    "contactUrl": "https://www.medlife.ro/contact",
+    "website": "https://www.medlife.ro",
+    "nextAction": "Pitch medical/recovery support and ask for Timisoara clinic or corporate sales contact."
+  },
+  "Dental clinic Timișoara prospect": {
+    "email": "",
+    "emailStatus": "Replace with actual clinic email before mailer",
+    "contactRole": "Clinic owner / practice manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace placeholder with a specific clinic and public email."
+  },
+  "Orthopedic / sports medicine clinic prospect": {
+    "email": "",
+    "emailStatus": "Replace with actual clinic email before mailer",
+    "contactRole": "Clinic owner / orthopedic lead / sports medicine director",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace placeholder with a specific orthopedic/sports medicine clinic."
+  },
+  "Automobile Bavaria Timișoara": {
+    "email": "contact@automobilebavaria.ro",
+    "emailStatus": "Public/general contact email; verify Timisoara dealership routing",
+    "contactRole": "Dealer principal / marketing manager / sales manager",
+    "contactUrl": "https://www.automobilebavaria.ro/contact/",
+    "website": "https://www.automobilebavaria.ro",
+    "nextAction": "Ask for Timisoara dealership marketing manager; pitch local premium sponsor support."
+  },
+  "Porsche Timișoara": {
+    "email": "office@porscheinterauto.ro",
+    "emailStatus": "Public/general group contact; verify Timisoara dealership routing",
+    "contactRole": "Dealer principal / marketing manager / sales manager",
+    "contactUrl": "https://www.porscheinterauto.ro/",
+    "website": "https://www.porscheinterauto.ro",
+    "nextAction": "Verify Timisoara dealership contact and pitch premium local sponsor support."
+  },
+  "Toyota Timișoara dealer": {
+    "email": "",
+    "emailStatus": "Replace with specific Toyota dealer email before mailer",
+    "contactRole": "Dealer principal / marketing manager / sales manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace with exact Toyota Timisoara dealer and public email."
+  },
+  "Mercedes-Benz Timișoara dealer": {
+    "email": "",
+    "emailStatus": "Replace with specific Mercedes dealer email before mailer",
+    "contactRole": "Dealer principal / marketing manager / sales manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace with exact Mercedes-Benz Timisoara dealer and public email."
+  },
+  "Ford Timișoara dealer": {
+    "email": "",
+    "emailStatus": "Replace with specific Ford dealer email before mailer",
+    "contactRole": "Dealer principal / marketing manager / sales manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace with exact Ford Timisoara dealer and public email."
+  },
+  "Tazz": {
+    "email": "contact@tazz.ro",
+    "emailStatus": "Public/general contact email; verify partnerships routing",
+    "contactRole": "Marketing / local partnerships routing contact",
+    "contactUrl": "https://tazz.ro/contact",
+    "website": "https://tazz.ro",
+    "nextAction": "Pitch Timisoara-origin consumer tech support with content angle."
+  },
+  "Glovo Romania": {
+    "email": "glovers@glovoapp.com",
+    "emailStatus": "Public/general route; not sponsorship-specific",
+    "contactRole": "Romania marketing / partnerships routing contact",
+    "contactUrl": "https://glovoapp.com/ro/en/contact/",
+    "website": "https://glovoapp.com",
+    "nextAction": "Use contact route or LinkedIn/warm intro for Romania marketing partnerships."
+  },
+  "Freshful by eMAG": {
+    "email": "contact@freshful.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / partnerships routing contact",
+    "contactUrl": "https://www.freshful.ro/contact",
+    "website": "https://www.freshful.ro",
+    "nextAction": "Pitch nutrition/recovery support and ask for marketing partnerships route."
+  },
+  "5 to go": {
+    "email": "office@5togo.ro",
+    "emailStatus": "Public/general contact email; verify before bulk send",
+    "contactRole": "Marketing / franchise partnerships contact",
+    "contactUrl": "https://5togo.ro/contact/",
+    "website": "https://5togo.ro",
+    "nextAction": "Pitch small supporter package or local Timisoara activation."
+  },
+  "Starbucks Romania operator": {
+    "email": "contact@amrest.eu",
+    "emailStatus": "Operator/general contact route; verify Romania brand routing",
+    "contactRole": "AmRest Romania marketing / brand manager",
+    "contactUrl": "https://www.amrest.eu/en/contact",
+    "website": "https://www.starbucksromania.ro",
+    "nextAction": "Verify current Romanian operator contact and ask for local marketing/CSR routing."
+  },
+  "Local Timișoara restaurant group": {
+    "email": "",
+    "emailStatus": "Replace with actual restaurant email before mailer",
+    "contactRole": "Owner / general manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace placeholder with specific restaurant group or warm owner contact."
+  },
+  "Local Timișoara real estate agency": {
+    "email": "",
+    "emailStatus": "Replace with actual agency email before mailer",
+    "contactRole": "Owner / managing broker / marketing manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace placeholder with specific agency and warm/local contact."
+  },
+  "Local Timișoara law firm": {
+    "email": "",
+    "emailStatus": "Replace with actual law firm email before mailer",
+    "contactRole": "Managing partner / office manager",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace placeholder with specific law firm and contact."
+  },
+  "Local Timișoara accounting firm": {
+    "email": "",
+    "emailStatus": "Replace with actual accounting firm email before mailer",
+    "contactRole": "Managing partner / owner",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace placeholder with specific accounting firm and contact."
+  },
+  "Romanian entrepreneur diaspora lead 1": {
+    "email": "",
+    "emailStatus": "Warm intro only; do not bulk email",
+    "contactRole": "Named individual via warm introduction",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Enter named person and email only after warm introduction permission."
+  },
+  "Romanian entrepreneur diaspora lead 2": {
+    "email": "",
+    "emailStatus": "Warm intro only; do not bulk email",
+    "contactRole": "Named individual via warm introduction",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Enter named person and email only after warm introduction permission."
+  },
+  "Romanian business angel lead": {
+    "email": "",
+    "emailStatus": "Warm intro only; do not bulk email",
+    "contactRole": "Named investor / business angel via warm introduction",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Enter named person and email only after warm introduction permission."
+  },
+  "Family business warm intro lead": {
+    "email": "",
+    "emailStatus": "Warm intro only; do not bulk email",
+    "contactRole": "Named family business owner via warm introduction",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace with specific warm contact."
+  },
+  "Former athlete / sports family lead": {
+    "email": "",
+    "emailStatus": "Warm intro only; do not bulk email",
+    "contactRole": "Named former athlete / sports family contact",
+    "contactUrl": "",
+    "website": "",
+    "nextAction": "Replace with specific warm contact."
+  },
+  "Local media partner Timișoara": {
+    "email": "redactie@radiotimisoara.ro",
+    "emailStatus": "Public editorial contact; media partner not sponsor mailbox",
+    "contactRole": "Sports editor / commercial partnerships contact",
+    "contactUrl": "https://www.radiotimisoara.ro/contact",
+    "website": "https://www.radiotimisoara.ro",
+    "nextAction": "Use for media/profile support, not cash sponsor bulk mail."
+  }
+};
+
 function contactRoleFor(category=''){
   const c = String(category).toLowerCase();
   if(c.includes('bank') || c.includes('financial')) return 'CSR / Sponsorship / Community Marketing decision-maker';
@@ -2001,24 +2836,28 @@ function contactRoleFor(category=''){
 function seedSponsorRows(eventIdByName={}) {
   const preferredEvents = [eventIdByName['J60 Podgorica 2026'], eventIdByName['J60 Ulcinj 2026'], eventIdByName['J200 Târgu Jiu 2026'], eventIdByName['J60 Dunakeszi']].filter(Boolean);
   return SPONSOR_LEAD_ROWS.map((s, i) => {
-    const sponsoredEventId = s.sponsoredItem === 'Season partner' ? '' : (preferredEvents[i % preferredEvents.length] || '');
-    const guide = SPONSORED_ITEMS[s.sponsoredItem] || SPONSORED_ITEMS['Tournament travel'];
-    const role = s.contactRole || contactRoleFor(s.category || '');
+    const enriched = SPONSOR_CONTACTS[s.company] || {};
+    const m = {...s, ...enriched};
+    const sponsoredEventId = m.sponsoredItem === 'Season partner' ? '' : (preferredEvents[i % preferredEvents.length] || '');
+    const guide = SPONSORED_ITEMS[m.sponsoredItem] || SPONSORED_ITEMS['Tournament travel'];
+    const role = m.contactRole || contactRoleFor(m.category || '');
+    const mailerReady = !!(m.email && String(m.email).includes('@') && !String(m.emailStatus||'').toLowerCase().includes('not sponsorship') && !String(m.emailStatus||'').toLowerCase().includes('verify before bulk') && !String(m.emailStatus||'').toLowerCase().includes('warm intro'));
     return {
-      id:id(), company:s.company,
-      contact:s.contact || role,
+      id:id(), company:m.company,
+      contact:m.contact || '',
       contactRole:role,
-      email:s.email || '',
-      emailStatus:s.email ? 'Verified public email' : 'Research needed',
-      phone:s.phone || '',
-      website:s.website || '',
-      contactUrl:s.contactUrl || '',
-      category:s.category || '', package:s.package || 'Supporter', ask:s.ask || 1500,
+      email:m.email || '',
+      emailStatus:m.emailStatus || (m.email ? 'Public contact email' : 'Contact URL / warm intro only'),
+      phone:m.phone || '',
+      website:m.website || '',
+      contactUrl:m.contactUrl || '',
+      category:m.category || '', package:m.package || 'Supporter', ask:m.ask || 1500,
       stage:i < 12 ? 'Prospect' : 'Research', contract:'Not started', agreementStart:'', agreementEnd:'',
-      paymentStatus:'Not invoiced', paidAmount:0, scheduledPayment:'', sponsoredItem:s.sponsoredItem || 'Tournament travel',
-      sponsoredEventId, deliverables:guide.deliverables, nextAction:'Find named decision-maker and verified email, then send tailored sponsor email',
-      renewal:'', lastContact:'', owner:'', mailerTag:(s.sponsoredItem || 'Tournament travel').replace(/[^a-z0-9]+/gi,'-').toLowerCase(),
-      notes:(s.notes || '') + ' Prospect only; verify decision-maker, public email, legal entity, and sponsorship rules before outreach.'
+      paymentStatus:'Not invoiced', paidAmount:0, scheduledPayment:'', sponsoredItem:m.sponsoredItem || 'Tournament travel',
+      sponsoredEventId, deliverables:guide.deliverables, nextAction:m.nextAction || (m.email ? 'Send tailored sponsor email after confirming this is the right business address.' : 'Use contact URL or warm introduction; do not bulk email this row yet.'),
+      renewal:'', lastContact:'', owner:'', mailerTag:(m.sponsoredItem || 'Tournament travel').replace(/[^a-z0-9]+/gi,'-').toLowerCase(),
+      readyForMailer: mailerReady ? 'yes' : 'no',
+      notes:(m.notes || '') + ' Verify legal entity, sponsor fit, and consent rules before outreach.'
     };
   });
 }
@@ -2026,7 +2865,7 @@ function seedSponsorRows(eventIdByName={}) {
 const SURFACE_CSS = s => 'surface-' + (s||'').toLowerCase().replace(/[^a-z]/g,'') || 'clay';
 const STATUS_CSS = s => 'pill-status ' + (s||'').toLowerCase().replace(/[^a-z]/g,'');
 
-const KEY = 'andreea-os-v11';
+const KEY = 'andreea-os-v12';
 let state;          // initialized at end after all helpers/factories defined
 let active = 'dashboard';
 let funnelFilter = '';
@@ -2485,6 +3324,33 @@ function pipelineFunnelCard(){
   </div>`;
 }
 
+
+function levelCode(t){
+  const level = String(t.level || '');
+  const track = String(t.track || '');
+  if(level.includes('J500')) return 'J500';
+  if(level.includes('J300')) return 'J300';
+  if(level.includes('J200')) return 'J200';
+  if(level.includes('J100')) return 'J100';
+  if(level.includes('J60')) return 'J60';
+  if(level.includes('J30')) return 'J30';
+  if(level.includes('Tennis Europe U16')) return 'TE16';
+  if(level.includes('Tennis Europe U14')) return 'TE14';
+  if(level.includes('Tennis Europe U12')) return 'TE12';
+  if(level.includes('FRT U18')) return 'FRT18';
+  if(level.includes('FRT U16')) return 'FRT16';
+  if(level.includes('FRT U14')) return 'FRT14';
+  if(level.includes('FRT U12')) return 'FRT12';
+  if(level.includes('German Ostliga')) return 'Ost';
+  if(level.includes('German LK')) return 'LK';
+  if(level.includes('German Club')) return 'Club';
+  if(level.includes('W15')) return 'W15';
+  if(level.includes('W35')) return 'W35';
+  if(track.includes('Training')) return 'Train';
+  if(track.includes('Sponsor')) return 'Admin';
+  return (level || track || 'Evt').replace(/[^A-Za-z0-9]/g,'').slice(0,5) || 'Evt';
+}
+
 function resultsHeatmapCard(){
   // Group tournaments by surface
   const surfaces = ['Clay','Hard','Indoor','Grass'];
@@ -2508,7 +3374,7 @@ function resultsHeatmapCard(){
           <div class="heat-label">${surf} · ${cells.length} events</div>
           <div class="heat-grid">
             ${cells.map(t=>`<div class="heat-cell ${SURFACE_CSS(t.surface)} ${t.outcome==='W'?'win':t.outcome==='L'?'loss':''}" data-edit-tournament="${t.id}" title="${esc(t.name)} · ${esc(t.start||'')} · ${esc(t.result||'no result')}">
-              <div class="top">${esc((t.level||'').replace('ITF Junior ','').replace('Tennis Europe ','TE '))}</div>
+              <div class="top">${esc(levelCode(t))}</div>
               <div class="res">${esc(t.outcome||'·')}</div>
             </div>`).join('')}
           </div>
@@ -2775,7 +3641,7 @@ function renderSponsors(){
           <p>${esc(cur.contactRole||cur.contact||'Contact role not set')} · ${cur.email ? esc(cur.email) : esc(cur.emailStatus||'Email needed')}</p>
           <div class="advice-box"><strong>Approach:</strong> ${esc(guide.advice)}<br><strong>Suggested document:</strong> ${esc(recommendedDoc(cur))}</div>
           <div class="actions">
-            <button class="btn primary" data-go="documents" data-doc="${suggestedDocKey(cur)}">Generate document</button>
+            <button class="btn primary" data-generate-doc="${suggestedDocKey(cur)}" data-sponsor="${cur.id||''}">Generate document</button><button class="btn" data-go="documents" data-doc="${suggestedDocKey(cur)}">Open studio</button>
             <button class="btn" data-email-preview>Preview outreach email</button>
             <button class="btn" id="exportSponsorCsvSide">Export CSV</button>
           </div>
@@ -3047,9 +3913,9 @@ function docsCatalog(){
     sections:[
       ['Event', `${ne.name||'TBD'}${NL}${dateLong(ne.start)} → ${dateLong(ne.end)}${NL}${ne.city||''}, ${ne.country||''}${NL}${ne.level||''} · ${ne.surface||''} · Priority ${ne.priority||''}`],
       ['Event budget', null, tableFrom(['Category','Amount','Status'], state.budget.filter(b=>b.eventId===ne.id).map(b=>[b.category, money(b.amount), b.status]))],
-      ['Funding status', `Total cost: ${money(eventCost(ne.id))}.${NL}Committed: ${money(eventCommitted(ne.id))}.${NL}Paid: ${money(eventPaid(ne.id))}.${NL}Gap: ${money(eventGap(ne.id))}.`],
-      ['Linked sponsors', null, listFrom(state.sponsors.filter(x=>x.sponsoredEventId===ne.id).map(x=>`${x.company} — ${money(x.ask)} (${x.stage})`)) || `None linked yet.`],
-      ['Purpose', `Competition reps aligned to ranking goal: ${a.rankingGoal}.`]
+      ['Funding status', `Total cost: ${money(eventCost(ne.id))}.${NL}Committed funding already recorded: ${money(eventCommitted(ne.id))}.${NL}Paid: ${money(eventPaid(ne.id))}.${NL}Open gap for this activity: ${money(eventGap(ne.id))}.`],
+      ['Requested support from selected sponsor', `${s.company||'Selected sponsor'} is being asked to support: ${s.sponsoredItem||'Tournament travel'}.${NL}Requested amount: ${money(s.ask||state.settings.defaultAsk)}.${NL}Sponsor package: ${s.package||'Supporter'}.${NL}Deliverables: ${s.deliverables||guide.deliverables}.`],
+      ['Purpose', `This activity supports ${full}'s full development path: Romanian/FRT events, Tennis Europe, ITF Juniors, German club league, selective women's ITF exposure, and long-term academic/pro options.`]
     ]
   };
 
@@ -3492,7 +4358,7 @@ function attachmentsForCurrentDoc(docKey){
 function documentSendInstructions(d){
   const s = currentSponsor();
   const t = currentTournament();
-  const email = s.email || '[research and enter verified email first]';
+  const email = s.email || '[use contact form or warm introduction]';
   const contact = s.contact || s.contactRole || '[contact name / role]';
   const subject = d.email?.subject || `${state.athlete.firstName} ${state.athlete.lastName} sponsorship material`;
   const attach = attachmentsForCurrentDoc(state.selected.doc);
@@ -3503,9 +4369,9 @@ function documentSendInstructions(d){
     <div class="advice-box"><strong>Send to:</strong> ${esc(contact)} · ${esc(email)}<br><strong>Subject:</strong> ${esc(subject)}<br><strong>Activity:</strong> ${esc(t.name||'General / season')} · ${esc(t.result||'No result entered')}<br><strong>Next action:</strong> ${esc(s.nextAction||'Set next action in sponsor CRM')}</div>
     <div class="doc-sec" style="border-top:none;padding-top:12px"><h4>Attach / include</h4>${listFrom(attach)}</div>
     <div class="doc-sec" style="border-top:none;padding-top:0"><h4>Before sending</h4>${listFrom([
-      s.email ? 'Email is entered. Confirm it is the right public/business address before any bulk send.' : 'Do not send yet. Research and enter a verified public/business email address.',
+      s.email ? 'Email is entered. Confirm it is the right public/business address before any bulk send.' : 'No email entered. Use the contact URL or a warm introduction, then add the address before bulk mail.',
       'Confirm the sponsor name, contact role, ask amount, sponsored item, and selected activity.',
-      'Export sponsor CSV only after rows are marked ready for mailer.',
+      'Export sponsor CSV only after contact details are marked ready for mailer.',
       'For minors, keep parent/guardian approval and avoid sharing private school, travel, or contact details.'
     ])}</div>
   </div>`;
@@ -3560,6 +4426,50 @@ function docHtml(d){
     <div class="doc-sec" style="border-top:none;padding-top:6px;color:#5b7188;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:24px">Generated ${dateLong(todayISO())} · ${esc(a.firstName)} ${esc(a.lastName)} · Campaign HQ</div>`;
 }
 
+
+
+function plainTextFromDoc(d){
+  const lines = [];
+  lines.push(d.title || 'Campaign document');
+  if(d.sub) lines.push(d.sub);
+  lines.push('');
+  (d.band||[]).forEach(([k,v])=>lines.push(`${k}: ${v}`));
+  lines.push('');
+  (d.sections||[]).forEach(([h,b,html])=>{
+    lines.push(h);
+    if(html){
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      lines.push(tmp.innerText.trim());
+    } else {
+      lines.push(String(b||''));
+    }
+    lines.push('');
+  });
+  return lines.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+}
+function safeFilename(x){
+  return String(x||'document').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,90) || 'document';
+}
+function generatedDocumentHtml(d){
+  const instructions = documentSendInstructions(d);
+  return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(d.title)}</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;line-height:1.45;color:#17212b}h1{font-size:30px;margin-bottom:4px}.sub{color:#53677a;margin-bottom:20px}.doc-band{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.b{border:1px solid #dbe3ea;padding:10px}.b strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#62758a}.doc-sec{border-top:1px solid #dbe3ea;padding-top:16px;margin-top:18px}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #dbe3ea;padding:8px;text-align:left}th{background:#eef3f8}ul{padding-left:20px}.card{border:1px solid #dbe3ea;background:#f8fafc;padding:16px;margin-bottom:22px}.label{text-transform:uppercase;font-size:11px;letter-spacing:.14em;color:#61768a}.advice-box{background:#fff;border:1px solid #dbe3ea;padding:12px;margin-top:8px}</style></head><body>${instructions}<div class="doc-paper">${docHtml(d)}</div></body></html>`;
+}
+function generateCurrentDocument(docKey){
+  if(docKey) state.selected.doc = docKey;
+  const D = docsCatalog();
+  const d = D[state.selected.doc] || D.sponsorOnePager;
+  const s = currentSponsor();
+  const t = currentTournament();
+  const base = `${todayISO()}-${safeFilename(s.company)}-${safeFilename(d.title)}-${safeFilename(t.name)}`;
+  downloadTextFile(base + '.html','text/html;charset=utf-8',generatedDocumentHtml(d));
+  if(d.email){
+    downloadTextFile(base + '-email.txt','text/plain;charset=utf-8',`To: ${s.email || '[use contact form or warm introduction]'}\nSubject: ${d.email.subject || ''}\n\n${d.email.body || ''}`);
+  } else {
+    downloadTextFile(base + '.txt','text/plain;charset=utf-8',plainTextFromDoc(d));
+  }
+  toast('Document generated for ' + (s.company || 'selected sponsor'));
+}
 
 function csvValue(v){
   const text = String(v ?? '').replace(/\r?\n/g,' ').trim();
@@ -3638,6 +4548,14 @@ function render(){
 /* ---- Events ------------------------------------------------ */
 document.addEventListener('click', e => {
   const tabBtn=e.target.closest('[data-tab]'); if(tabBtn){ setActive(tabBtn.dataset.tab); return; }
+  const genDoc=e.target.closest('[data-generate-doc]');
+  if(genDoc){
+    if(genDoc.dataset.sponsor) state.selected.sponsorId=genDoc.dataset.sponsor;
+    const sp = currentSponsor();
+    if(sp.sponsoredEventId) state.selected.tournamentId = sp.sponsoredEventId;
+    generateCurrentDocument(genDoc.dataset.generateDoc);
+    return;
+  }
   const goBtn=e.target.closest('[data-go]'); if(goBtn){ if(goBtn.dataset.doc) state.selected.doc=goBtn.dataset.doc; setActive(goBtn.dataset.go); return; }
 
   const tour=e.target.closest('[data-edit-tournament]')?.dataset.editTournament;
