@@ -1991,7 +1991,7 @@ function seedSponsorRows(eventIdByName={}) {
 const SURFACE_CSS = s => 'surface-' + (s||'').toLowerCase().replace(/[^a-z]/g,'') || 'clay';
 const STATUS_CSS = s => 'pill-status ' + (s||'').toLowerCase().replace(/[^a-z]/g,'');
 
-const KEY = 'andreea-os-v8';
+const KEY = 'andreea-os-v9';
 let state;          // initialized at end after all helpers/factories defined
 let active = 'dashboard';
 let funnelFilter = '';
@@ -2311,11 +2311,13 @@ function rankingSummaryCards(){
     <p>${esc(row.category || '')} · ${esc(row.date || 'No date')}<br>${esc(row.goal || '')}</p>
   </div>`).join('')}</div>`;
 }
-function rankingChartCard(system){
+function rankingChartCard(system, editable=false){
   const chartSystem = system || state.athlete.rankingSystem || 'ITF Junior';
   const sorted = numericRankingRows(chartSystem);
+  const editor = editable ? rankingChartEditor(chartSystem) : '';
   if(sorted.length<2) return `<div class="chart-card">
-    <div class="chart-head"><div><h3>Ranking trajectory · ${esc(chartSystem)}</h3><div class="muted" style="font-size:13px;margin-top:4px">Add at least two numeric ranking rows for this system to draw a chart.</div></div></div>
+    <div class="chart-head"><div><h3>Ranking trajectory</h3></div><div class="legend"><span>${esc(chartSystem)}</span></div></div>
+    ${editor}
   </div>`;
   const W=900,H=300,pad={l:48,r:24,t:20,b:36};
   const xs = sorted.map(s=>new Date(s.date+'T00:00:00').getTime());
@@ -2338,13 +2340,14 @@ function rankingChartCard(system){
   const labels = sorted.filter((_,i)=>i%Math.ceil(sorted.length/6)===0 || i===sorted.length-1);
   return `<div class="chart-card">
     <div class="chart-head">
-      <div><h3>Ranking trajectory · ${esc(chartSystem)}</h3><div class="muted" style="font-size:13px;margin-top:4px">Lower number is better. Change the chart with the Current ranking system field and editable rows.</div></div>
+      <div><h3>Ranking trajectory</h3></div>
       <div class="legend">
         <span><i style="background:var(--clay)"></i>Ranking</span>
         ${Number.isFinite(careerHigh)?`<span><i style="background:var(--gold);height:1.5px"></i>Reference high (${careerHigh})</span>`:''}
         ${Number.isFinite(goal)?`<span><i style="background:var(--money);height:1.5px"></i>Goal (${goal})</span>`:''}
       </div>
     </div>
+    ${editor}
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
       <defs>
         <linearGradient id="trajGradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#d65a3a" stop-opacity=".5"/><stop offset="100%" stop-color="#d65a3a" stop-opacity="0"/></linearGradient>
@@ -2361,6 +2364,33 @@ function rankingChartCard(system){
       ${labels.map(s=>`<text class="chart-axis" x="${xScale(new Date(s.date+'T00:00:00').getTime())}" y="${H-12}" text-anchor="middle">${s.date.slice(2,7)}</text>`).join('')}
     </svg>
   </div>`;
+}
+
+function rankingChartEditor(chartSystem){
+  const a = state.athlete;
+  const chartRows = state.rankings
+    .map((r,i)=>({...r,_i:i}))
+    .filter(r=>r.system===chartSystem)
+    .sort((a,b)=>String(a.date||'').localeCompare(String(b.date||'')));
+  return `<div class="form-grid" style="margin-top:16px">
+    ${field('Chart system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
+    ${field('Current display ranking','athlete','ranking',a.ranking)}
+    ${field('Reference high','athlete','careerHigh',a.careerHigh)}
+    ${field('Season high','athlete','seasonHigh',a.seasonHigh)}
+    ${field('Goal rank','athlete','rankingGoal',a.rankingGoal)}
+  </div>
+  <div class="table-wrap" style="margin-top:14px"><table>
+    <thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Source / note</th><th></th></tr></thead>
+    <tbody>${chartRows.map(r=>`<tr>
+      <td>${selectCell('rankings',r._i,'system',r.system,RANKING_SYSTEMS)}</td>
+      <td>${selectCell('rankings',r._i,'category',r.category,CATEGORIES)}</td>
+      <td>${cell('rankings',r._i,'value',r.value)}</td>
+      <td>${cell('rankings',r._i,'date',r.date,'date')}</td>
+      <td>${cell('rankings',r._i,'goal',r.goal)}</td>
+      <td><button class="btn tiny danger" data-delete="rankings:${r._i}">×</button></td>
+    </tr>`).join('')}</tbody>
+  </table></div>
+  <div class="actions" style="margin-top:12px"><button class="btn tiny" id="addChartRanking">+ ranking row</button></div>`;
 }
 
 function pipelineFunnelCard(){
@@ -2584,16 +2614,9 @@ function renderTournaments(){
 /* ---- Rankings ---------------------------------------------- */
 function renderRankings(){
   const a = state.athlete;
-  document.getElementById('rankings').innerHTML = header('Rankings','Track every ranking structure separately. ITF Junior is the sponsor headline today, but Tennis Europe, FRT, German LK, WTA, UTR, and WTN can all be tracked here.',`<button class="btn primary" id="addRanking">+ Ranking entry</button>`) +
-    `<div class="form-grid" style="margin-top:18px">
-      ${field('Chart / current ranking system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
-      ${field('Current ranking','athlete','ranking',a.ranking)}
-      ${field('Career high / reference high','athlete','careerHigh',a.careerHigh)}
-      ${field('Season high','athlete','seasonHigh',a.seasonHigh)}
-      ${field('Chart goal rank','athlete','rankingGoal',a.rankingGoal)}
-    </div>` +
+  document.getElementById('rankings').innerHTML = header('Rankings','Ranking systems tracked for the athlete: ITF Junior, Tennis Europe, FRT Romania, German LK, WTA, UTR, and WTN.',`<button class="btn primary" id="addRanking">+ Ranking entry</button>`) +
     rankingSummaryCards() +
-    rankingChartCard(a.rankingSystem) +
+    rankingChartCard(a.rankingSystem, true) +
     `<div class="section-head" style="margin-top:30px"><div><h2 class="ttl" style="font-size:32px">Ranking entries</h2><p class="desc">These rows drive the chart. Use numeric values for charted systems; use Unranked/TBD for WTA or other systems without a numeric value.</p></div></div>
     <div class="table-wrap" style="margin-top:18px"><table>
       <thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Goal / note / source</th><th></th></tr></thead>
@@ -3569,6 +3592,7 @@ document.addEventListener('click', e => {
   if(e.target.id==='addCareer'){ state.career.push({id:id(),date:String(new Date().getFullYear()),type:'Other',title:'New milestone',body:'',source:''}); render(); return; }
   if(e.target.id==='addTournament'){ addTournament(); return; }
   if(e.target.id==='addRanking'){ state.rankings.push({id:id(),system:'ITF Junior',category:'Girls 18U',value:'',date:todayISO(),goal:''}); render(); return; }
+  if(e.target.id==='addChartRanking'){ state.rankings.push({id:id(),system:state.athlete.rankingSystem||'ITF Junior',category:'Girls 18U',value:'',date:todayISO(),goal:''}); render(); return; }
   if(e.target.id==='addBudget'){ state.budget.push({id:id(),eventId:state.selected.tournamentId||'',category:'Tournament travel',description:'New budget item',amount:0,status:'Needed'}); render(); return; }
   if(e.target.id==='addSponsor'){ state.sponsors.push({id:id(),company:'New sponsor',category:'',contact:'',contactRole:'Marketing / Partnerships / Sponsorship decision-maker',email:'',emailStatus:'Research needed',website:'',contactUrl:'',phone:'',package:'Local Partner',ask:state.settings.defaultAsk,stage:'Prospect',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Tournament travel',sponsoredEventId:state.selected.tournamentId||'',deliverables:SPONSORED_ITEMS['Tournament travel'].deliverables,nextAction:'Research contact and email',lastContact:'',renewal:'',owner:'',mailerTag:'tournament-travel',notes:''}); render(); return; }
   if(e.target.id==='exportSponsorCsv' || e.target.id==='exportSponsorCsvSide' || e.target.id==='exportSponsorCsvSettings'){ exportSponsorCsv(); return; }
