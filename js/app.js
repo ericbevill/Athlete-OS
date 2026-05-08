@@ -5,7 +5,7 @@
 
 /* ---- Domain constants -------------------------------------- */
 const TABS = ['dashboard','profile','career','calendar','tournaments','rankings','budget','sponsors','documents','settings'];
-const RANKING_SYSTEMS = ['ITF Junior','Tennis Europe','FRT Romania','German LK','WTA','UTR','WTN'];
+const RANKING_SYSTEMS = ['ITF Junior','Tennis Europe','FRT Romania','German LK','German B/A','WTA','UTR','WTN'];
 const CATEGORIES = ['Girls 18U','U16','U14','U12','German club','Open','Professional'];
 const LEVELS = ['ITF Junior J30','ITF Junior J60','ITF Junior J100','ITF Junior J200','ITF Junior J300','ITF Junior J500','Junior Grand Slam','Tennis Europe U12','Tennis Europe U14','Tennis Europe U16','FRT U12','FRT U14','FRT U16','FRT U18','German Ostliga Damen','German Club League','German LK Registration','W15','W35','Training','Sponsor/Admin'];
 const SURFACES = ['Clay','Hard','Indoor','Grass','Carpet'];
@@ -1110,11 +1110,46 @@ const VERIFIED_RANKING_ROWS = [
     "goal": "nuLiga TLZ Espenhain LK snapshot"
   },
   {
+    "system": "German B/A",
+    "category": "German club",
+    "value": "350",
+    "date": "2026-05-06",
+    "goal": "nuLiga TLZ Espenhain B/A value shown on roster"
+  },
+  {
+    "system": "Tennis Europe",
+    "category": "U16",
+    "value": "288",
+    "date": "2026-02-04",
+    "goal": "Reported in Greek Winter Cups coverage; needs official Tennis Europe profile check before sponsor PDF"
+  },
+  {
+    "system": "FRT Romania",
+    "category": "Current national ranking",
+    "value": "TBD",
+    "date": "2026-05-08",
+    "goal": "No verified current FRT national ranking found in accessible public sources"
+  },
+  {
     "system": "WTA",
     "category": "Professional",
     "value": "Unranked",
     "date": "2026-05-08",
     "goal": "WTA profile shows current singles rank as blank / dash and $0 prize money"
+  },
+  {
+    "system": "UTR",
+    "category": "Rating",
+    "value": "TBD",
+    "date": "2026-05-08",
+    "goal": "Research needed; requires verified UTR profile or account access"
+  },
+  {
+    "system": "WTN",
+    "category": "World Tennis Number",
+    "value": "TBD",
+    "date": "2026-05-08",
+    "goal": "Research needed; requires verified WTN source"
   }
 ];
 const SPONSOR_LEAD_ROWS = [
@@ -1991,7 +2026,7 @@ function seedSponsorRows(eventIdByName={}) {
 const SURFACE_CSS = s => 'surface-' + (s||'').toLowerCase().replace(/[^a-z]/g,'') || 'clay';
 const STATUS_CSS = s => 'pill-status ' + (s||'').toLowerCase().replace(/[^a-z]/g,'');
 
-const KEY = 'andreea-os-v9';
+const KEY = 'andreea-os-v10';
 let state;          // initialized at end after all helpers/factories defined
 let active = 'dashboard';
 let funnelFilter = '';
@@ -2056,7 +2091,7 @@ function createDefaultState(){
     sponsors:seedSponsorRows(eventIdByName),
     settings:{senderName:'Eric',senderEmail:'',phone:'',defaultAsk:1500,annualBudget:45500},
     calendar:todayParts(),
-    selected:{tournamentId:selectedTournamentId,sponsorId:'',doc:'sponsorOnePager'}
+    selected:{tournamentId:selectedTournamentId,sponsorId:'',doc:'sponsorOnePager',rankingSystem:'ITF Junior'}
   };
 }
 
@@ -2117,7 +2152,7 @@ function migrate(s){
   }));
   s.settings = {...f.settings, ...(s.settings||{})};
   s.calendar = s.calendar || f.calendar;
-  s.selected = s.selected || f.selected;
+  s.selected = {...f.selected, ...(s.selected||{})};
   return defaultBudgetRows(s);
 }
 function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
@@ -2228,7 +2263,8 @@ function renderDashboard(){
       </div>
     </div>` +
 
-    rankingChartCard() +
+    rankingSummaryCards() +
+    rankingChartCard(state.selected.rankingSystem || state.athlete.rankingSystem, false, true) +
     pipelineFunnelCard() +
     resultsHeatmapCard() +
     `<div class="chart-card">
@@ -2311,42 +2347,47 @@ function rankingSummaryCards(){
     <p>${esc(row.category || '')} · ${esc(row.date || 'No date')}<br>${esc(row.goal || '')}</p>
   </div>`).join('')}</div>`;
 }
-function rankingChartCard(system, editable=false){
-  const chartSystem = system || state.athlete.rankingSystem || 'ITF Junior';
+function rankingChartCard(system, editable=false, compactSelector=false){
+  const chartSystem = system || state.selected.rankingSystem || state.athlete.rankingSystem || 'ITF Junior';
   const sorted = numericRankingRows(chartSystem);
   const editor = editable ? rankingChartEditor(chartSystem) : '';
-  if(sorted.length<2) return `<div class="chart-card">
-    <div class="chart-head"><div><h3>Ranking trajectory</h3></div><div class="legend"><span>${esc(chartSystem)}</span></div></div>
-    ${editor}
-  </div>`;
+  const selector = compactSelector ? `<div class="field compact-field" style="min-width:220px;margin:0"><label>Chart</label><select data-selected="rankingSystem">${opt(RANKING_SYSTEMS, chartSystem)}</select></div>` : '';
+  const head = `<div class="chart-head"><div><h3>Ranking trajectory</h3></div><div class="legend">${selector || `<span>${esc(chartSystem)}</span>`}</div></div>`;
+  if(sorted.length<1) return `<div class="chart-card">${head}${editor}<div class="empty-state">No numeric chart data for ${esc(chartSystem)} yet.</div></div>`;
+
   const W=900,H=300,pad={l:48,r:24,t:20,b:36};
   const xs = sorted.map(s=>new Date(s.date+'T00:00:00').getTime());
   const ys = sorted.map(s=>Number(s.n));
   const minX=Math.min(...xs), maxX=Math.max(...xs);
-  const parsedGoal = String(state.athlete.rankingGoal || '300').match(/\d+(\.\d+)?/);
-  const goal = parsedGoal ? Number(parsedGoal[0]) : Math.min(...ys);
-  const careerHigh = Number(String(state.athlete.careerHigh||'').replace(/[^0-9.]/g,''));
-  const yMin=Math.min(...ys, Number.isFinite(goal)?goal:Infinity, Number.isFinite(careerHigh)?careerHigh:Infinity);
-  const yMax=Math.max(...ys, Number.isFinite(goal)?goal:-Infinity, Number.isFinite(careerHigh)?careerHigh:-Infinity);
+  const showItfReference = chartSystem === 'ITF Junior';
+  const parsedGoal = showItfReference ? String(state.athlete.rankingGoal || '300').match(/\d+(\.\d+)?/) : null;
+  const goal = parsedGoal ? Number(parsedGoal[0]) : NaN;
+  const careerHigh = showItfReference ? Number(String(state.athlete.careerHigh||'').replace(/[^0-9.]/g,'')) : NaN;
+  const refVals = [Number.isFinite(goal)?goal:NaN, Number.isFinite(careerHigh)?careerHigh:NaN].filter(Number.isFinite);
+  const rawMin=Math.min(...ys, ...refVals);
+  const rawMax=Math.max(...ys, ...refVals);
+  const spread = rawMax-rawMin || Math.max(1, Math.abs(rawMin)*0.1);
+  const yMin = Math.max(0, rawMin - spread*0.12);
+  const yMax = rawMax + spread*0.12;
   const xScale = x => pad.l + (x-minX)/(maxX-minX||1) * (W-pad.l-pad.r);
-  // ranking is lower-is-better, so smaller rank numbers appear higher on the chart
   const yScale = y => pad.t + (y-yMin)/(yMax-yMin||1) * (H-pad.t-pad.b);
-  const points = sorted.map(s=>({x:xScale(new Date(s.date+'T00:00:00').getTime()), y:yScale(Number(s.n)), val:s.value, date:s.date}));
+  const points = sorted.map(s=>({
+    x:xScale(new Date(s.date+'T00:00:00').getTime()),
+    y:yScale(Number(s.n)),
+    val:s.value,
+    date:s.date,
+    category:s.category || '',
+    note:s.goal || ''
+  }));
   const linePath = 'M ' + points.map(p=>`${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' L ');
   const areaPath = linePath + ` L ${points[points.length-1].x.toFixed(1)} ${H-pad.b} L ${points[0].x.toFixed(1)} ${H-pad.b} Z`;
-  const goalY = yScale(goal);
-  const chY = yScale(careerHigh);
+  const goalY = Number.isFinite(goal) ? yScale(goal) : NaN;
+  const chY = Number.isFinite(careerHigh) ? yScale(careerHigh) : NaN;
   const gridYs = [yMin, (yMin+yMax)/2, yMax];
   const labels = sorted.filter((_,i)=>i%Math.ceil(sorted.length/6)===0 || i===sorted.length-1);
+  const tooltip = p => `${chartSystem} · ${p.category}\n${dateLong(p.date)}\nValue: ${p.val}${p.note ? '\n' + p.note : ''}`;
   return `<div class="chart-card">
-    <div class="chart-head">
-      <div><h3>Ranking trajectory</h3></div>
-      <div class="legend">
-        <span><i style="background:var(--clay)"></i>Ranking</span>
-        ${Number.isFinite(careerHigh)?`<span><i style="background:var(--gold);height:1.5px"></i>Reference high (${careerHigh})</span>`:''}
-        ${Number.isFinite(goal)?`<span><i style="background:var(--money);height:1.5px"></i>Goal (${goal})</span>`:''}
-      </div>
-    </div>
+    ${head}
     ${editor}
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
       <defs>
@@ -2359,7 +2400,7 @@ function rankingChartCard(system, editable=false){
       ${Number.isFinite(goal)&&goalY>pad.t&&goalY<H-pad.b?`<line x1="${pad.l}" x2="${W-pad.r}" y1="${goalY}" y2="${goalY}" class="chart-line goal"/>`:''}
       <path d="${areaPath}" class="chart-area"/>
       <path d="${linePath}" class="chart-line"/>
-      ${points.map((p,i)=>`<circle cx="${p.x}" cy="${p.y}" r="${i===points.length-1?6:4}" class="chart-dot"/>`).join('')}
+      ${points.map((p,i)=>`<g class="chart-point"><circle cx="${p.x}" cy="${p.y}" r="${i===points.length-1?6:4}" class="chart-dot"/><circle cx="${p.x}" cy="${p.y}" r="14" fill="transparent"><title>${esc(tooltip(p))}</title></circle></g>`).join('')}
       ${gridYs.map(y=>`<text class="chart-axis" x="${pad.l-8}" y="${yScale(y)+4}" text-anchor="end">${Number.isInteger(y)?y:y.toFixed(1)}</text>`).join('')}
       ${labels.map(s=>`<text class="chart-axis" x="${xScale(new Date(s.date+'T00:00:00').getTime())}" y="${H-12}" text-anchor="middle">${s.date.slice(2,7)}</text>`).join('')}
     </svg>
@@ -2373,11 +2414,12 @@ function rankingChartEditor(chartSystem){
     .filter(r=>r.system===chartSystem)
     .sort((a,b)=>String(a.date||'').localeCompare(String(b.date||'')));
   return `<div class="form-grid" style="margin-top:16px">
-    ${field('Chart system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
-    ${field('Current display ranking','athlete','ranking',a.ranking)}
-    ${field('Reference high','athlete','careerHigh',a.careerHigh)}
-    ${field('Season high','athlete','seasonHigh',a.seasonHigh)}
-    ${field('Goal rank','athlete','rankingGoal',a.rankingGoal)}
+    <div class="field"><label>Chart</label><select data-selected="rankingSystem">${opt(RANKING_SYSTEMS, chartSystem)}</select></div>
+    ${field('Headline ranking system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
+    ${field('Headline ranking','athlete','ranking',a.ranking)}
+    ${field('ITF reference high','athlete','careerHigh',a.careerHigh)}
+    ${field('ITF season high','athlete','seasonHigh',a.seasonHigh)}
+    ${field('ITF goal rank','athlete','rankingGoal',a.rankingGoal)}
   </div>
   <div class="table-wrap" style="margin-top:14px"><table>
     <thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Source / note</th><th></th></tr></thead>
@@ -2616,7 +2658,7 @@ function renderRankings(){
   const a = state.athlete;
   document.getElementById('rankings').innerHTML = header('Rankings','Ranking systems tracked for the athlete: ITF Junior, Tennis Europe, FRT Romania, German LK, WTA, UTR, and WTN.',`<button class="btn primary" id="addRanking">+ Ranking entry</button>`) +
     rankingSummaryCards() +
-    rankingChartCard(a.rankingSystem, true) +
+    rankingChartCard(state.selected.rankingSystem || a.rankingSystem, true) +
     `<div class="section-head" style="margin-top:30px"><div><h2 class="ttl" style="font-size:32px">Ranking entries</h2><p class="desc">These rows drive the chart. Use numeric values for charted systems; use Unranked/TBD for WTA or other systems without a numeric value.</p></div></div>
     <div class="table-wrap" style="margin-top:18px"><table>
       <thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Goal / note / source</th><th></th></tr></thead>
@@ -3592,7 +3634,7 @@ document.addEventListener('click', e => {
   if(e.target.id==='addCareer'){ state.career.push({id:id(),date:String(new Date().getFullYear()),type:'Other',title:'New milestone',body:'',source:''}); render(); return; }
   if(e.target.id==='addTournament'){ addTournament(); return; }
   if(e.target.id==='addRanking'){ state.rankings.push({id:id(),system:'ITF Junior',category:'Girls 18U',value:'',date:todayISO(),goal:''}); render(); return; }
-  if(e.target.id==='addChartRanking'){ state.rankings.push({id:id(),system:state.athlete.rankingSystem||'ITF Junior',category:'Girls 18U',value:'',date:todayISO(),goal:''}); render(); return; }
+  if(e.target.id==='addChartRanking'){ state.rankings.push({id:id(),system:state.selected.rankingSystem||state.athlete.rankingSystem||'ITF Junior',category:'Girls 18U',value:'',date:todayISO(),goal:''}); render(); return; }
   if(e.target.id==='addBudget'){ state.budget.push({id:id(),eventId:state.selected.tournamentId||'',category:'Tournament travel',description:'New budget item',amount:0,status:'Needed'}); render(); return; }
   if(e.target.id==='addSponsor'){ state.sponsors.push({id:id(),company:'New sponsor',category:'',contact:'',contactRole:'Marketing / Partnerships / Sponsorship decision-maker',email:'',emailStatus:'Research needed',website:'',contactUrl:'',phone:'',package:'Local Partner',ask:state.settings.defaultAsk,stage:'Prospect',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Tournament travel',sponsoredEventId:state.selected.tournamentId||'',deliverables:SPONSORED_ITEMS['Tournament travel'].deliverables,nextAction:'Research contact and email',lastContact:'',renewal:'',owner:'',mailerTag:'tournament-travel',notes:''}); render(); return; }
   if(e.target.id==='exportSponsorCsv' || e.target.id==='exportSponsorCsvSide' || e.target.id==='exportSponsorCsvSettings'){ exportSponsorCsv(); return; }
