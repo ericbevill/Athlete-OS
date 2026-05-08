@@ -35,10 +35,1767 @@ const SPONSORED_ITEMS = {
   'Local prep block': {deliverables:'Training block update, photo if appropriate, thank-you email', advice:'Best for small local businesses and warm introductions. Pair with the Local Sponsor Email and Athlete Profile.'}
 };
 
+
+const VERIFIED_CAREER_ROWS = [
+  {
+    "date": "2019-08-21",
+    "type": "Trophy",
+    "title": "Romanian U10 team champion",
+    "body": "Won the Romanian U10 girls team title with Dyadora Timișoara. Romanian press reported the team won every tie 3-0 and did not lose a set.",
+    "source": "Radio România Timișoara, 2019 U10 team championship"
+  },
+  {
+    "date": "2020-06-30",
+    "type": "Trophy",
+    "title": "Cupa TC București U10 champion",
+    "body": "Won the U10 title at the first FRT event after the pandemic pause. Reported no sets lost and only two games conceded in four matches.",
+    "source": "Radio România Timișoara, 30 Jun 2020"
+  },
+  {
+    "date": "2021-07-20",
+    "type": "Tournament",
+    "title": "Romania U12 team selection",
+    "body": "Selected for Romania U12 girls team competition while one year under the age category.",
+    "source": "Radio România Timișoara, July 2021"
+  },
+  {
+    "date": "2021-09-13",
+    "type": "Trophy",
+    "title": "Romanian U12 interclub champion",
+    "body": "Won the Romanian U12 mixed team title with CS Major București, while primarily registered with Sport 4 Fun Timișoara.",
+    "source": "Radio România Timișoara, Sept 2021"
+  },
+  {
+    "date": "2022-06-20",
+    "type": "Trophy",
+    "title": "Romanian U12 singles and doubles champion",
+    "body": "Won the Romanian U12 national singles and doubles titles in Bucharest for Sport 4 Fun Timișoara. Reported no set lost in singles.",
+    "source": "Radio România Timișoara, 20 Jun 2022"
+  },
+  {
+    "date": "2022-06-20",
+    "type": "Trophy",
+    "title": "HAI Cup Arad U12 singles and doubles champion",
+    "body": "Won singles and doubles at HAI Cup Arad, a Tennis Europe U12 event, in the same month as the national U12 double.",
+    "source": "Radio România Timișoara, 20 Jun 2022"
+  },
+  {
+    "date": "2022-08-08",
+    "type": "Final",
+    "title": "European U12 team runner-up with Romania",
+    "body": "Helped Romania finish runner-up in the European U12 team finals in Ajaccio. Romanian press reported she was named best player of the final tournament.",
+    "source": "Radio România Timișoara, Aug 2022"
+  },
+  {
+    "date": "2022-11-14",
+    "type": "Trophy",
+    "title": "Tennis Europe U14 champion at Rafa Nadal Academy",
+    "body": "Won a Tennis Europe U14 title in Manacor at age 12, beating the top seed in the final.",
+    "source": "Radio România Timișoara, Nov 2022"
+  },
+  {
+    "date": "2022-11-23",
+    "type": "Final",
+    "title": "European U12 Festival finalist",
+    "body": "Reached the singles final at the European U12 Festival at the Rafa Nadal Academy. Also reached the doubles semifinals with Maria Valentina Pop.",
+    "source": "Cuget Liber, Nov 2022"
+  },
+  {
+    "date": "2023-01-01",
+    "type": "Training",
+    "title": "Training block in France",
+    "body": "Public reporting later stated she had trained from January 2023 at the academy founded by Jo-Wilfried Tsonga and Thierry Ascione near Nice.",
+    "source": "Radio România Timișoara, Jan 2024 report"
+  },
+  {
+    "date": "2023-03-05",
+    "type": "Trophy",
+    "title": "FOCUS / ROBEY Open U14 champion",
+    "body": "Won the Tennis Europe U14 event in Rotterdam, defeating Antonia Stoyanov in the final.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2023-04-29",
+    "type": "Final",
+    "title": "J30 Timișoara singles finalist",
+    "body": "Reached an ITF junior J30 singles final in Timișoara during the transition into ITF junior events.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2023-05-20",
+    "type": "Final",
+    "title": "Dr. Oetker Junior Trophy U14 finalist",
+    "body": "Reached a Tennis Europe U14 final in Romania.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2023-09-17",
+    "type": "Trophy",
+    "title": "Alibaba U14 champion, Humenné",
+    "body": "Won the Tennis Europe U14 event in Humenné, beating Oliwia Sybicka in the final.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2023-12-03",
+    "type": "Semifinal",
+    "title": "J30 Fes singles semifinalist",
+    "body": "Reached the singles semifinal at ITF junior J30 Fes.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2024-01-09",
+    "type": "Trophy",
+    "title": "Romanian U14 winter national champion",
+    "body": "Won the Romanian U14 winter national singles title in Bucharest and reached the doubles final. Report listed her at Tennis Europe U14 No. 16.",
+    "source": "Radio România Timișoara, 9 Jan 2024"
+  },
+  {
+    "date": "2024-03-17",
+    "type": "Tournament",
+    "title": "J60 Blagnac quarterfinalist",
+    "body": "Reached an ITF junior J60 quarterfinal in Blagnac.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2024-05-12",
+    "type": "Semifinal",
+    "title": "Torneo U16 Tolentino semifinalist",
+    "body": "Reached a Tennis Europe U16 semifinal in Tolentino.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2024-06-16",
+    "type": "Semifinal",
+    "title": "Torneo U16 Milano semifinalist",
+    "body": "Reached a Tennis Europe U16 semifinal in Milano.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2024-07-14",
+    "type": "Semifinal",
+    "title": "J30 Stobreč semifinalist",
+    "body": "Reached the singles semifinal at ITF junior J30 Stobreč.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2024-08-25",
+    "type": "Tournament",
+    "title": "J100 Barcelona RCTB quarterfinalist",
+    "body": "Reached an ITF junior J100 quarterfinal in Barcelona.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2024-11-10",
+    "type": "Final",
+    "title": "J60 Cairo singles finalist and doubles champion",
+    "body": "Reached a J60 Cairo singles final. Federation search result reported a doubles title in Cairo.",
+    "source": "CoreTennis and FRT public result snippets"
+  },
+  {
+    "date": "2025-03-17",
+    "type": "Trophy",
+    "title": "J60 Colomiers doubles champion",
+    "body": "Reported as doubles champion with Sofia Kryvorucho, plus singles quarterfinal result.",
+    "source": "FRT public result snippet"
+  },
+  {
+    "date": "2025-05-26",
+    "type": "Trophy",
+    "title": "Montenegro ITF J60 doubles title block",
+    "body": "Won J60 doubles trophies in Ulcinj and Podgorica with Yelena Lebeau. Also reached a singles semifinal in Ulcinj and singles final in Podgorica.",
+    "source": "Radio România Timișoara, May 2025"
+  },
+  {
+    "date": "2025-07-21",
+    "type": "Tournament",
+    "title": "W15 Cluj-Napoca women pro transition appearance",
+    "body": "Listed in women pro ITF W15 Cluj-Napoca qualifying context.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2025-09-15",
+    "type": "Tournament",
+    "title": "W15 Câmpulung appearance",
+    "body": "Listed in women pro ITF W15 Câmpulung activity, early professional transition exposure.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2025-11-16",
+    "type": "Tournament",
+    "title": "J60 Nairobi quarterfinalist",
+    "body": "Reached an ITF junior J60 Nairobi quarterfinal.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2025-11-23",
+    "type": "Tournament",
+    "title": "J100 Nairobi R16",
+    "body": "Reached the round of 16 at ITF junior J100 Nairobi.",
+    "source": "CoreTennis results snapshot"
+  },
+  {
+    "date": "2026-02-21",
+    "type": "Tournament",
+    "title": "Romania U16 Winter Cups fourth place",
+    "body": "Part of the Romanian U16 team that qualified from Limassol and finished fourth at the finals.",
+    "source": "ProSport and FRT public result snippets"
+  },
+  {
+    "date": "2026-05-07",
+    "type": "Ranking",
+    "title": "ITF junior ranking profile snapshot",
+    "body": "Public profiles show ITF junior profile active, WTA profile present but no current WTA singles ranking. CoreTennis secondary snapshot lists ITF junior ranking 503, season high 491, career high 464.",
+    "source": "ITF, WTA, CoreTennis public profile snapshots"
+  }
+];
+const VERIFIED_TOURNAMENT_ROWS = [
+  {
+    "name": "Romanian U10 Team Championship",
+    "start": "2019-08-21",
+    "end": "2019-08-25",
+    "track": "Romanian National / FRT",
+    "level": "FRT U12",
+    "surface": "Clay",
+    "city": "Unknown",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "C",
+    "result": "Team champion with Dyadora Timișoara",
+    "points": 0,
+    "outcome": "W",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "Cupa TC București powered by Champion Bowl",
+    "start": "2020-06-27",
+    "end": "2020-06-30",
+    "track": "Romanian National / FRT",
+    "level": "FRT U12",
+    "surface": "Clay",
+    "city": "Bucharest",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "C",
+    "result": "U10 singles champion",
+    "points": 0,
+    "outcome": "W",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "European U12 Team Qualifiers",
+    "start": "2021-07-20",
+    "end": "2021-07-25",
+    "track": "Romanian National / FRT",
+    "level": "FRT U12",
+    "surface": "Clay",
+    "city": "Cyprus",
+    "country": "Cyprus",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Romania U12 team selection",
+    "points": 0,
+    "outcome": "",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "Romanian U12 Interclub Championship",
+    "start": "2021-09-13",
+    "end": "2021-09-19",
+    "track": "Romanian National / FRT",
+    "level": "FRT U12",
+    "surface": "Clay",
+    "city": "Bucharest",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Team champion with CS Major București",
+    "points": 0,
+    "outcome": "W",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "Romanian U12 National Championships",
+    "start": "2022-06-20",
+    "end": "2022-06-26",
+    "track": "Romanian National / FRT",
+    "level": "FRT U12",
+    "surface": "Clay",
+    "city": "Bucharest",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles and doubles champion",
+    "points": 0,
+    "outcome": "W",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "HAI Cup Arad",
+    "start": "2022-06-13",
+    "end": "2022-06-19",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U12",
+    "surface": "Clay",
+    "city": "Arad",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "A",
+    "result": "U12 singles and doubles champion",
+    "points": 0,
+    "outcome": "W",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "European Summer Cup U12 Finals",
+    "start": "2022-08-05",
+    "end": "2022-08-08",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U12",
+    "surface": "Clay",
+    "city": "Ajaccio",
+    "country": "France",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Romania runner-up; best player report",
+    "points": 0,
+    "outcome": "F",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "Rafa Nadal Academy U14",
+    "start": "2022-11-07",
+    "end": "2022-11-13",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U14",
+    "surface": "Hard",
+    "city": "Manacor",
+    "country": "Spain",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles champion",
+    "points": 0,
+    "outcome": "W",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "European U12 Festival",
+    "start": "2022-11-21",
+    "end": "2022-11-27",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U12",
+    "surface": "Hard",
+    "city": "Manacor",
+    "country": "Spain",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles finalist; doubles semifinalist",
+    "points": 0,
+    "outcome": "F",
+    "notes": "Cuget Liber"
+  },
+  {
+    "name": "FOCUS / ROBEY Open U14",
+    "start": "2023-02-27",
+    "end": "2023-03-05",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U14",
+    "surface": "Indoor",
+    "city": "Rotterdam",
+    "country": "Netherlands",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles champion",
+    "points": 0,
+    "outcome": "W",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J30 Timișoara",
+    "start": "2023-04-24",
+    "end": "2023-04-30",
+    "track": "ITF Junior",
+    "level": "ITF Junior J30",
+    "surface": "Clay",
+    "city": "Timișoara",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles finalist",
+    "points": 0,
+    "outcome": "F",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "Dr. Oetker Junior Trophy U14",
+    "start": "2023-05-15",
+    "end": "2023-05-21",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U14",
+    "surface": "Clay",
+    "city": "Romania",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles finalist",
+    "points": 0,
+    "outcome": "F",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "Alibaba U14 Humenné",
+    "start": "2023-09-11",
+    "end": "2023-09-17",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U14",
+    "surface": "Clay",
+    "city": "Humenné",
+    "country": "Slovakia",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles champion",
+    "points": 0,
+    "outcome": "W",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J30 Fes",
+    "start": "2023-11-27",
+    "end": "2023-12-03",
+    "track": "ITF Junior",
+    "level": "ITF Junior J30",
+    "surface": "Clay",
+    "city": "Fes",
+    "country": "Morocco",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles semifinalist",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "Romanian U14 Winter Nationals",
+    "start": "2024-01-03",
+    "end": "2024-01-09",
+    "track": "Romanian National / FRT",
+    "level": "FRT U14",
+    "surface": "Indoor",
+    "city": "Bucharest",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles champion; doubles finalist",
+    "points": 0,
+    "outcome": "W",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "J60 Blagnac",
+    "start": "2024-03-11",
+    "end": "2024-03-17",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Hard",
+    "city": "Blagnac",
+    "country": "France",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles quarterfinalist",
+    "points": 0,
+    "outcome": "QF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "Torneo U16 Tolentino",
+    "start": "2024-05-06",
+    "end": "2024-05-12",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U16",
+    "surface": "Clay",
+    "city": "Tolentino",
+    "country": "Italy",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles semifinalist",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "Torneo U16 Milano",
+    "start": "2024-06-10",
+    "end": "2024-06-16",
+    "track": "Tennis Europe",
+    "level": "Tennis Europe U16",
+    "surface": "Clay",
+    "city": "Milano",
+    "country": "Italy",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles semifinalist",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J30 Stobreč",
+    "start": "2024-07-08",
+    "end": "2024-07-14",
+    "track": "ITF Junior",
+    "level": "ITF Junior J30",
+    "surface": "Clay",
+    "city": "Stobreč",
+    "country": "Croatia",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles semifinalist",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J100 Barcelona RCTB",
+    "start": "2024-08-19",
+    "end": "2024-08-25",
+    "track": "ITF Junior",
+    "level": "ITF Junior J100",
+    "surface": "Clay",
+    "city": "Barcelona",
+    "country": "Spain",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles quarterfinalist",
+    "points": 0,
+    "outcome": "QF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J60 Cairo Gezira",
+    "start": "2024-10-28",
+    "end": "2024-11-03",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Cairo",
+    "country": "Egypt",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles semifinalist",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J60 Cairo Maadi",
+    "start": "2024-11-04",
+    "end": "2024-11-10",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Cairo",
+    "country": "Egypt",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles finalist; doubles title reported",
+    "points": 0,
+    "outcome": "F",
+    "notes": "CoreTennis / FRT snippet"
+  },
+  {
+    "name": "J60 Warsaw",
+    "start": "2025-02-17",
+    "end": "2025-02-23",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Indoor",
+    "city": "Warsaw",
+    "country": "Poland",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles quarterfinalist",
+    "points": 0,
+    "outcome": "QF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J60 Colomiers",
+    "start": "2025-03-10",
+    "end": "2025-03-16",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Hard",
+    "city": "Colomiers",
+    "country": "France",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles quarterfinalist; doubles champion reported",
+    "points": 0,
+    "outcome": "QF",
+    "notes": "CoreTennis / FRT snippet"
+  },
+  {
+    "name": "J30 Subotica",
+    "start": "2025-04-07",
+    "end": "2025-04-13",
+    "track": "ITF Junior",
+    "level": "ITF Junior J30",
+    "surface": "Clay",
+    "city": "Subotica",
+    "country": "Serbia",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles semifinalist",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J30 Timișoara",
+    "start": "2025-04-28",
+    "end": "2025-05-04",
+    "track": "ITF Junior",
+    "level": "ITF Junior J30",
+    "surface": "Clay",
+    "city": "Timișoara",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles semifinalist",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J60 Ulcinj",
+    "start": "2025-05-12",
+    "end": "2025-05-18",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Ulcinj",
+    "country": "Montenegro",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles semifinalist; doubles champion",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "J60 Podgorica",
+    "start": "2025-05-19",
+    "end": "2025-05-25",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Podgorica",
+    "country": "Montenegro",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Singles finalist; doubles champion",
+    "points": 0,
+    "outcome": "F",
+    "notes": "Radio România Timișoara"
+  },
+  {
+    "name": "W15 Cluj-Napoca",
+    "start": "2025-07-21",
+    "end": "2025-07-27",
+    "track": "ITF Women",
+    "level": "W15",
+    "surface": "Clay",
+    "city": "Cluj-Napoca",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Women pro transition qualifying context",
+    "points": 0,
+    "outcome": "",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "W15 Câmpulung",
+    "start": "2025-09-15",
+    "end": "2025-09-21",
+    "track": "ITF Women",
+    "level": "W15",
+    "surface": "Clay",
+    "city": "Câmpulung",
+    "country": "Romania",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Women pro transition appearance",
+    "points": 0,
+    "outcome": "L",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J60 Nairobi",
+    "start": "2025-11-10",
+    "end": "2025-11-16",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Nairobi",
+    "country": "Kenya",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles quarterfinalist",
+    "points": 0,
+    "outcome": "QF",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J100 Nairobi",
+    "start": "2025-11-17",
+    "end": "2025-11-23",
+    "track": "ITF Junior",
+    "level": "ITF Junior J100",
+    "surface": "Clay",
+    "city": "Nairobi",
+    "country": "Kenya",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Singles R16",
+    "points": 0,
+    "outcome": "L",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "U16 Winter Cups Qualifying",
+    "start": "2026-02-02",
+    "end": "2026-02-08",
+    "track": "Romanian National / FRT",
+    "level": "FRT U16",
+    "surface": "Hard",
+    "city": "Limassol",
+    "country": "Cyprus",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Romania qualified for finals",
+    "points": 0,
+    "outcome": "W",
+    "notes": "ProSport"
+  },
+  {
+    "name": "U16 Winter Cups Finals",
+    "start": "2026-02-17",
+    "end": "2026-02-21",
+    "track": "Romanian National / FRT",
+    "level": "FRT U16",
+    "surface": "Indoor",
+    "city": "Brest",
+    "country": "France",
+    "status": "Completed",
+    "priority": "A",
+    "result": "Romania finished fourth",
+    "points": 0,
+    "outcome": "SF",
+    "notes": "FRT snippet"
+  },
+  {
+    "name": "J60 Frederiksberg",
+    "start": "2026-02-09",
+    "end": "2026-02-15",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Indoor",
+    "city": "Frederiksberg",
+    "country": "Denmark",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Listed in 2026 activity",
+    "points": 0,
+    "outcome": "",
+    "notes": "Tennis DB / CoreTennis"
+  },
+  {
+    "name": "J60 Larnaca",
+    "start": "2026-03-02",
+    "end": "2026-03-08",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Hard",
+    "city": "Larnaca",
+    "country": "Cyprus",
+    "status": "Completed",
+    "priority": "B",
+    "result": "Listed in 2026 activity",
+    "points": 0,
+    "outcome": "",
+    "notes": "CoreTennis"
+  },
+  {
+    "name": "J60 Dunakeszi",
+    "start": "2026-05-05",
+    "end": "2026-05-11",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Dunakeszi",
+    "country": "Hungary",
+    "status": "Planned",
+    "priority": "A",
+    "result": "2026 clay block tracking row",
+    "points": 0,
+    "outcome": "",
+    "notes": "ITF acceptance list snapshot"
+  },
+  {
+    "name": "J60 Ulcinj 2026",
+    "start": "2026-05-11",
+    "end": "2026-05-17",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Ulcinj",
+    "country": "Montenegro",
+    "status": "Planned",
+    "priority": "A",
+    "result": "2026 clay block tracking row",
+    "points": 0,
+    "outcome": "",
+    "notes": "ITF acceptance list snapshot"
+  },
+  {
+    "name": "J60 Podgorica 2026",
+    "start": "2026-05-18",
+    "end": "2026-05-24",
+    "track": "ITF Junior",
+    "level": "ITF Junior J60",
+    "surface": "Clay",
+    "city": "Podgorica",
+    "country": "Montenegro",
+    "status": "Planned",
+    "priority": "A",
+    "result": "2026 clay block tracking row",
+    "points": 0,
+    "outcome": "",
+    "notes": "ITF acceptance list snapshot"
+  },
+  {
+    "name": "J200 Târgu Jiu 2026",
+    "start": "2026-05-18",
+    "end": "2026-05-22",
+    "track": "ITF Junior",
+    "level": "ITF Junior J200",
+    "surface": "Clay",
+    "city": "Târgu Jiu",
+    "country": "Romania",
+    "status": "Planned",
+    "priority": "A",
+    "result": "2026 Romania tracking row",
+    "points": 0,
+    "outcome": "",
+    "notes": "ITF acceptance list snapshot"
+  }
+];
+const VERIFIED_RANKING_ROWS = [
+  {
+    "system": "FRT Romania",
+    "category": "U12",
+    "value": "17",
+    "date": "2019-08-21",
+    "goal": "FRT U10 ranking reported in Romanian press"
+  },
+  {
+    "system": "Tennis Europe",
+    "category": "U14",
+    "value": "16",
+    "date": "2024-01-09",
+    "goal": "Tennis Europe U14 ranking reported by Radio România Timișoara"
+  },
+  {
+    "system": "ITF Junior",
+    "category": "Girls 18U",
+    "value": "532",
+    "date": "2025-05-26",
+    "goal": "Reported as best ITF junior ranking at that time"
+  },
+  {
+    "system": "ITF Junior",
+    "category": "Girls 18U",
+    "value": "464",
+    "date": "2025-11-30",
+    "goal": "Career high per CoreTennis secondary snapshot; date to verify"
+  },
+  {
+    "system": "ITF Junior",
+    "category": "Girls 18U",
+    "value": "491",
+    "date": "2026-02-15",
+    "goal": "Season high per CoreTennis secondary snapshot; date to verify"
+  },
+  {
+    "system": "ITF Junior",
+    "category": "Girls 18U",
+    "value": "503",
+    "date": "2026-05-07",
+    "goal": "Current secondary-source snapshot"
+  },
+  {
+    "system": "WTA",
+    "category": "Professional",
+    "value": "Unranked",
+    "date": "2026-05-08",
+    "goal": "WTA profile shows current singles rank as blank / dash and $0 prize money"
+  }
+];
+const SPONSOR_LEAD_ROWS = [
+  {
+    "company": "Banca Transilvania",
+    "category": "Banking / financial services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National bank; youth performance and disciplined planning angle."
+  },
+  {
+    "company": "BCR",
+    "category": "Banking / financial services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National bank; structured season partner proposal."
+  },
+  {
+    "company": "BRD Groupe Societe Generale",
+    "category": "Banking / financial services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National bank; women in sport and Romanian performance pathway."
+  },
+  {
+    "company": "Raiffeisen Bank Romania",
+    "category": "Banking / financial services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National bank; community visibility and measurable campaign updates."
+  },
+  {
+    "company": "ING Bank Romania",
+    "category": "Banking / financial services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Digital bank; data-backed athlete operating model."
+  },
+  {
+    "company": "UniCredit Bank Romania",
+    "category": "Banking / financial services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Corporate sponsor prospect; use professional deck and budget overview."
+  },
+  {
+    "company": "CEC Bank",
+    "category": "Banking / financial services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Romanian national brand; local athlete development angle."
+  },
+  {
+    "company": "Patria Bank",
+    "category": "Banking / financial services",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Mid-sized financial sponsor prospect; specific tournament block ask."
+  },
+  {
+    "company": "Alpha Bank Romania",
+    "category": "Banking / financial services",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Financial sponsor prospect; verify current sponsorship contact."
+  },
+  {
+    "company": "Garanti BBVA Romania",
+    "category": "Banking / financial services",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Financial sponsor prospect; performance and youth ambition angle."
+  },
+  {
+    "company": "Allianz-Tiriac",
+    "category": "Insurance",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Insurance partner prospect; risk, planning, and recovery narrative."
+  },
+  {
+    "company": "Groupama Romania",
+    "category": "Insurance",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Insurance prospect; concrete travel block sponsorship."
+  },
+  {
+    "company": "NN Romania",
+    "category": "Insurance / pensions",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Long-term planning narrative; suitable for season partner ask."
+  },
+  {
+    "company": "Metropolitan Life Romania",
+    "category": "Insurance",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Corporate sponsor prospect; family security and youth development angle."
+  },
+  {
+    "company": "OMV Petrom",
+    "category": "Energy",
+    "package": "Main Partner",
+    "ask": 25000,
+    "sponsoredItem": "Season partner",
+    "notes": "Large national corporate prospect; only approach with full deck and budget."
+  },
+  {
+    "company": "Rompetrol",
+    "category": "Energy",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "National fuel and mobility angle for tournament travel."
+  },
+  {
+    "company": "MOL Romania",
+    "category": "Energy / fuel",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Travel-linked prospect; pitch one international tournament block."
+  },
+  {
+    "company": "E.ON Romania",
+    "category": "Utilities",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National utility prospect; structured reporting required."
+  },
+  {
+    "company": "Enel Romania / PPC Romania",
+    "category": "Utilities",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Energy brand prospect; verify current local brand and contact."
+  },
+  {
+    "company": "Aqua Carpatica",
+    "category": "Beverage",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Hydration and recovery angle; in-kind plus cash option."
+  },
+  {
+    "company": "Borsec",
+    "category": "Beverage",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Romanian hydration brand; tournament hydration support."
+  },
+  {
+    "company": "Dorna",
+    "category": "Beverage",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Hydration support prospect; verify current brand team."
+  },
+  {
+    "company": "La Fantana",
+    "category": "Beverage / water services",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Hydration support and local visibility angle."
+  },
+  {
+    "company": "Carrefour Romania",
+    "category": "Retail",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National retail partner prospect; youth sport and family audience."
+  },
+  {
+    "company": "Kaufland Romania",
+    "category": "Retail",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National retailer; local community and measurable reporting."
+  },
+  {
+    "company": "Lidl Romania",
+    "category": "Retail",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "National retailer; approach via partnerships or marketing."
+  },
+  {
+    "company": "Mega Image",
+    "category": "Retail",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Retail prospect; focus on concrete event funding."
+  },
+  {
+    "company": "Auchan Romania",
+    "category": "Retail",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Retail prospect already present in draft; keep as one tournament block ask."
+  },
+  {
+    "company": "Selgros Romania",
+    "category": "Retail",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Retail / wholesale prospect; regional business contact route."
+  },
+  {
+    "company": "Profi Romania",
+    "category": "Retail",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Romanian retail footprint; local community angle."
+  },
+  {
+    "company": "eMAG",
+    "category": "E-commerce / technology retail",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "National tech retail prospect; campaign dashboard and data story fit."
+  },
+  {
+    "company": "Altex Romania",
+    "category": "Electronics retail",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Retail prospect; youth performance and family audience."
+  },
+  {
+    "company": "Flanco",
+    "category": "Electronics retail",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Equipment and content support angle."
+  },
+  {
+    "company": "Dedeman",
+    "category": "Home improvement retail",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "Large Romanian company; pitch only with polished deck."
+  },
+  {
+    "company": "Brico Depot Romania",
+    "category": "Home improvement retail",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Retail prospect; local community and family angle."
+  },
+  {
+    "company": "Mobexpert",
+    "category": "Furniture / retail",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Romanian brand; athlete development story."
+  },
+  {
+    "company": "Decathlon Romania",
+    "category": "Sports retail",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Sports equipment partner; cash or in-kind."
+  },
+  {
+    "company": "Intersport Romania",
+    "category": "Sports retail",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Sports retail prospect; shoes, apparel, strings support."
+  },
+  {
+    "company": "Hervis Sports Romania",
+    "category": "Sports retail",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Sports retail prospect; local and national activation."
+  },
+  {
+    "company": "Sportisimo Romania",
+    "category": "Sports retail",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Sports retail prospect; equipment and campaign updates."
+  },
+  {
+    "company": "Wilson Romania distributor",
+    "category": "Tennis equipment",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Tennis-specific equipment route; verify distributor."
+  },
+  {
+    "company": "Babolat Romania distributor",
+    "category": "Tennis equipment",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Tennis-specific equipment route; verify distributor."
+  },
+  {
+    "company": "HEAD Romania distributor",
+    "category": "Tennis equipment",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Tennis-specific equipment route; verify distributor."
+  },
+  {
+    "company": "Yonex Romania distributor",
+    "category": "Tennis equipment",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Tennis-specific equipment route; verify distributor."
+  },
+  {
+    "company": "Nike Romania retail partner",
+    "category": "Sports apparel",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Apparel / shoes prospect; verify local partnership route."
+  },
+  {
+    "company": "adidas Romania retail partner",
+    "category": "Sports apparel",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Apparel / shoes prospect; verify local partnership route."
+  },
+  {
+    "company": "Puma Romania retail partner",
+    "category": "Sports apparel",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Equipment package",
+    "notes": "Apparel prospect; youth athlete story."
+  },
+  {
+    "company": "Continental Automotive Romania",
+    "category": "Automotive / technology",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "Strong Timișoara-region corporate prospect; professional deck required."
+  },
+  {
+    "company": "Bosch Service Solutions Timișoara",
+    "category": "Technology / services",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Timișoara employer brand and performance pathway angle."
+  },
+  {
+    "company": "HELLA Romania",
+    "category": "Automotive technology",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Timișoara automotive tech prospect; verify current brand structure."
+  },
+  {
+    "company": "Flex Timișoara",
+    "category": "Manufacturing / electronics",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Regional employer brand prospect."
+  },
+  {
+    "company": "Nokia Timișoara",
+    "category": "Technology",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Technology employer brand; local excellence angle."
+  },
+  {
+    "company": "Atos Romania Timișoara",
+    "category": "Technology services",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Tech services prospect; verify current entity/contact."
+  },
+  {
+    "company": "Endava Romania",
+    "category": "Technology services",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Tech company prospect; data-backed campaign fit."
+  },
+  {
+    "company": "NTT DATA Romania",
+    "category": "Technology services",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Technology services prospect; local and national angle."
+  },
+  {
+    "company": "Accenture Romania",
+    "category": "Technology / consulting",
+    "package": "Season Partner",
+    "ask": 10000,
+    "sponsoredItem": "Season partner",
+    "notes": "Corporate employer brand prospect; women in performance angle."
+  },
+  {
+    "company": "Bitdefender",
+    "category": "Cybersecurity",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "Romanian tech success story; approach only with full deck."
+  },
+  {
+    "company": "UiPath",
+    "category": "Software",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "Romanian tech success story; global Romanian pathway angle."
+  },
+  {
+    "company": "Zitec",
+    "category": "Technology services",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Romanian tech prospect; measurable campaign reporting."
+  },
+  {
+    "company": "Digi Romania",
+    "category": "Telecom / media",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "Media and telecom prospect; athlete profile visibility."
+  },
+  {
+    "company": "Orange Romania",
+    "category": "Telecom",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "Telecom sponsor prospect; youth digital storytelling."
+  },
+  {
+    "company": "Vodafone Romania",
+    "category": "Telecom",
+    "package": "Season Partner",
+    "ask": 15000,
+    "sponsoredItem": "Season partner",
+    "notes": "Telecom sponsor prospect; national reach."
+  },
+  {
+    "company": "Telekom Romania Mobile",
+    "category": "Telecom",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Telecom prospect; verify current contact route."
+  },
+  {
+    "company": "Fan Courier",
+    "category": "Logistics",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Travel and logistics angle; national company."
+  },
+  {
+    "company": "Sameday",
+    "category": "Logistics",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Fast-growing logistics prospect; youth performance angle."
+  },
+  {
+    "company": "Cargus",
+    "category": "Logistics",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Logistics prospect; concrete event ask."
+  },
+  {
+    "company": "DHL Romania",
+    "category": "Logistics",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "International logistics fit for travel pathway."
+  },
+  {
+    "company": "TAROM",
+    "category": "Travel",
+    "package": "In-kind Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Flight support prospect; in-kind travel support."
+  },
+  {
+    "company": "Wizz Air Romania route team",
+    "category": "Travel",
+    "package": "In-kind Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Travel support prospect; verify sponsorship route."
+  },
+  {
+    "company": "Iulius Town Timișoara",
+    "category": "Retail / property",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "High-value local visibility and community activation."
+  },
+  {
+    "company": "Shopping City Timișoara",
+    "category": "Retail / property",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Local mall activation and sponsor visibility."
+  },
+  {
+    "company": "Hotel Timișoara",
+    "category": "Hospitality",
+    "package": "In-kind Partner",
+    "ask": 1500,
+    "sponsoredItem": "Local prep block",
+    "notes": "Local hospitality partner; meetings, events, lodging support."
+  },
+  {
+    "company": "NH Timișoara",
+    "category": "Hospitality",
+    "package": "In-kind Partner",
+    "ask": 1500,
+    "sponsoredItem": "Local prep block",
+    "notes": "Hospitality prospect; in-kind lodging or meeting space."
+  },
+  {
+    "company": "Mercure Timișoara",
+    "category": "Hospitality",
+    "package": "In-kind Partner",
+    "ask": 1500,
+    "sponsoredItem": "Local prep block",
+    "notes": "Hospitality prospect; local prep block support."
+  },
+  {
+    "company": "Tresor Le Palais Timișoara",
+    "category": "Hospitality",
+    "package": "In-kind Partner",
+    "ask": 2500,
+    "sponsoredItem": "Local prep block",
+    "notes": "Premium local hospitality prospect."
+  },
+  {
+    "company": "Pensiunea / hotel partner near Timișoara",
+    "category": "Hospitality",
+    "package": "In-kind Partner",
+    "ask": 1000,
+    "sponsoredItem": "Local prep block",
+    "notes": "Generic local hospitality slot; replace with warm lead."
+  },
+  {
+    "company": "World Class Romania",
+    "category": "Fitness",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Coaching block",
+    "notes": "Fitness and training support prospect."
+  },
+  {
+    "company": "Smartfit Timișoara",
+    "category": "Fitness",
+    "package": "Equipment Partner",
+    "ask": 1500,
+    "sponsoredItem": "Coaching block",
+    "notes": "Local fitness support prospect."
+  },
+  {
+    "company": "Gym One Timișoara",
+    "category": "Fitness",
+    "package": "Equipment Partner",
+    "ask": 1500,
+    "sponsoredItem": "Coaching block",
+    "notes": "Local fitness support prospect."
+  },
+  {
+    "company": "Kinetic Sport & Medicine Timișoara prospect",
+    "category": "Recovery / physio",
+    "package": "In-kind Partner",
+    "ask": 1500,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Recovery support lead; verify provider and contact."
+  },
+  {
+    "company": "Regina Maria Timișoara",
+    "category": "Private healthcare",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Medical and recovery support prospect."
+  },
+  {
+    "company": "MedLife Timișoara",
+    "category": "Private healthcare",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Medical partner prospect; recovery and prevention angle."
+  },
+  {
+    "company": "Dental clinic Timișoara prospect",
+    "category": "Healthcare services",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Local business lead; replace with actual warm clinic."
+  },
+  {
+    "company": "Orthopedic / sports medicine clinic prospect",
+    "category": "Healthcare services",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Recovery support prospect; replace with actual contact."
+  },
+  {
+    "company": "Automobile Bavaria Timișoara",
+    "category": "Auto dealership",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Local premium dealership prospect."
+  },
+  {
+    "company": "Porsche Timișoara",
+    "category": "Auto dealership",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Premium auto dealership prospect; local visibility."
+  },
+  {
+    "company": "Toyota Timișoara dealer",
+    "category": "Auto dealership",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Auto dealership prospect; travel and reliability angle."
+  },
+  {
+    "company": "Mercedes-Benz Timișoara dealer",
+    "category": "Auto dealership",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Premium dealership prospect; verify local entity."
+  },
+  {
+    "company": "Ford Timișoara dealer",
+    "category": "Auto dealership",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Local dealership prospect; practical travel support."
+  },
+  {
+    "company": "Tazz",
+    "category": "Food delivery / tech",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Timișoara-origin tech and consumer brand angle."
+  },
+  {
+    "company": "Glovo Romania",
+    "category": "Food delivery",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Consumer app prospect; youth audience."
+  },
+  {
+    "company": "Freshful by eMAG",
+    "category": "Grocery delivery",
+    "package": "Equipment Partner",
+    "ask": 2500,
+    "sponsoredItem": "Recovery / physio",
+    "notes": "Nutrition / recovery angle; verify sponsorship contact."
+  },
+  {
+    "company": "5 to go",
+    "category": "Coffee / retail",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "National small-ticket supporter angle."
+  },
+  {
+    "company": "Starbucks Romania operator",
+    "category": "Coffee / retail",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Consumer brand prospect; verify operator."
+  },
+  {
+    "company": "Local Timișoara restaurant group",
+    "category": "Hospitality / restaurants",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Warm-lead slot for local owner network."
+  },
+  {
+    "company": "Local Timișoara real estate agency",
+    "category": "Real estate",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Local sponsor slot; high relationship value."
+  },
+  {
+    "company": "Local Timișoara law firm",
+    "category": "Professional services",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Professional services local supporter."
+  },
+  {
+    "company": "Local Timișoara accounting firm",
+    "category": "Professional services",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Professional services local supporter."
+  },
+  {
+    "company": "Romanian entrepreneur diaspora lead 1",
+    "category": "Private supporter",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Private supporter lead; needs warm introduction."
+  },
+  {
+    "company": "Romanian entrepreneur diaspora lead 2",
+    "category": "Private supporter",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Private supporter lead; use personal note and one-pager."
+  },
+  {
+    "company": "Romanian business angel lead",
+    "category": "Private supporter",
+    "package": "Tournament Partner",
+    "ask": 5000,
+    "sponsoredItem": "Tournament travel",
+    "notes": "Private supporter or small business owner route."
+  },
+  {
+    "company": "Family business warm intro lead",
+    "category": "Private supporter",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Replace with actual warm contact."
+  },
+  {
+    "company": "Former athlete / sports family lead",
+    "category": "Private supporter",
+    "package": "Supporter",
+    "ask": 1000,
+    "sponsoredItem": "Equipment package",
+    "notes": "Warm introduction route; practical supporter ask."
+  },
+  {
+    "company": "Local media partner Timișoara",
+    "category": "Media / profile",
+    "package": "In-kind Partner",
+    "ask": 1500,
+    "sponsoredItem": "Local prep block",
+    "notes": "Media/profile support; content visibility, not cash-first."
+  }
+];
+
+function seedSponsorRows(eventIdByName={}) {
+  const preferredEvents = [eventIdByName['J60 Podgorica 2026'], eventIdByName['J60 Ulcinj 2026'], eventIdByName['J200 Târgu Jiu 2026'], eventIdByName['J60 Dunakeszi']].filter(Boolean);
+  return SPONSOR_LEAD_ROWS.map((s, i) => {
+    const sponsoredEventId = s.sponsoredItem === 'Season partner' ? '' : (preferredEvents[i % preferredEvents.length] || '');
+    const guide = SPONSORED_ITEMS[s.sponsoredItem] || SPONSORED_ITEMS['Tournament travel'];
+    return {
+      id:id(), company:s.company, contact:'Marketing / Partnerships Lead', email:'', phone:'',
+      category:s.category || '', package:s.package || 'Supporter', ask:s.ask || 1500,
+      stage:i < 12 ? 'Prospect' : 'Research', contract:'Not started', agreementStart:'', agreementEnd:'',
+      paymentStatus:'Not invoiced', paidAmount:0, scheduledPayment:'', sponsoredItem:s.sponsoredItem || 'Tournament travel',
+      sponsoredEventId, deliverables:guide.deliverables, nextAction:'Find correct contact, verify fit, then send tailored sponsor email',
+      renewal:'', notes:(s.notes || '') + ' Prospect only; verify decision-maker, legal entity, and sponsorship rules before outreach.'
+    };
+  });
+}
+
 const SURFACE_CSS = s => 'surface-' + (s||'').toLowerCase().replace(/[^a-z]/g,'') || 'clay';
 const STATUS_CSS = s => 'pill-status ' + (s||'').toLowerCase().replace(/[^a-z]/g,'');
 
-const KEY = 'andreea-os-v6';
+const KEY = 'andreea-os-v7';
 let state;          // initialized at end after all helpers/factories defined
 let active = 'dashboard';
 let funnelFilter = '';
@@ -72,59 +1829,38 @@ const daysUntil = iso => { if(!iso) return null; const ms=(new Date(iso+'T00:00:
 
 /* ---- Default state ----------------------------------------- */
 function createDefaultState(){
-  const today=todayISO();
-  const t1=id(),t2=id(),t3=id(),t4=id(),t5=id(),t6=id();
+  const tournaments = VERIFIED_TOURNAMENT_ROWS.map(t => ({...t, id:id()}));
+  const eventIdByName = Object.fromEntries(tournaments.map(t => [t.name, t.id]));
+  const selectedTournamentId = eventIdByName['J60 Ulcinj 2026'] || tournaments[0]?.id || '';
   return {
     athlete:{
-      firstName:'Andreea',lastName:'Olariu',sport:'Tennis',
-      city:'Timișoara',country:'Romania',dob:'2010-03-03',age:'16',
-      club:'Sport 4 Fun Timișoara',coach:'TBD',school:'TBD',
-      rankingSystem:'ITF Junior',ranking:'503',careerHigh:'464',seasonHigh:'491',rankingGoal:'Top 300 ITF Junior',
-      handed:'Right',height:'',
-      summary:'Romanian junior tennis player from Timișoara. Verified national titles, European junior recognition, ITF junior results, and Romania team participation. The 2026 campaign is built on disciplined scheduling, ranking conversion, and clear sponsor reporting.',
-      strengths:'International junior tournament experience, two ITF J60 doubles titles in 2025, competitive clay-court pathway, coachable profile, and a serious family commitment behind the project.',
-      needs:'Funded tournament travel, planned training blocks, recovery support, equipment support, sponsor reporting, and a disciplined calendar that prioritises events with ranking and development value.',
+      firstName:'Andreea', lastName:'Olariu', sport:'Tennis',
+      city:'Timișoara', country:'Romania', dob:'2010-03-03', age:'16',
+      club:'Sport 4 Fun Timișoara', coach:'Petru Mergheș / Mihai Gavra / Narcis Varan listed in public coverage; current coach TBD', school:'TBD',
+      rankingSystem:'ITF Junior', ranking:'503', careerHigh:'464', seasonHigh:'491', rankingGoal:'300',
+      handed:'Unknown', height:'',
+      summary:'Romanian junior tennis player from Timișoara. Verified public record includes Romanian U10 team success, Romanian U12 singles and doubles national titles, Romanian U14 winter national title, Tennis Europe titles, Romania junior team participation, ITF junior finals and semifinals, and early W15 transition appearances.',
+      strengths:'Verified national-title record in Romania, international junior experience across Tennis Europe and ITF Juniors, strong doubles résumé, Romania team exposure, and a clear sponsor story built around specific tournament blocks, training blocks, equipment, recovery, and transparent updates.',
+      needs:'Confirm current coach, training base, height, handedness, and 2026 event schedule before external sponsor distribution. Continue transition from junior ITF results to women\'s ITF qualification and main-draw consistency while keeping ranking, tournament, budget, and sponsor data editable.',
       cutout:'assets/andreea-cutout.png'
     },
-    career:[
-      {id:id(),date:'2022',type:'Trophy',title:'Romanian U12 National Champion',body:'Romanian U12 singles and doubles champion. Romanian press reported she did not drop a singles set in the run.',source:'Reported in Romanian press'},
-      {id:id(),date:'2022',type:'Final',title:'U12 European Team — Best Player',body:'Romania reached the European U12 final stage. Andreea was reported as the tournament’s best player.',source:'Radio România Timișoara'},
-      {id:id(),date:'2022',type:'Trophy',title:'Tennis Europe U14 winner — Manacor',body:'Won the Tennis Europe U14 event at the Rafa Nadal Tennis Academy. Five wins through the draw, defeated the top seed in the final.',source:'Opinia Timișoarei'},
-      {id:id(),date:'2024',type:'Trophy',title:'Romanian U14 Winter National Champion',body:'Won the Romanian U14 winter national singles title. Reported No. 16 in Tennis Europe U14 around that time.',source:'Radio România Timișoara'},
-      {id:id(),date:'2025',type:'Trophy',title:'Two ITF J60 doubles titles',body:'Won J60 doubles titles in Ulcinj and Podgorica during the Montenegro clay block.',source:'ITF profile'},
-      {id:id(),date:'2025',type:'Final',title:'J60 Podgorica singles finalist',body:'Reached the singles final in Podgorica, showing singles progression alongside doubles success.',source:'ITF profile'},
-      {id:id(),date:'2026',type:'Ranking',title:'Romania U16 team qualification',body:'Part of the Romania U16 team that qualified for the European final phase.',source:'FRT'},
-      {id:id(),date:'2026',type:'Ranking',title:'ITF Junior 503 — career high 464',body:'Current ITF Junior ranking 503. Career high 464. Season high 491. Goal Top 300.',source:'ITF profile'}
+    career:VERIFIED_CAREER_ROWS.map(c => ({...c, id:id()})),
+    tournaments,
+    rankings:VERIFIED_RANKING_ROWS.map(r => ({...r, id:id()})),
+    budget:[
+      {id:id(),eventId:eventIdByName['J60 Dunakeszi']||'',category:'Tournament travel',description:'Travel, local transport, meals, and event logistics for J60 Dunakeszi',amount:900,status:'Needed'},
+      {id:id(),eventId:eventIdByName['J60 Ulcinj 2026']||'',category:'Tournament travel',description:'Travel, lodging, meals, coaching support, and recovery for J60 Ulcinj 2026',amount:1500,status:'Needed'},
+      {id:id(),eventId:eventIdByName['J60 Podgorica 2026']||'',category:'Tournament travel',description:'Travel, lodging, meals, coaching support, and recovery for J60 Podgorica 2026',amount:1500,status:'Needed'},
+      {id:id(),eventId:eventIdByName['J200 Târgu Jiu 2026']||'',category:'Tournament travel',description:'Domestic travel, lodging, local transport, and entry logistics for J200 Târgu Jiu 2026',amount:900,status:'Needed'},
+      {id:id(),eventId:'',category:'Coaching and training',description:'Monthly coaching, match review, and training block support',amount:1800,status:'Planned'},
+      {id:id(),eventId:'',category:'Equipment and stringing',description:'Shoes, strings, grips, racquet maintenance, and match supplies',amount:850,status:'Needed'},
+      {id:id(),eventId:'',category:'Recovery / physio',description:'Physio, recovery, prevention, nutrition support, and tournament readiness',amount:1200,status:'Needed'},
+      {id:id(),eventId:'',category:'Video and reporting',description:'Match footage, sponsor updates, photos, and proof folder maintenance',amount:600,status:'Planned'}
     ],
-    tournaments:[
-      {id:t1,name:'J60 Frederiksberg',start:'2026-02-09',end:'2026-02-15',track:'ITF Junior',level:'ITF Junior J60',surface:'Indoor',city:'Copenhagen',country:'Denmark',status:'Completed',priority:'B',result:'R32 singles · R16 doubles',points:0,outcome:'L'},
-      {id:t2,name:'J60 Larnaca',start:'2026-03-02',end:'2026-03-08',track:'ITF Junior',level:'ITF Junior J60',surface:'Hard',city:'Larnaca',country:'Cyprus',status:'Completed',priority:'B',result:'R16 singles · QF doubles',points:6,outcome:'L'},
-      {id:t3,name:'J60 Dunakeszi',start:'2026-05-05',end:'2026-05-11',track:'ITF Junior',level:'ITF Junior J60',surface:'Clay',city:'Dunakeszi',country:'Hungary',status:'Active',priority:'A',result:'In progress',points:0,outcome:''},
-      {id:t4,name:'J60 Ulcinj',start:'2026-05-11',end:'2026-05-17',track:'ITF Junior',level:'ITF Junior J60',surface:'Clay',city:'Ulcinj',country:'Montenegro',status:'Acceptance list',priority:'A',result:'',points:0,outcome:''},
-      {id:t5,name:'J60 Podgorica Open',start:'2026-05-18',end:'2026-05-24',track:'ITF Junior',level:'ITF Junior J60',surface:'Clay',city:'Podgorica',country:'Montenegro',status:'Acceptance list',priority:'A',result:'',points:0,outcome:''},
-      {id:t6,name:'J200 Targu Jiu',start:'2026-05-18',end:'2026-05-22',track:'ITF Junior',level:'ITF Junior J200',surface:'Clay',city:'Târgu Jiu',country:'Romania',status:'Acceptance list',priority:'A',result:'',points:0,outcome:''}
-    ],
-    rankings:[
-      {id:id(),system:'ITF Junior',category:'Girls 18U',value:'503',date:'2026-05-07',goal:'Top 300'},
-      {id:id(),system:'ITF Junior',category:'Girls 18U',value:'491',date:'2026-04-15',goal:''},
-      {id:id(),system:'ITF Junior',category:'Girls 18U',value:'478',date:'2026-03-15',goal:''},
-      {id:id(),system:'ITF Junior',category:'Girls 18U',value:'472',date:'2026-02-15',goal:''},
-      {id:id(),system:'ITF Junior',category:'Girls 18U',value:'464',date:'2025-11-30',goal:'Career high'},
-      {id:id(),system:'ITF Junior',category:'Girls 18U',value:'498',date:'2025-08-30',goal:''},
-      {id:id(),system:'Tennis Europe',category:'U16',value:'TBD',date:'2026-05-07',goal:'Track if active'},
-      {id:id(),system:'FRT Romania',category:'U18',value:'TBD',date:'2026-05-07',goal:'Track domestic position'}
-    ],
-    budget:[],
-    sponsors:[
-      {id:id(),company:'Auchan Romania',contact:'CSR / Marketing Manager',email:'',phone:'',package:'Tournament Partner',ask:5000,stage:'Prospect',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Tournament travel',sponsoredEventId:t5,deliverables:SPONSORED_ITEMS['Tournament travel'].deliverables,nextAction:'Find CSR contact and send corporate outreach email',renewal:'',notes:'Hypothetical prospect — community / youth-sport angle.'},
-      {id:id(),company:'Hotel Timișoara Group',contact:'Owner / GM',email:'',phone:'',package:'In-kind Partner',ask:1500,stage:'Contacted',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Local prep block',sponsoredEventId:t3,deliverables:SPONSORED_ITEMS['Local prep block'].deliverables,nextAction:'Follow up with owner — proposed in-kind nights for May block',renewal:'',notes:'Warm intro through coach.'},
-      {id:id(),company:'BCR (Banca Comercială Română)',contact:'CSR Lead',email:'',phone:'',package:'Season Partner',ask:10000,stage:'Research',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Season partner',sponsoredEventId:'',deliverables:SPONSORED_ITEMS['Season partner'].deliverables,nextAction:'Find right CSR contact and request introductory meeting',renewal:'',notes:'Larger corporate prospect — Romanian women’s sport angle.'},
-      {id:id(),company:'Local Restaurant Group',contact:'Owner',email:'',phone:'',package:'Equipment Partner',ask:1500,stage:'Meeting',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Equipment package',sponsoredEventId:'',deliverables:SPONSORED_ITEMS['Equipment package'].deliverables,nextAction:'Send proposal one-pager after Tuesday meeting',renewal:'',notes:'Family-known business in Timișoara.'},
-      {id:id(),company:'Diaspora Supporter (RO)',contact:'Family friend network',email:'',phone:'',package:'Supporter',ask:750,stage:'Contacted',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Equipment package',sponsoredEventId:'',deliverables:SPONSORED_ITEMS['Equipment package'].deliverables,nextAction:'Follow up after weekend',renewal:'',notes:'Romanian diaspora private supporter angle.'}
-    ],
+    sponsors:seedSponsorRows(eventIdByName),
     settings:{senderName:'Eric',senderEmail:'',phone:'',defaultAsk:1500,annualBudget:45500},
     calendar:todayParts(),
-    selected:{tournamentId:t4,sponsorId:'',doc:'sponsorOnePager'}
+    selected:{tournamentId:selectedTournamentId,sponsorId:'',doc:'sponsorOnePager'}
   };
 }
 
@@ -167,7 +1903,14 @@ function migrate(s){
     paidAmount:x.paidAmount||0,
     sponsoredItem:x.sponsoredItem||'Tournament travel',
     sponsoredEventId:x.sponsoredEventId||'',
-    deliverables:x.deliverables||SPONSORED_ITEMS['Tournament travel'].deliverables
+    deliverables:x.deliverables||SPONSORED_ITEMS['Tournament travel'].deliverables,
+    category:x.category||'',
+    phone:x.phone||'',
+    agreementStart:x.agreementStart||'',
+    agreementEnd:x.agreementEnd||'',
+    scheduledPayment:x.scheduledPayment||'',
+    renewal:x.renewal||'',
+    notes:x.notes||''
   }));
   s.settings = {...f.settings, ...(s.settings||{})};
   s.calendar = s.calendar || f.calendar;
@@ -357,7 +2100,8 @@ function rankingChartCard(){
   const points = sorted.map(s=>({x:xScale(new Date(s.date+'T00:00:00').getTime()), y:yScale(Number(s.value)), val:s.value, date:s.date}));
   const linePath = 'M ' + points.map(p=>`${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' L ');
   const areaPath = linePath + ` L ${points[points.length-1].x.toFixed(1)} ${H-pad.b} L ${points[0].x.toFixed(1)} ${H-pad.b} Z`;
-  const goal = 300;
+  const parsedGoal = String(state.athlete.rankingGoal || '300').match(/\d+/);
+  const goal = parsedGoal ? Number(parsedGoal[0]) : 300;
   const goalY = yScale(goal);
   const careerHigh = Number(state.athlete.careerHigh);
   const chY = yScale(careerHigh);
@@ -366,7 +2110,7 @@ function rankingChartCard(){
   const labels = sorted.filter((_,i)=>i%Math.ceil(sorted.length/6)===0 || i===sorted.length-1);
   return `<div class="chart-card">
     <div class="chart-head">
-      <div><h3>Ranking trajectory · ITF Junior</h3><div class="muted" style="font-size:13px;margin-top:4px">Lower number is better. Goal Top ${goal}.</div></div>
+      <div><h3>Ranking trajectory · ITF Junior</h3><div class="muted" style="font-size:13px;margin-top:4px">Lower number is better. Chart reads the editable goal field below.</div></div>
       <div class="legend">
         <span><i style="background:var(--clay)"></i>Ranking</span>
         <span><i style="background:var(--gold);height:1.5px"></i>Career high (${careerHigh})</span>
@@ -540,23 +2284,28 @@ function dateInRange(iso,start,end){ return start && end && iso>=start && iso<=e
 
 /* ---- Tournaments ------------------------------------------- */
 function renderTournaments(){
-  document.getElementById('tournaments').innerHTML = header('Tournaments','One row per event. Costs come from budget rows linked to the event. Sponsor commitments come from sponsor records linked to the event.',`<button class="btn primary" id="addTournament">+ Tournament</button>`) +
+  document.getElementById('tournaments').innerHTML = header('Tournaments','One row per event. Historical career events and future planning rows stay editable. Costs still come from budget rows linked to the event.',`<button class="btn primary" id="addTournament">+ Tournament</button>`) +
     `<div class="table-wrap"><table>
-      <thead><tr><th></th><th>Name</th><th>Start</th><th>End</th><th>Level</th><th>Surface</th><th>Status</th><th>Pri</th><th>Cost</th><th>Committed</th><th>Gap</th><th>W/L</th><th>Result</th><th></th></tr></thead>
+      <thead><tr><th></th><th>Name</th><th>Track</th><th>Start</th><th>End</th><th>Level</th><th>Surface</th><th>City</th><th>Country</th><th>Status</th><th>Pri</th><th>Cost</th><th>Committed</th><th>Gap</th><th>W/L</th><th>Points</th><th>Result</th><th>Notes / source</th><th></th></tr></thead>
       <tbody>${state.tournaments.map((t,i)=>`<tr id="tour-${t.id}" class="${state.selected.tournamentId===t.id?'selected':''}">
         <td class="row-bar ${SURFACE_CSS(t.surface)}"><div></div></td>
         <td>${cell('tournaments',i,'name',t.name)}</td>
+        <td>${cell('tournaments',i,'track',t.track||'')}</td>
         <td>${cell('tournaments',i,'start',t.start,'date')}</td>
         <td>${cell('tournaments',i,'end',t.end,'date')}</td>
         <td>${selectCell('tournaments',i,'level',t.level,LEVELS)}</td>
         <td>${selectCell('tournaments',i,'surface',t.surface,SURFACES)}</td>
+        <td>${cell('tournaments',i,'city',t.city||'')}</td>
+        <td>${cell('tournaments',i,'country',t.country||'')}</td>
         <td>${selectCell('tournaments',i,'status',t.status,STATUS)}</td>
         <td>${selectCell('tournaments',i,'priority',t.priority,PRIORITY)}</td>
         <td>${moneyShort(eventCost(t.id))}</td>
         <td>${moneyShort(eventCommitted(t.id))}</td>
         <td style="color:${eventGap(t.id)>0?'var(--live)':'var(--win)'}">${moneyShort(eventGap(t.id))}</td>
         <td>${selectCell('tournaments',i,'outcome',t.outcome,['','W','L','SF','F','QF'])}</td>
+        <td>${cell('tournaments',i,'points',t.points||0,'number')}</td>
         <td>${cell('tournaments',i,'result',t.result)}</td>
+        <td>${cell('tournaments',i,'notes',t.notes||'')}</td>
         <td><button class="btn tiny danger" data-delete="tournaments:${i}">×</button></td>
       </tr>`).join('')}</tbody>
     </table></div>`;
@@ -564,15 +2313,23 @@ function renderTournaments(){
 
 /* ---- Rankings ---------------------------------------------- */
 function renderRankings(){
-  document.getElementById('rankings').innerHTML = header('Rankings','Track each ranking system separately. Ranking history feeds the trajectory chart on the dashboard.',`<button class="btn primary" id="addRanking">+ Ranking entry</button>`) +
+  const a = state.athlete;
+  document.getElementById('rankings').innerHTML = header('Rankings','Track each ranking system separately. Every ranking chart value is driven by editable inputs below.',`<button class="btn primary" id="addRanking">+ Ranking entry</button>`) +
     rankingChartCard() +
-    `<div class="table-wrap" style="margin-top:18px"><table>
-      <thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Goal / note</th><th></th></tr></thead>
+    `<div class="form-grid" style="margin-top:18px">
+      ${field('Current ranking system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
+      ${field('Current ranking','athlete','ranking',a.ranking)}
+      ${field('Career high','athlete','careerHigh',a.careerHigh)}
+      ${field('Season high','athlete','seasonHigh',a.seasonHigh)}
+      ${field('Chart goal rank','athlete','rankingGoal',a.rankingGoal)}
+    </div>
+    <div class="table-wrap" style="margin-top:18px"><table>
+      <thead><tr><th>System</th><th>Category</th><th>Value</th><th>Date</th><th>Goal / note / source</th><th></th></tr></thead>
       <tbody>${state.rankings.map((r,i)=>`<tr>
         <td>${selectCell('rankings',i,'system',r.system,RANKING_SYSTEMS)}</td>
         <td>${selectCell('rankings',i,'category',r.category,CATEGORIES)}</td>
         <td>${cell('rankings',i,'value',r.value)}</td>
-        <td>${cell('rankings',i,'date',r.date)}</td>
+        <td>${cell('rankings',i,'date',r.date,'date')}</td>
         <td>${cell('rankings',i,'goal',r.goal)}</td>
         <td><button class="btn tiny danger" data-delete="rankings:${i}">×</button></td>
       </tr>`).join('')}</tbody>
@@ -658,20 +2415,28 @@ function renderSponsors(){
     </div>
     <div class="section-head" style="margin-top:30px"><div><h2 class="ttl" style="font-size:32px">Sponsor database</h2><p class="desc">Inline editable CRM. Sponsored item drives the recommended document and deliverables.</p></div></div>
     <div class="table-wrap"><table>
-      <thead><tr><th>Company</th><th>Contact</th><th>Email</th><th>Package</th><th>Ask</th><th>Paid</th><th>Stage</th><th>Contract</th><th>Payment</th><th>Sponsored event</th><th>Sponsored item</th><th>Next action</th><th></th></tr></thead>
+      <thead><tr><th>Company</th><th>Category</th><th>Contact</th><th>Email</th><th>Phone</th><th>Package</th><th>Ask</th><th>Paid</th><th>Stage</th><th>Contract</th><th>Payment</th><th>Start</th><th>End</th><th>Scheduled payment</th><th>Sponsored event</th><th>Sponsored item</th><th>Deliverables</th><th>Next action</th><th>Renewal</th><th>Notes</th><th></th></tr></thead>
       <tbody>${state.sponsors.map((s,i)=>`<tr>
         <td>${cell('sponsors',i,'company',s.company)}</td>
+        <td>${cell('sponsors',i,'category',s.category||'')}</td>
         <td>${cell('sponsors',i,'contact',s.contact)}</td>
         <td>${cell('sponsors',i,'email',s.email)}</td>
+        <td>${cell('sponsors',i,'phone',s.phone||'')}</td>
         <td>${cell('sponsors',i,'package',s.package)}</td>
         <td>${cell('sponsors',i,'ask',s.ask,'number')}</td>
         <td>${cell('sponsors',i,'paidAmount',s.paidAmount,'number')}</td>
         <td><select data-scope="sponsors" data-idx="${i}" data-key="stage">${opt(SPONSOR_STAGE,s.stage)}</select></td>
         <td><select data-scope="sponsors" data-idx="${i}" data-key="contract">${opt(CONTRACT_STATUS,s.contract)}</select></td>
         <td><select data-scope="sponsors" data-idx="${i}" data-key="paymentStatus">${opt(PAYMENT_STATUS,s.paymentStatus)}</select></td>
+        <td>${cell('sponsors',i,'agreementStart',s.agreementStart||'','date')}</td>
+        <td>${cell('sponsors',i,'agreementEnd',s.agreementEnd||'','date')}</td>
+        <td>${cell('sponsors',i,'scheduledPayment',s.scheduledPayment||'','date')}</td>
         <td><select data-scope="sponsors" data-idx="${i}" data-key="sponsoredEventId"><option value="">General / season</option>${state.tournaments.map(t=>`<option value="${t.id}" ${t.id==s.sponsoredEventId?'selected':''}>${esc(t.name)}</option>`).join('')}</select></td>
         <td><select data-scope="sponsors" data-idx="${i}" data-key="sponsoredItem">${opt(Object.keys(SPONSORED_ITEMS),s.sponsoredItem)}</select></td>
+        <td><textarea data-scope="sponsors" data-idx="${i}" data-key="deliverables">${esc(s.deliverables||'')}</textarea></td>
         <td>${cell('sponsors',i,'nextAction',s.nextAction)}</td>
+        <td>${cell('sponsors',i,'renewal',s.renewal||'','date')}</td>
+        <td><textarea data-scope="sponsors" data-idx="${i}" data-key="notes">${esc(s.notes||'')}</textarea></td>
         <td><button class="btn tiny danger" data-delete="sponsors:${i}">×</button></td>
       </tr>`).join('')}</tbody>
     </table></div>`;
@@ -1442,7 +3207,7 @@ document.addEventListener('click', e => {
   if(e.target.id==='addTournament'){ addTournament(); return; }
   if(e.target.id==='addRanking'){ state.rankings.push({id:id(),system:'ITF Junior',category:'Girls 18U',value:'',date:todayISO(),goal:''}); render(); return; }
   if(e.target.id==='addBudget'){ state.budget.push({id:id(),eventId:state.selected.tournamentId||'',category:'Tournament travel',description:'New budget item',amount:0,status:'Needed'}); render(); return; }
-  if(e.target.id==='addSponsor'){ state.sponsors.push({id:id(),company:'New sponsor',contact:'',email:'',phone:'',package:'Local Partner',ask:state.settings.defaultAsk,stage:'Prospect',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Tournament travel',sponsoredEventId:state.selected.tournamentId||'',deliverables:SPONSORED_ITEMS['Tournament travel'].deliverables,nextAction:'Research contact',renewal:'',notes:''}); render(); return; }
+  if(e.target.id==='addSponsor'){ state.sponsors.push({id:id(),company:'New sponsor',category:'',contact:'',email:'',phone:'',package:'Local Partner',ask:state.settings.defaultAsk,stage:'Prospect',contract:'Not started',agreementStart:'',agreementEnd:'',paymentStatus:'Not invoiced',paidAmount:0,scheduledPayment:'',sponsoredItem:'Tournament travel',sponsoredEventId:state.selected.tournamentId||'',deliverables:SPONSORED_ITEMS['Tournament travel'].deliverables,nextAction:'Research contact',renewal:'',notes:''}); render(); return; }
 
   if(e.target.id==='copyEmail'){
     const txt=document.getElementById('emailBox').textContent;
