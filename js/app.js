@@ -2026,7 +2026,7 @@ function seedSponsorRows(eventIdByName={}) {
 const SURFACE_CSS = s => 'surface-' + (s||'').toLowerCase().replace(/[^a-z]/g,'') || 'clay';
 const STATUS_CSS = s => 'pill-status ' + (s||'').toLowerCase().replace(/[^a-z]/g,'');
 
-const KEY = 'andreea-os-v10';
+const KEY = 'andreea-os-v11';
 let state;          // initialized at end after all helpers/factories defined
 let active = 'dashboard';
 let funnelFilter = '';
@@ -2337,6 +2337,36 @@ function latestRankingBySystem(){
     return {system, row:rows[0] || {}};
   });
 }
+
+function dashboardRankingControls(chartSystem){
+  const a = state.athlete;
+  const chartRows = state.rankings
+    .map((r,i)=>({...r,_i:i}))
+    .filter(r=>r.system===chartSystem)
+    .sort((a,b)=>String(a.date||'').localeCompare(String(b.date||'')));
+  return `<div class="form-grid" style="margin-top:14px">
+    <div class="field"><label>Chart system</label><select data-selected="rankingSystem">${opt(RANKING_SYSTEMS, chartSystem)}</select></div>
+    ${field('Headline ranking system','athlete','rankingSystem',a.rankingSystem,'select',RANKING_SYSTEMS)}
+    ${field('Headline ranking','athlete','ranking',a.ranking)}
+    ${field('Reference high','athlete','careerHigh',a.careerHigh)}
+    ${field('Season high','athlete','seasonHigh',a.seasonHigh)}
+    ${field('Goal rank','athlete','rankingGoal',a.rankingGoal)}
+  </div>
+  <div class="table-wrap" style="margin-top:14px">
+    <table>
+      <thead><tr><th>Date</th><th>System</th><th>Category</th><th>Value</th><th>Note / source</th><th></th></tr></thead>
+      <tbody>${chartRows.map(r=>`<tr>
+        <td><input value="${esc(r.date||'')}" data-scope="rankings" data-idx="${r._i}" data-key="date"></td>
+        <td><select data-scope="rankings" data-idx="${r._i}" data-key="system">${opt(RANKING_SYSTEMS, r.system)}</select></td>
+        <td><input value="${esc(r.category||'')}" data-scope="rankings" data-idx="${r._i}" data-key="category"></td>
+        <td><input value="${esc(r.value||'')}" data-scope="rankings" data-idx="${r._i}" data-key="value"></td>
+        <td><input value="${esc(r.goal||'')}" data-scope="rankings" data-idx="${r._i}" data-key="goal"></td>
+        <td><button class="btn danger tiny" data-delete="rankings:${r._i}">×</button></td>
+      </tr>`).join('')}</tbody>
+    </table>
+  </div>
+  <div class="actions" style="margin-top:10px"><button class="btn" id="addChartRanking">+ Ranking row</button><button class="btn ghost" data-go="rankings">Open full rankings</button></div>`;
+}
 function rankingSummaryCards(){
   const rows = latestRankingBySystem();
   if(!rows.length) return '';
@@ -2351,9 +2381,9 @@ function rankingChartCard(system, editable=false, compactSelector=false){
   const chartSystem = system || state.selected.rankingSystem || state.athlete.rankingSystem || 'ITF Junior';
   const sorted = numericRankingRows(chartSystem);
   const editor = editable ? rankingChartEditor(chartSystem) : '';
-  const selector = compactSelector ? `<div class="field compact-field" style="min-width:220px;margin:0"><label>Chart</label><select data-selected="rankingSystem">${opt(RANKING_SYSTEMS, chartSystem)}</select></div>` : '';
-  const head = `<div class="chart-head"><div><h3>Ranking trajectory</h3></div><div class="legend">${selector || `<span>${esc(chartSystem)}</span>`}</div></div>`;
-  if(sorted.length<1) return `<div class="chart-card">${head}${editor}<div class="empty-state">No numeric chart data for ${esc(chartSystem)} yet.</div></div>`;
+  const dashboardControls = compactSelector ? dashboardRankingControls(chartSystem) : '';
+  const head = `<div class="chart-head"><div><h3>Ranking trajectory</h3></div><div class="legend"><span>${esc(chartSystem)}</span></div></div>`;
+  if(sorted.length<1) return `<div class="chart-card">${head}${dashboardControls}${editor}<div class="empty-state">No numeric chart data for ${esc(chartSystem)} yet.</div></div>`;
 
   const W=900,H=300,pad={l:48,r:24,t:20,b:36};
   const xs = sorted.map(s=>new Date(s.date+'T00:00:00').getTime());
@@ -2388,6 +2418,7 @@ function rankingChartCard(system, editable=false, compactSelector=false){
   const tooltip = p => `${chartSystem} · ${p.category}\n${dateLong(p.date)}\nValue: ${p.val}${p.note ? '\n' + p.note : ''}`;
   return `<div class="chart-card">
     ${head}
+    ${dashboardControls}
     ${editor}
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
       <defs>
